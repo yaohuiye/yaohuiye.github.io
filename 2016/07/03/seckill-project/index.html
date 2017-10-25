@@ -1,0 +1,1237 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="baidu-site-verification" content="kxIdmBP4ck" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.css.network/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="spring mvc,mybatis,web project," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yaohuiye's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一步一步的搭建JAVA WEB项目，采用Maven构建，基于MYBatis+Spring+Spring MVC+Bootstrap技术的秒杀项目学习的视频：http://www.imooc.com/learn/587">
+<meta name="keywords" content="spring mvc,mybatis,web project">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA高并发秒杀API项目的学习笔记">
+<meta property="og:url" content="http://yoursite.com/2016/07/03/seckill-project/index.html">
+<meta property="og:site_name" content="Yaohuiye's blog">
+<meta property="og:description" content="一步一步的搭建JAVA WEB项目，采用Maven构建，基于MYBatis+Spring+Spring MVC+Bootstrap技术的秒杀项目学习的视频：http://www.imooc.com/learn/587">
+<meta property="og:updated_time" content="2017-04-12T14:56:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA高并发秒杀API项目的学习笔记">
+<meta name="twitter:description" content="一步一步的搭建JAVA WEB项目，采用Maven构建，基于MYBatis+Spring+Spring MVC+Bootstrap技术的秒杀项目学习的视频：http://www.imooc.com/learn/587">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Yaohuiye'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/03/seckill-project/"/>
+
+
+
+
+
+  <title> JAVA高并发秒杀API项目的学习笔记 | Yaohuiye's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9aa778f3da893a8b08c39bd645c2a067";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Yaohuiye's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">念念不忘，必有回响</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-book">
+          <a href="/book" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/03/seckill-project/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Yaohuiye">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Yaohuiye's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Yaohuiye's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                JAVA高并发秒杀API项目的学习笔记
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-03T23:18:46+08:00">
+                2016-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+           <span class="post-time">
+               &nbsp; | &nbsp;
+             <span class="post-meta-item-icon">
+               <i class="fa fa-calendar-o"></i>
+             </span>
+             <span class="post-meta-item-text">字数统计:</span>
+             <span class="post-count">5,422(字)</span>
+             
+           </span>
+              
+          <span class="post-time">
+              &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-calendar-o"></i>
+               </span>
+               <span class="post-meta-item-text">阅读时长:</span>
+               <span class="post-count">27(分)</span>
+                     
+           </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/03/seckill-project/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/03/seckill-project/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一步一步的搭建JAVA WEB项目，采用Maven构建，基于MYBatis+Spring+Spring MVC+Bootstrap技术的秒杀项目<br>学习的视频：<a href="http://www.imooc.com/learn/587" target="_blank" rel="external">http://www.imooc.com/learn/587</a></p>
+<a id="more"></a>
+<h3 id="创建Maven项目"><a href="#创建Maven项目" class="headerlink" title="创建Maven项目"></a>创建Maven项目</h3><ul>
+<li><p>创建目录，执行Maven命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mvn archetype:generate -DgroupId=org.seckill -DartifactId=seckill -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeCatalog=local</div></pre></td></tr></table></figure>
+<p><strong>问题</strong>：Maven命令执行到Generating Project in Batch mode 卡住，参考<a href="http://blog.sina.com.cn/s/blog_67331d610102wfdo.html" target="_blank" rel="external">链接</a></p>
+</li>
+<li><p>将项目导入到IDEA工具中</p>
+</li>
+<li>修改项目配置<ol>
+<li>修改web.xml中的servlet版本，默认是2.3，其不支持JSP的EL表达式。从Tomcat中的示例的web.xml中拷贝3.0的版本配置到项目中</li>
+<li>补全目录。项目的main目录下创建java目录，在src目录下创建test目录，test目录下创建java和sources目录</li>
+<li>打开pom.xml，进行依赖的配置<ul>
+<li>单元测试依赖：Junit4</li>
+<li>日志依赖：slf4j+logback。(lf4j是规范/接口，log4j,common-logging,logback是日志的实现)</li>
+<li>数据库依赖：mysql-connector-java、c3p0</li>
+<li>DAO框架：mybatis依赖:mybatis</li>
+<li>Servlet web相关依赖：standard、jstl、jackson-databind、servlet-api</li>
+<li>Spring依赖:spring-core、spring-beans、spring-context、spring-jdbc、spring-tx、spring-web、spring-webmvc、spring-test<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">&lt;dependencies&gt;</div><div class="line">  &lt;!---3.0使用编程方式，4.0使用注解方式--&gt;</div><div class="line">  &lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;4.11&lt;/version&gt;</div><div class="line">    &lt;scope&gt;test&lt;/scope&gt;</div><div class="line">  &lt;/dependency&gt;</div><div class="line"></div><div class="line">   &lt;dependency&gt;</div><div class="line">       &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">       &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</div><div class="line">       &lt;version&gt;1.7.12&lt;/version&gt;</div><div class="line">   &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</div><div class="line">         &lt;artifactId&gt;logback-core&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;1.1.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;!--实现slf4j接口并进行整合--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;1.1.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;!--数据库相关依赖--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;mysql&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;5.1.35&lt;/version&gt;</div><div class="line">        &lt;scope&gt;runtime&lt;/scope&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;c3p0&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;c3p0&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;0.9.1.2&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;!--DAO框架：mybatis依赖--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">          &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</div><div class="line">          &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</div><div class="line">          &lt;version&gt;3.3.0&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;!--mybatis自身实现的spring的整合依赖--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;1.2.3&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;!--servlet web相关依赖--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;taglibs&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;standard&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;1.1.2&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;jstl&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;jstl&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;1.2&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">     &lt;dependency&gt;</div><div class="line">         &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;</div><div class="line">         &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;</div><div class="line">         &lt;version&gt;2.5.4&lt;/version&gt;</div><div class="line">     &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;3.1.0&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;!--Spring依赖--&gt;</div><div class="line">    &lt;!--spring核心--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-core&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;!--spring的DAO层依赖--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;!--spring的WEB层依赖--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-web&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;!--spring的单元测试依赖--&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-test&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;4.1.7.RELEASE&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="数据库的设计"><a href="#数据库的设计" class="headerlink" title="数据库的设计"></a>数据库的设计</h3><ul>
+<li>在项目main目录下创建sql目录，新建 schema.sql，作为数据库的创建脚本</li>
+<li>脚本代码如下：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">-- 数据库初始化脚本</div><div class="line"></div><div class="line">-- 创建数据库</div><div class="line">CREATE DATABASE seckill;</div><div class="line"></div><div class="line">-- 使用数据库</div><div class="line">use seckill;</div><div class="line"></div><div class="line">-- 创建秒杀库存表：使用InnoDB引擎，其支持事务。主键自增设置为从1000开始，字符格式设置为UTF8</div><div class="line">CREATE TABLE seckill(</div><div class="line">  seckill_id bigint NOT NULL AUTO_INCREMENT COMMENT &apos;商品库存id&apos;,</div><div class="line">  name varchar(120) NOT NULL COMMENT &apos;商品名称&apos;,</div><div class="line">  number int NOT NULL COMMENT &apos;库存数量&apos;,</div><div class="line">  start_time timestamp NOT NULL COMMENT &apos;秒杀开启时间&apos;,</div><div class="line">  end_time timestamp NOT NULL COMMENT &apos;秒杀结束时间&apos;,</div><div class="line">  create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;创建时间&apos;,</div><div class="line">    PRIMARY KEY (seckill_id),</div><div class="line">  KEY idx_start_time(start_time),</div><div class="line">  KEY idx_end_time(end_time),</div><div class="line">  KEY idx_create_time(create_time)</div><div class="line">)ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT=&apos;秒杀库存表&apos;;</div><div class="line"></div><div class="line">-- 秒杀成功明细表</div><div class="line">CREATE TABLE success_killed(</div><div class="line">  seckill_id bigint NOT NULL COMMENT &apos;秒杀商品id&apos;,</div><div class="line">  user_phone int NOT NULL COMMENT &apos;用户手机号&apos;,</div><div class="line">  state tinyint NOT NULL  COMMENT &apos;状态标示：-1指无效，0指成功，1指已付款&apos;,</div><div class="line">  create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;创建时间&apos;,</div><div class="line">  PRIMARY KEY (seckill_id,user_phone),</div><div class="line">  KEY idx_create_time(create_time)</div><div class="line">)ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT=&apos;秒杀成功明细表&apos;;</div><div class="line"></div><div class="line">-- 初始化数据</div><div class="line">INSERT INTO seckill(name,number,start_time,end_time)</div><div class="line">VALUES</div><div class="line">(&apos;1000元秒杀iphone6&apos;,100,&apos;2016-06-28 00:00:00&apos;,&apos;2016-06-29 00:00:00&apos;),</div><div class="line">(&apos;500元秒杀iphone5&apos;,200,&apos;2016-06-28 00:00:00&apos;,&apos;2016-06-29 00:00:00&apos;),</div><div class="line">(&apos;200元秒杀小米4&apos;,300,&apos;2016-06-28 00:00:00&apos;,&apos;2016-06-29 00:00:00&apos;),</div><div class="line">(&apos;100元秒杀红米note&apos;,400,&apos;2016-06-28 00:00:00&apos;,&apos;2016-06-29 00:00:00&apos;);</div><div class="line"></div><div class="line"></div><div class="line">-- show create table seckill;</div><div class="line">-- 为什么手写DDL，记录每次上线的DDL修改</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="DAO实体和接口"><a href="#DAO实体和接口" class="headerlink" title="DAO实体和接口"></a>DAO实体和接口</h3><ul>
+<li>创建实体包org.seckill.entity</li>
+<li>创建DAO包org.seckill.dao</li>
+<li><p>创建SecKill实体类，生成getter和setter,重写toString</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">		private long secKillId; </div><div class="line">		private String name; </div><div class="line">		private int number; </div><div class="line">		private Date startTime; </div><div class="line">		private Date endTime; </div><div class="line">		private Date createTime; </div><div class="line">	``` </div><div class="line">- 创建SuccessKilled实体类，生成getter和setter，重写toString</div><div class="line">	``` </div><div class="line">		private long secKillId; </div><div class="line">		private long userPhone; </div><div class="line">		private short state; </div><div class="line">		private Date createTime; </div><div class="line">	``` </div><div class="line"></div><div class="line">- 创建DAO接口SecKillDao,添加减库存，根据ID查询秒杀对象，查询秒杀商品列表方法</div><div class="line">	``` </div><div class="line">		/**</div><div class="line">		 * 减库存</div><div class="line">		 * @param secKillId</div><div class="line">		 * @param killTime</div><div class="line">		 * @return如果影响行数大于1，表示更新的记录行数</div><div class="line">		 */</div><div class="line">		int reduceNumber(long secKillId,Date killTime);</div><div class="line"></div><div class="line">		/**</div><div class="line">		 * 根据id查询秒杀对象</div><div class="line">		 * @param secKillId</div><div class="line">		 * @return</div><div class="line">		 */</div><div class="line">		SecKill queryById(long secKillId);</div><div class="line"></div><div class="line">		/**</div><div class="line">		 * 根据偏移量查询秒杀商品列表</div><div class="line">		 * @param offset</div><div class="line">		 * @param limit</div><div class="line">		 * @return</div><div class="line">		 */</div><div class="line">		List&lt;SecKill&gt; queryAll(int offset,int limit);</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建DAO接口SuccessKilledDao,添加插入购买明细，根据ID查询购买明细实体的方法</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 插入购买明细，可过滤重复</div><div class="line"> * @param secKillId</div><div class="line"> * @param userPhone</div><div class="line"> * @return插入的行数</div><div class="line"> */</div><div class="line">int inertSuccessKilled(long secKillId,long userPhone);</div><div class="line"></div><div class="line">/**</div><div class="line"> *根据ID查询SuccessKilled并携带秒杀产品对象实体</div><div class="line"> * @param secKillId</div><div class="line"> * @return</div><div class="line"> */</div><div class="line">SuccessKilled queryByIdWithSecKill(long secKillId);</div></pre></td></tr></table></figure>
+</li>
+<li><p>基于MyBaits实现DAO接口</p>
+<ol>
+<li><p>创建mybatis-config.xml全局配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</div><div class="line">&lt;!DOCTYPE configuration</div><div class="line">        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;</div><div class="line">        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">    &lt;!--配置全局属性--&gt;</div><div class="line">    &lt;settings&gt;</div><div class="line">        &lt;!--使用jdbc的getGeneratedKeys获取数据库自增主键值--&gt;</div><div class="line">        &lt;setting name=&quot;useGenerateKeys&quot; value=&quot;true&quot;/&gt;</div><div class="line"></div><div class="line">        &lt;!--使用列别名替换列名 默认为true--&gt;</div><div class="line">        &lt;setting name=&quot;useColumnLabel&quot; value=&quot;true&quot;/&gt;</div><div class="line"></div><div class="line">        &lt;!--开启驼峰命名转换--&gt;</div><div class="line">        &lt;setting name=&quot;mapUnderscoreCamelCase&quot; value=&quot;true&quot;</div><div class="line">    &lt;/settings&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建mapper文件夹，用于存储mybatis映射文件</p>
+</li>
+<li><p>创建SecKilledDao.xml映射文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</div><div class="line">&lt;!DOCTYPE mapper</div><div class="line">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</div><div class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</div><div class="line">&lt;mapper namespace=&quot;org.seckill.dao.SecKillDao&quot;&gt;</div><div class="line">     &lt;!--为DAO接口方法提供sql语句配置--&gt;</div><div class="line">    &lt;update id=&quot;reduceNumber&quot;&gt;</div><div class="line">        &lt;!--具体的sql--&gt;</div><div class="line">        update</div><div class="line">          seckill</div><div class="line">        set</div><div class="line">          number = number -1</div><div class="line">        where seckill_id = #&#123;secKillId&#125;</div><div class="line">        and start_time &lt;![CDATA[ &lt;= ]]&gt; #&#123;killTime&#125;</div><div class="line">        and end_time &gt;= #&#123;killTime&#125;</div><div class="line">        and number &gt; 0;</div><div class="line">    &lt;/update&gt;</div><div class="line"></div><div class="line">    &lt;select id=&quot;queryById&quot; resultType=&quot;SecKill&quot; parameterType=&quot;long&quot;&gt;</div><div class="line">      select seckill_id,name,number,start_time,end_time,create_time</div><div class="line">      from seckill</div><div class="line">      where seckill_id = #&#123;secKillId&#125;</div><div class="line">    &lt;/select&gt;</div><div class="line"></div><div class="line">    &lt;select id=&quot;queryAll&quot; resultType=&quot;SecKill&quot;&gt;</div><div class="line">      select seckill_id,name,number,start_time,end_time,create_time</div><div class="line">      from seckill</div><div class="line">      order by create_time desc</div><div class="line">      limit #&#123;offset&#125;,#&#123;limit&#125;</div><div class="line">    &lt;/select&gt;</div><div class="line">&lt;/mapper&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建SuccessKilledDao.xml映射文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</div><div class="line">&lt;!DOCTYPE mapper</div><div class="line">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</div><div class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</div><div class="line">&lt;mapper namespace=&quot;org.seckill.dao.SuccessKilledDao&quot;&gt;</div><div class="line">    &lt;!--为DAO接口方法提供sql语句配置--&gt;</div><div class="line">    &lt;insert id=&quot;insertSuccessKilled&quot;&gt;</div><div class="line">       &lt;!--ignore忽略主键冲突--&gt;</div><div class="line">       insert ignore into success_killed(seckill_id,user_phone)</div><div class="line">       values (#&#123;secKilled&#125;,#&#123;userPhone&#125;)</div><div class="line">    &lt;/insert&gt;</div><div class="line"></div><div class="line">    &lt;select id=&quot;queryByIdWithSecKill&quot; resultType=&quot;SuccessKilled&quot;&gt;</div><div class="line">      &lt;!--根据id查询seccessKilled并携带seckill实体 如何告诉mybatis把结果映射到successkilled同时映射到seckill属性 mybatis可以自由控制sql--&gt;</div><div class="line">      select</div><div class="line">        sk.seckill_id,</div><div class="line">        sk.user_phone,</div><div class="line">        sk.create_time,</div><div class="line">        sk.state,</div><div class="line">        s.seckill_id &quot;seckill.seckill_id&quot;,</div><div class="line">        s.name &quot;seckill.name&quot;,</div><div class="line">        s.number &quot;seckill.number&quot;,</div><div class="line">        s.start_time &quot;seckill.start_time&quot;,</div><div class="line">        s.end_time &quot;seckill.end_time&quot;,</div><div class="line">        s.create_time &quot;seckill.crate_time&quot;</div><div class="line">      from success_killed sk</div><div class="line">      inner join seckill s on sk.seckill_id = s.seckill_id</div><div class="line">      where sk.seckill_id = #&#123;secKillId&#125;</div><div class="line">    &lt;/select&gt;</div><div class="line">&lt;/mapper&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>mybatis整合spring</p>
+<ol>
+<li>创建spring文件，用于存储spring配置文件</li>
+<li>创建spring-dao.xml配置文件</li>
+<li><p>创建jdbc.properties配置文件，用于存储数据库相关信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">driver=com.mysql.jdbc.Driver</div><div class="line">url=jdbc:mysql://127.0.0.1:3306/seckill?useUnicode=true&amp;characterEncoding=utf-8</div><div class="line">username=root</div><div class="line">password=purple</div></pre></td></tr></table></figure>
+</li>
+<li><p>在spring-dao.xml配置文件中进行四个步骤的配置</p>
+<ul>
+<li>配置数据库相关参数</li>
+<li>配置数据库连接池</li>
+<li>配置sqlSessionFactory对象</li>
+<li>配置扫描dao接口包，动态实现 dao接口，并注入到spring容器中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</div><div class="line">	   http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">       http://www.springframework.org/schema/context</div><div class="line">       http://www.springframework.org/schema/context/spring-context-3.1.xsd&quot;&gt;</div><div class="line">        &lt;!--配置整合mybatis过程--&gt;</div><div class="line">        &lt;!--配置数据库相关参数--&gt;</div><div class="line">        &lt;context:property-placeholder location=&quot;classpath:jdbc.properties&quot;/&gt;</div><div class="line"></div><div class="line">        &lt;!--数据库连接池--&gt;</div><div class="line">        &lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;</div><div class="line">            &lt;property name=&quot;driverClass&quot; value=&quot;$&#123;driver&quot; /&gt;</div><div class="line">            &lt;property name=&quot;jdbcUrl&quot; value=&quot;$&#123;url&#125;&quot;/&gt;</div><div class="line">            &lt;property name=&quot;user&quot; value=&quot;$&#123;username&#125;&quot;/&gt;</div><div class="line">            &lt;property name=&quot;password&quot; value=&quot;$&#123;password&#125;&quot;/&gt;</div><div class="line"></div><div class="line">            &lt;property name=&quot;maxPoolSize&quot; value=&quot;30&quot;/&gt;</div><div class="line">            &lt;property name=&quot;minPoolSize&quot; value=&quot;10&quot;/&gt;</div><div class="line">            &lt;!--关闭连接后不自动commit--&gt;</div><div class="line">            &lt;property name=&quot;autoCommitOnClose&quot; value=&quot;false&quot;/&gt;</div><div class="line">            &lt;!--获取连接超时的时间--&gt;</div><div class="line">            &lt;property name=&quot;checkoutTimeout&quot; value=&quot;1000&quot;/&gt;</div><div class="line">            &lt;!--获取连接失败的重试次数--&gt;</div><div class="line">            &lt;property name=&quot;acquireRetryAttempts&quot;   value=&quot;2&quot;/&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line"></div><div class="line">        &lt;!--配置sqlSessionFactory对象--&gt;</div><div class="line">        &lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;</div><div class="line">            &lt;!--注入数据库连接池--&gt;</div><div class="line">            &lt;property name=&quot;dataSource&quot; value=&quot;dataSource&quot;/&gt;</div><div class="line">            &lt;!--配置mybatis全局配置文件--&gt;</div><div class="line">            &lt;property name=&quot;configLocation&quot; value=&quot;classpath:mybatis-config.xml&quot;/&gt;</div><div class="line">            &lt;!--扫描entity包，使用别名--&gt;</div><div class="line">            &lt;property name=&quot;typeAliasesPackage&quot; value=&quot;org.seckill.entity&quot;/&gt;</div><div class="line">            &lt;!--扫描sql配置文件--&gt;</div><div class="line">            &lt;property name=&quot;mapperLocations&quot; value=&quot;mapper/*.xml&quot;/&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line"></div><div class="line">        &lt;!--配置扫描dao接口包，动态实现 dao接口，并注入到spring容器中--&gt;</div><div class="line">        &lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;</div><div class="line">            &lt;!--注入sqlSessionFactory对象--&gt;</div><div class="line">            &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory&quot;/&gt;</div><div class="line">            &lt;!--给出扫描Dao接口包--&gt;</div><div class="line">            &lt;property name=&quot;basePackage&quot; value=&quot;org.seckill.dao&quot;/&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>Junit4与Spring进行整合，进行Junit4单元测试</p>
+<ol>
+<li><p>创建SecKillDao的单元测试类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(&quot;classpath:spring/spring-dao.xml&quot;)</div><div class="line">public class SecKillDaoTest &#123;</div><div class="line">    //注入DAO实现类依赖</div><div class="line">    @Resource</div><div class="line">    private SecKillDao secKillDao;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testReduceNumber() throws Exception &#123;</div><div class="line">        Date killTime = new Date();</div><div class="line">        int result = secKillDao.reduceNumber(1000L,killTime);</div><div class="line">        System.out.println(result);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testQueryById() throws Exception &#123;</div><div class="line">        long id = 1000;</div><div class="line">        SecKill secKill = secKillDao.queryById(id);</div><div class="line">        System.out.println(secKill.getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testQueryAll() throws Exception &#123;</div><div class="line">        List&lt;SecKill&gt; secKillList = secKillDao.queryAll(0,1000);</div><div class="line"></div><div class="line">        for(SecKill row : secKillList)&#123;</div><div class="line">            System.out.println(row.toString());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建SuccessKilledDao的单元测试类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(&quot;classpath:spring/spring-dao.xml&quot;)</div><div class="line">public class SuccessKilledDaoTest &#123;</div><div class="line">    @Resource</div><div class="line">    private SuccessKilledDao successKilledDao;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testInertSuccessKilled() throws Exception &#123;</div><div class="line">        int result = successKilledDao.insertSuccessKilled(1000L,28059830451L);</div><div class="line">        System.out.println(result);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testQueryByIdWithSecKill() throws Exception &#123;</div><div class="line">        SuccessKilled successKilled = successKilledDao.queryByIdWithSecKill(1000L,2147483647L);</div><div class="line">        System.out.println(successKilled.toString());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>学习点</p>
+<ul>
+<li>单元测试类可以利用IDEA的快捷键，直接在要测试的类中进行代码的生成</li>
+<li>mybatis的传参，需要在DAO接口方法的形参中使用@Param注解进行指明</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="业务层设计"><a href="#业务层设计" class="headerlink" title="业务层设计"></a>业务层设计</h3><ul>
+<li><p>秒杀业务接口设计</p>
+<ol>
+<li>创建业务包service</li>
+<li>创建数据传输实体包dto</li>
+<li>创建异常包exception</li>
+<li><p>创建dto实体</p>
+<ul>
+<li><p>创建暴露秒杀地址DTO：Exposer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line">public class Exposer &#123;</div><div class="line">    /**</div><div class="line">     * 是否开启秒杀</div><div class="line">     */</div><div class="line">    private boolean exposed;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 秒杀ID</div><div class="line">     */</div><div class="line">    private long secKillId;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 一种加密措施</div><div class="line">     */</div><div class="line">    private String md5;</div><div class="line"></div><div class="line">    /**</div><div class="line">     *系统当前时间（毫秒值）</div><div class="line">     */</div><div class="line">    private long now;</div><div class="line"></div><div class="line">    private long start;</div><div class="line"></div><div class="line">    private long end;</div><div class="line"></div><div class="line">    public Exposer(boolean exposed, String md5, long secKillId) &#123;</div><div class="line">        this.exposed = exposed;</div><div class="line">        this.md5 = md5;</div><div class="line">        this.secKillId = secKillId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Exposer(boolean exposed, long now, long start, long end) &#123;</div><div class="line">        this.exposed = exposed;</div><div class="line">        this.now = now;</div><div class="line">        this.start = start;</div><div class="line">        this.end = end;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Exposer(boolean exposed, long secKillId) &#123;</div><div class="line">        this.exposed = exposed;</div><div class="line">        this.secKillId = secKillId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public boolean isExposed() &#123;</div><div class="line">        return exposed;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setExposed(boolean exposed) &#123;</div><div class="line">        this.exposed = exposed;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public long getSecKillId() &#123;</div><div class="line">        return secKillId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setSecKillId(long secKillId) &#123;</div><div class="line">        this.secKillId = secKillId;</div><div class="line">        this.secKillId = secKillId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String getMd5() &#123;</div><div class="line">        return md5;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setMd5(String md5) &#123;</div><div class="line">        this.md5 = md5;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public long getNow() &#123;</div><div class="line">        return now;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setNow(long now) &#123;</div><div class="line">        this.now = now;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public long getStart() &#123;</div><div class="line">        return start;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setStart(long start) &#123;</div><div class="line">        this.start = start;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public long getEnd() &#123;</div><div class="line">        return end;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setEnd(long end) &#123;</div><div class="line">        this.end = end;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建封装秒杀执行后结果DTO:SecKillExecution</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">public class SecKillExecution &#123;</div><div class="line"></div><div class="line">    private long secKillId;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 秒杀执行结果状态</div><div class="line">     */</div><div class="line">    private int state;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 状态表示</div><div class="line">     */</div><div class="line">    private String stateInfo;</div><div class="line"></div><div class="line">    private SuccessKilled successKilled;</div><div class="line"></div><div class="line">    public SecKillExecution(long secKillId, int state, String stateInfo, SuccessKilled successKilled) &#123;</div><div class="line">        this.secKillId = secKillId;</div><div class="line">        this.state = state;</div><div class="line">        this.stateInfo = stateInfo;</div><div class="line">        this.successKilled = successKilled;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public SecKillExecution(long secKillId, int state, String stateInfo) &#123;</div><div class="line">        this.secKillId = secKillId;</div><div class="line">        this.state = state;</div><div class="line">        this.stateInfo = stateInfo;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public long getSecKillId() &#123;</div><div class="line">        return secKillId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setSecKillId(long secKillId) &#123;</div><div class="line">        this.secKillId = secKillId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public int getState() &#123;</div><div class="line">        return state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setState(int state) &#123;</div><div class="line">        this.state = state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String getStateInfo() &#123;</div><div class="line">        return stateInfo;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setStateInfo(String stateInfo) &#123;</div><div class="line">        this.stateInfo = stateInfo;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public SuccessKilled getSuccessKilled() &#123;</div><div class="line">        return successKilled;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setSuccessKilled(SuccessKilled successKilled) &#123;</div><div class="line">        this.successKilled = successKilled;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>创建异常类</p>
+<ul>
+<li><p>创建业务相关异常:SecKillException</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class SecKillException extends RuntimeException&#123;</div><div class="line">    public SecKillException(String message) &#123;</div><div class="line">        super(message);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public SecKillException(String message, Throwable cause) &#123;</div><div class="line">        super(message, cause);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建重复秒杀异常类：RepeatKillException</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class RepeatKillException extends SecKillException&#123;</div><div class="line">    public RepeatKillException(String message, Throwable cause) &#123;</div><div class="line">        super(message, cause);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public RepeatKillException(String message) &#123;</div><div class="line">        super(message);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建秒杀关闭异常类：SecKillCloseExce<br>ption</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class SecKillCloseException extends SecKillException&#123;</div><div class="line">    public SecKillCloseException(String message) &#123;</div><div class="line">        super(message);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public SecKillCloseException(String message, Throwable cause) &#123;</div><div class="line">        super(message, cause);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>创建SecKillService业务接口:SecKillService</p>
+<ul>
+<li>创建查询所有的秒杀记录方法：getSecKillList</li>
+<li>创建查询单个秒杀记录方法:getById</li>
+<li>创建秒杀开启时输出秒杀接口地址方法:exportSecKillUrl</li>
+<li>创建执行秒杀操作方法:executeSecKill<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public interface SecKillService &#123;</div><div class="line">    /**</div><div class="line">     * 查询所有的秒杀记录</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">     List&lt;SecKill&gt; getSecKillList();</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 查询单个秒杀记录</div><div class="line">     * @param secKillId</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    SecKill getById(long secKillId);</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 秒杀开启时输出秒杀接口地址</div><div class="line">     * 否则输出系统时间和秒杀时间</div><div class="line">     * 防止用户猜测出秒杀地址的规律</div><div class="line">     * @param secKillId</div><div class="line">     */</div><div class="line">    Exposer exportSecKillUrl(long secKillId);</div><div class="line"></div><div class="line">    /**</div><div class="line">     *执行秒杀操作</div><div class="line">     * @param secKillId</div><div class="line">     * @param userPhone</div><div class="line">     * @param md5</div><div class="line">     */</div><div class="line">    SecKillExecution executeSecKill(long secKillId,long userPhone,String md5) throws SecKillException,RepeatKillException,SecKillCloseException;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>业务接口设计的学习点</p>
+<ul>
+<li>站在使用者的角度进行设计接口，不要冗余设计</li>
+<li>方法定义粒度，目的明确。非常友好的让使用者调用接口</li>
+<li>参数要简炼</li>
+<li>返回类型要清晰</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>秒杀业务接口实现</p>
+<ol>
+<li>新建enums枚举包，将数据字典放到枚举中</li>
+<li><p>在枚举包下创建秒杀状态枚举：SecKillStatEnum</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">public enum SecKillStatEnum &#123;</div><div class="line">    SUCCESS(1,&quot;秒杀成功&quot;),</div><div class="line">    END(0,&quot;秒杀结束&quot;),</div><div class="line">    REPEAT(-1,&quot;重复秒杀&quot;),</div><div class="line">    INNER_ERROR(-2,&quot;系统异常&quot;),</div><div class="line">    DATA_REWRITE(-3,&quot;数据篡改&quot;);</div><div class="line"></div><div class="line">    private int state;</div><div class="line">    private String stateInfo;</div><div class="line"></div><div class="line">    SecKillStatEnum(int state, String stateInfo) &#123;</div><div class="line">        this.state = state;</div><div class="line">        this.stateInfo = stateInfo;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public int getState() &#123;</div><div class="line">        return state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String getStateInfo() &#123;</div><div class="line">        return stateInfo;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static SecKillStatEnum stateOf(int index)&#123;</div><div class="line">        for(SecKillStatEnum state : values()) &#123;</div><div class="line">            if(state.getState() == index)&#123;</div><div class="line">                return state;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return null;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在service包下新建impl包</p>
+</li>
+<li>创建SecKillServiceImpl实现类，实现SecKillService接口方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">public class SecKillServiceImpl implements SecKillService&#123;</div><div class="line">    private Logger logger = LoggerFactory.getLogger(SecKillService.class);</div><div class="line"></div><div class="line">    private SecKillDao secKillDao;</div><div class="line">    private SuccessKilledDao successKilledDao;</div><div class="line"></div><div class="line">    //混淆字符，用于混淆MD5</div><div class="line">    private final String salt = &quot;sdlkjs#$#$dfowierlkjafdmv232k3j@@##$&quot;;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public List&lt;SecKill&gt; getSecKillList() &#123;</div><div class="line">        return secKillDao.queryAll(0,4);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public SecKill getById(long secKillId) &#123;</div><div class="line">        return secKillDao.queryById(secKillId);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public Exposer exportSecKillUrl(long secKillId) &#123;</div><div class="line">        SecKill secKill = secKillDao.queryById(secKillId);</div><div class="line"></div><div class="line">        if(null == secKill)&#123;</div><div class="line">            return  new Exposer(false,secKillId);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Date startTime = secKill.getStartTime();</div><div class="line">        Date endTime = secKill.getEndTime();</div><div class="line">        Date nowTime = new Date();</div><div class="line"></div><div class="line">        if(nowTime.getTime() &lt; startTime.getTime()</div><div class="line">                || nowTime.getTime() &gt; endTime.getTime())&#123;</div><div class="line">            return new Exposer(false,secKillId,nowTime.getTime(),startTime.getTime(),endTime.getTime());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //转化特定字符串的过程，不可逆</div><div class="line">        String md5 = getMD5(secKillId);</div><div class="line"></div><div class="line">        return new Exposer(true,md5,secKillId);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public SecKillExecution executeSecKill(long secKillId, long userPhone, String md5)</div><div class="line">            throws SecKillException, RepeatKillException, SecKillCloseException &#123;</div><div class="line">        if(null == md5 || md5.equals(getMD5(secKillId)))&#123;</div><div class="line">            throw new SecKillException(&quot;seckill datarewirte&quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">       try&#123;</div><div class="line">           //执行秒杀逻辑，减库存，记录购买行为</div><div class="line">           Date nowTime = new Date();</div><div class="line">           //减库存</div><div class="line">           int updateCount = secKillDao.reduceNumber(secKillId,nowTime);</div><div class="line"></div><div class="line">           if(updateCount &lt;= 0)&#123;</div><div class="line">               //没有更新到记录，秒杀结束</div><div class="line">               throw new SecKillCloseException(&quot;seckill is Closed&quot;);</div><div class="line">           &#125;else&#123;</div><div class="line">               //记录购买行为</div><div class="line">               int insertCount = successKilledDao.insertSuccessKilled(secKillId,userPhone);</div><div class="line"></div><div class="line">               //唯一：secKillId,userPhone</div><div class="line">               if(insertCount &lt;= 0)&#123;</div><div class="line">                   //重复秒杀</div><div class="line">                   throw new RepeatKillException(&quot;seckill repeated&quot;);</div><div class="line">               &#125;else&#123;</div><div class="line">                   //秒杀成功</div><div class="line">                   SuccessKilled successKilled = successKilledDao.queryByIdWithSecKill(secKillId,userPhone);</div><div class="line"></div><div class="line">                   return new SecKillExecution(secKillId, SecKillStatEnum.SUCCESS,successKilled);</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;catch(SecKillCloseException e1)&#123;</div><div class="line">           throw e1;</div><div class="line">       &#125;catch(RepeatKillException e2)&#123;</div><div class="line">           throw e2;</div><div class="line">       &#125;catch (Exception e)&#123;</div><div class="line">            logger.error(e.getMessage(),e);</div><div class="line">           //所有编译期异常，转化为运行期异常</div><div class="line">           throw new SecKillException(&quot;seckill inner error:&quot; + e.getMessage());</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 生成MD5</div><div class="line">     * @param secKillId</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    private String getMD5(long secKillId)&#123;</div><div class="line">        String base = secKillId + &quot;/&quot; + salt;</div><div class="line">        String md5 = DigestUtils.md5DigestAsHex(base.getBytes());</div><div class="line">        return md5;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>基于Spring托管Service实现类</p>
+<ol>
+<li><p>创建Spring的service配置spring-service.xml，进行service包下的注解类型的扫描配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</div><div class="line">	   http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">       http://www.springframework.org/schema/context</div><div class="line">       http://www.springframework.org/schema/context/spring-context-3.1.xsd&quot;&gt;</div><div class="line">       &lt;!--扫描service包下所有注解的类型--&gt;</div><div class="line">       &lt;context:component-scan base-package=&quot;org.seckill.service&quot;/&gt;</div><div class="line"></div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在service实现类中添加上@Service的注解，在类中的dao对象添加上@Autowired的注解</p>
+</li>
+</ol>
+</li>
+<li><p>配置并使用Spring声明式事务</p>
+<ol>
+<li><p>在spring-service.xml中添加上配置事务管理器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;</div><div class="line">    &lt;!--注入数据库连接池--&gt;</div><div class="line">     &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在spring-service.xml中添加上配置基于注解的声明式事务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在业务类的executeSecKill方法中添加上@Transactional事务注解</p>
+</li>
+<li>学习点：使用注解控制事务方法的优点<ul>
+<li>开发团队达到一致约定，明确标注事务方法的编程风格</li>
+<li>保证事务方法的执行时间尽可能短，不要穿插其他网络操作RPC/HTTP请求，或者剥离到事务方法外部</li>
+<li>不是所有的方法都需要事务，如只有一条修改操作，只读操作就不需要事务控制</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Service集成测试</p>
+<ol>
+<li><p>添加上logback的日志配置文件logback.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line"></div><div class="line">&lt;configuration debug=&quot;true&quot;&gt;</div><div class="line">    &lt;!-- ch.qos.logback.core.ConsoleAppender 控制台输出 --&gt;</div><div class="line">    &lt;appender name=&quot;STDOUT&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;</div><div class="line">        &lt;encoder&gt;</div><div class="line">            &lt;pattern&gt;[%-5level] %d&#123;HH:mm:ss.SSS&#125; [%thread] %logger&#123;36&#125; - %msg%n&lt;/pattern&gt;</div><div class="line">        &lt;/encoder&gt;</div><div class="line"></div><div class="line">    &lt;/appender&gt;</div><div class="line"></div><div class="line">    &lt;!-- 日志级别 --&gt;</div><div class="line">    &lt;root&gt;</div><div class="line">        &lt;level value=&quot;debug&quot; /&gt;</div><div class="line">        &lt;appender-ref ref=&quot;STDOUT&quot; /&gt;</div><div class="line">    &lt;/root&gt;</div><div class="line"></div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用IDEA为SecKillService业务接口创建单元测试类SecKillServiceTest</p>
+</li>
+<li><p>编写单元测试方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(&#123;&quot;classpath:spring/spring-dao.xml&quot;,&quot;classpath:spring/spring-service.xml&quot;&#125;)</div><div class="line">public class SecKillServiceTest &#123;</div><div class="line">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</div><div class="line">    @Autowired</div><div class="line">    private SecKillService secKillService;</div><div class="line">    @Test</div><div class="line">    public void testGetSecKillList() throws Exception &#123;</div><div class="line">        List&lt;SecKill&gt; list = secKillService.getSecKillList();</div><div class="line">        logger.info(&quot;list=&#123;&#125;&quot;,list);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testGetById() throws Exception &#123;</div><div class="line">        SecKill secKill = secKillService.getById(1000L);</div><div class="line">        logger.info(&quot;secKill:&#123;&#125;&quot;,secKill);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 测试完整业务，注意集成测试代码完整逻辑，注意可重复执行</div><div class="line">     * @throws Exception</div><div class="line">     */</div><div class="line">    @Test</div><div class="line">    public void testSecKillLogic() throws Exception &#123;</div><div class="line">        long id = 1000L;</div><div class="line">        Exposer exposer = secKillService.exportSecKillUrl(id);</div><div class="line"></div><div class="line">        if(exposer.isExposed())&#123;</div><div class="line">            logger.info(&quot;exposer=&#123;&#125;&quot;,exposer);</div><div class="line">            long phone = 18059830432L;</div><div class="line">            SecKillExecution secKillExecution = secKillService.executeSecKill(id,phone,exposer.getMd5());</div><div class="line">            logger.info(&quot;secKillExecution:&#123;&#125;&quot;,secKillExecution);</div><div class="line">        &#125;else&#123;</div><div class="line">            //秒杀未开始</div><div class="line">            logger.warn(&quot;exposer=&#123;&#125;&quot;,exposer);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testExportSecKillUrl() throws Exception &#123;</div><div class="line">        long id = 1000L;</div><div class="line">        Exposer exposer = secKillService.exportSecKillUrl(id);</div><div class="line">        logger.info(&quot;exposer=&#123;&#125;&quot;,exposer);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testExecuteSecKill() throws Exception &#123;</div><div class="line">        long id = 1000L;</div><div class="line">        long phone = 18059830452L;</div><div class="line">        String md5 = &quot;f1974250b060f51c4a8e48df67232d53&quot;;</div><div class="line"></div><div class="line">        SecKillExecution secKillExecution = secKillService.executeSecKill(id,phone,md5);</div><div class="line"></div><div class="line">        logger.info(&quot;secKillExecution:&#123;&#125;&quot;,secKillExecution);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>单元测试的学习点</p>
+<ul>
+<li>集成测试的业务逻辑的完整性</li>
+<li>注意测试的可重复执行</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="WEB层设计"><a href="#WEB层设计" class="headerlink" title="WEB层设计"></a>WEB层设计</h3><ul>
+<li><p>设计Restful接口</p>
+</li>
+<li><p>SpringMVC整合Spring</p>
+<ol>
+<li>在web.xml中配置DispatcherServlet</li>
+<li>创建web包</li>
+<li>创建spring-web.xml配置文件</li>
+<li>在spring-web.xml进行SpringMVC的配置<ul>
+<li>开启SpringMVC注解模式</li>
+<li>servlet-mapping映射路径</li>
+<li>配置jsp显示viewResolver</li>
+<li>扫描web相关的bean<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">       xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;</div><div class="line">       xmlns:conext=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</div><div class="line">	   http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">       http://www.springframework.org/schema/mvc</div><div class="line">       http://www.springframework.org/schema/mvc/spring-mvc.xsd</div><div class="line">       http://www.springframework.org/schema/context</div><div class="line">       http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;</div><div class="line">       &lt;!--配置Spring MVC--&gt;</div><div class="line">       &lt;!--开启SpringMVC注解模式--&gt;</div><div class="line">       &lt;!--简化配置</div><div class="line">        1、自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter</div><div class="line">        2、提供一系列功能：数据绑定，数字和日期的转化@NumberFormat,@DataTimeFormat</div><div class="line">            xml,json默认读写支持</div><div class="line">       --&gt;</div><div class="line">        &lt;mvc:annotation-driven/&gt;</div><div class="line"></div><div class="line">        &lt;!--servlet-mapping映射路径--&gt;</div><div class="line">        &lt;!--静态资源默认servlet配置</div><div class="line">            1、加入对静态资源的处理：js，css，img</div><div class="line">            2、允许使用/做整体映射</div><div class="line">        --&gt;</div><div class="line">        &lt;mvc:default-servlet-handler/&gt;</div><div class="line"></div><div class="line">        &lt;!--配置jsp显示viewResolver--&gt;</div><div class="line">        &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</div><div class="line">            &lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.JstlView&quot;/&gt;</div><div class="line">            &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp&quot;/&gt;</div><div class="line">            &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</div><div class="line">        &lt;/bean&gt;</div><div class="line"></div><div class="line">        &lt;!--扫描web相关的bean--&gt;</div><div class="line">        &lt;conext:component-scan base-package=&quot;org.seckill.web&quot;/&gt;</div><div class="line"></div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>实现秒杀相关的Restful接口</p>
+<ol>
+<li>创建控制类SecKillController，实现获取列表，获取单条数据，获取系统时间，获取秒杀地址，秒杀的方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line">@Controller</div><div class="line">@RequestMapping(&quot;/seckill/&quot;)//模块/资源</div><div class="line">public class SecKillController &#123;</div><div class="line">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</div><div class="line">    @Autowired</div><div class="line">    private SecKillService secKillService;</div><div class="line"></div><div class="line">   @RequestMapping(name=&quot;/list&quot;,method= RequestMethod.GET)</div><div class="line">   public String list(Model model)&#123;</div><div class="line">       List&lt;SecKill&gt; list = secKillService.getSecKillList();</div><div class="line">       model.addAttribute(&quot;list&quot;,list);</div><div class="line">       return &quot;list&quot;;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">    @RequestMapping(value=&quot;/&#123;secKillId&#125;/detail&quot;,method=RequestMethod.GET)</div><div class="line">    public String detail(@PathVariable(&quot;secKillId&quot;) Long secKillId,Model model)&#123;</div><div class="line">        if(secKillId == null)&#123;</div><div class="line">            return &quot;redirect:/seckill/list&quot;;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        SecKill secKill = secKillService.getById(secKillId);</div><div class="line"></div><div class="line">        if(secKill == null)&#123;</div><div class="line">            return &quot;redirect:/seckill/list&quot;;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        model.addAttribute(&quot;secKill&quot;,secKill);</div><div class="line">        return &quot;detail&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @RequestMapping(value=&quot;/&#123;secKillId&#125;/exposer&quot;,method = RequestMethod.POST,</div><div class="line">        produces = &#123;&quot;application/json;charset=utf-8&quot;&#125;)</div><div class="line">    @ResponseBody</div><div class="line">    public SecKillResult&lt;Exposer&gt; exposer(@PathVariable(&quot;secKillId&quot;) Long secKillId)&#123;</div><div class="line">        SecKillResult&lt;Exposer&gt; result = null;</div><div class="line"></div><div class="line">        try&#123;</div><div class="line">            Exposer exposer = secKillService.exportSecKillUrl(secKillId);</div><div class="line">            result = new SecKillResult&lt;Exposer&gt;(true,exposer);</div><div class="line"></div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            logger.error(e.getMessage(),e);</div><div class="line">            result = new SecKillResult&lt;Exposer&gt;(false,e.getMessage());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @RequestMapping(value=&quot;/&#123;secKillId&#125;/&#123;md5&#125;/execution&quot;,</div><div class="line">    method = RequestMethod.POST,</div><div class="line">    produces = &#123;&quot;application/json;charset=utf-8&quot;&#125;)</div><div class="line">    public SecKillResult&lt;SecKillExecution&gt; excute(@PathVariable(&quot;secKillId&quot;) Long secKillId,</div><div class="line">                                                  @PathVariable(&quot;md5&quot;) String md5,</div><div class="line">                                           @CookieValue(value=&quot;killPhone&quot;,required = false) Long userPhone)&#123;</div><div class="line">        //springmvc valid</div><div class="line">        if(userPhone == null)&#123;</div><div class="line">            return new SecKillResult&lt;SecKillExecution&gt;(false,&quot;未注册&quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        SecKillResult&lt;SecKillExecution&gt; result = null;</div><div class="line"></div><div class="line">        try&#123;</div><div class="line">            SecKillExecution secKillExecution = secKillService.executeSecKill(secKillId,userPhone,md5);</div><div class="line">            result = new SecKillResult&lt;SecKillExecution&gt;(true,secKillExecution);</div><div class="line"></div><div class="line">        &#125;catch(RepeatKillException e)&#123;</div><div class="line">            SecKillExecution secKillExecution = new SecKillExecution(secKillId, SecKillStatEnum.REPEAT);</div><div class="line">            result = new SecKillResult&lt;SecKillExecution&gt;(false,secKillExecution);</div><div class="line"></div><div class="line">        &#125;catch(SecKillCloseException e)&#123;</div><div class="line">            SecKillExecution secKillExecution = new SecKillExecution(secKillId, SecKillStatEnum.END);</div><div class="line">            result = new SecKillResult&lt;SecKillExecution&gt;(false,secKillExecution);</div><div class="line"></div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            logger.error(e.getMessage(),e);</div><div class="line">            SecKillExecution secKillExecution = new SecKillExecution(secKillId, SecKillStatEnum.INNER_ERROR);</div><div class="line">            result = new SecKillResult&lt;SecKillExecution&gt;(false,secKillExecution);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @RequestMapping(value=&quot;/time/now&quot;,method=RequestMethod.GET)</div><div class="line">    public SecKillResult&lt;Long&gt; time()&#123;</div><div class="line">        Date now = new Date();</div><div class="line">        return new SecKillResult&lt;Long&gt;(true,now.getTime());</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>基于Bootstrap开发页面结构</p>
+<ol>
+<li><p>创建jsp文件夹，创建common/header.jsp,common/tag.jsp,list.jsp,detail.jsp，并引入bootstrap框架，jquery、cookie、countdown插件，可以从百度和bootcss的CDN中引入插件。</p>
+<ul>
+<li>链接：<a href="http://www.bootcdn.cn/" target="_blank" rel="external">http://www.bootcdn.cn/</a></li>
+</ul>
+</li>
+<li><p>创建js文件seckill.js，进行登录、计时的交互逻辑的编码,并在详细页面中引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div></pre></td><td class="code"><pre><div class="line">var seckill = &#123;</div><div class="line">    //封装秒杀相关ajax的url</div><div class="line">    URL: &#123;</div><div class="line">      now: function()&#123;</div><div class="line">          return &apos;/seckill/time/now&apos;;</div><div class="line">      &#125;,</div><div class="line">      exposer: function(id)&#123;</div><div class="line">          return &apos;/seckill/&apos; + id + &apos;/exposer&apos;;</div><div class="line">      &#125;,</div><div class="line">      execution : function(id,md5)&#123;</div><div class="line">          return &apos;/seckill/&apos; + id + &apos;/&apos; + md5 + &apos;/execution&apos;;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    //处理秒杀逻辑</div><div class="line">    handleSecKillKill: function(secKillId,node)&#123;</div><div class="line">        node.hide().html(&apos;&lt;button class=&quot;btn btn-primary btn-lg&quot; id=&quot;killBtn&quot;&gt;开始秒杀&lt;/button&gt;&apos;);</div><div class="line"></div><div class="line">        $.post(seckill.URL.exposer(secKillId),&#123;&#125;,function(result)&#123;</div><div class="line">            if(result &amp;&amp; result.success)&#123;</div><div class="line">                var exposer = result.data;</div><div class="line"></div><div class="line">                if(exposer.exposed)&#123;</div><div class="line">                    //开启秒杀</div><div class="line">                     //获取秒杀地址</div><div class="line">                    var killUrl =  seckill.URL.execution(secKillId,exposer.md5);</div><div class="line">                    console.log(&apos;killUrl:&apos;,killUrl);</div><div class="line">                    //绑定一次点击事件</div><div class="line">                    $(&apos;#killBtn&apos;).one(&apos;click&apos;,function()&#123;</div><div class="line">                         //执行秒杀请求</div><div class="line">                        $(this).addClass(&apos;disabled&apos;);</div><div class="line">                        $.post(killUrl,&#123;&#125;,function(result)&#123;</div><div class="line">                             if(result &amp;&amp; result.success)&#123;</div><div class="line">                                 var killResult = result.data;</div><div class="line">                                 var state = killResult.state;</div><div class="line">                                 var stateInfo = killResult.stateInfo;</div><div class="line"></div><div class="line">                                 node.html(&apos;&lt;span class=&quot;label label-success&quot;&gt;&apos;+stateInfo+&apos;&lt;/span&gt;&apos;);</div><div class="line">                             &#125;</div><div class="line">                        &#125;);</div><div class="line">                    &#125;);</div><div class="line"></div><div class="line">                    node.show();</div><div class="line">                &#125;else&#123;</div><div class="line">                    //未开启秒杀</div><div class="line">                    //重新计算计时逻辑</div><div class="line">                    seckill.countdown(secKillId,exposer.now,exposer.start,exposer.end);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;else&#123;</div><div class="line">                console.error(&apos;result:&apos;,result);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    //计时</div><div class="line">    countdown: function(secKillId,nowTime,startTime,endTime)&#123;</div><div class="line">        var $secKillBox = $(&apos;#seckill-box&apos;);</div><div class="line"></div><div class="line">        if(nowTime &gt; endTime)&#123;</div><div class="line">            $secKillBox.html(&apos;秒杀结束&apos;);</div><div class="line">        &#125;else if(nowTime &lt; startTime)&#123;</div><div class="line">            $secKillBox.html(&apos;秒杀未开始&apos;);</div><div class="line">            var killTime = new Date(startTime + 1000);</div><div class="line"></div><div class="line">            $secKillBox.countdown(killTime,function(event)&#123;</div><div class="line">                var format = event.strftime(&apos;秒杀倒计时：%D天 %H时 %M分 %S秒&apos;);</div><div class="line">                $secKillBox.html(format);</div><div class="line">            &#125;).on(&apos;finish.countdown&apos;,function()&#123;</div><div class="line">                //获取秒杀地址，控制实现逻辑，执行秒杀</div><div class="line">                seckill.handleSecKillKill(secKillId,$secKillBox);</div><div class="line">            &#125;);</div><div class="line">        &#125;else&#123;</div><div class="line">            //秒杀开始</div><div class="line">            seckill.handleSecKillKill(secKillId,$secKillBox);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;,</div><div class="line">    //验证手机号</div><div class="line">    validatePhone: function(phone)&#123;</div><div class="line">        if(phone &amp;&amp; phone.length == 11 &amp;&amp; !isNaN(phone))&#123;</div><div class="line">            return true;</div><div class="line">        &#125;else&#123;</div><div class="line">            return false;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    //详情页秒杀逻辑</div><div class="line">    detail: &#123;</div><div class="line">        //详情页初始化</div><div class="line">        init: function(params)&#123;</div><div class="line">            //用户手机验证和登录，计时交互</div><div class="line">            //规划交互流程</div><div class="line">            //在cookie中查找手机号</div><div class="line">            var killPhone = $.cookie(&apos;killPhone&apos;),</div><div class="line">                startTime = params.startTime,</div><div class="line">                endTime = params.endTime,</div><div class="line">                secKillId = params.secKillId;</div><div class="line"></div><div class="line">            //验证手机号</div><div class="line">            if(!seckill.validatePhone(killPhone))&#123;</div><div class="line">                var killPhoneModal = $(&apos;#killPhoneModal&apos;);</div><div class="line"></div><div class="line">                killPhoneModal.modal(&#123;</div><div class="line">                    show: true,</div><div class="line">                    backdrop: &apos;static&apos;,//禁止位置关闭</div><div class="line">                    keyboard: false//关闭键盘事件</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">                $(&apos;#killPhoneBtn&apos;).click(function()&#123;</div><div class="line">                   var inputPhone = $(&apos;#killPhoneKey&apos;).val();</div><div class="line">                    if(seckill.validatePhone(inputPhone))&#123;</div><div class="line">                        //电话写入cookie</div><div class="line">                        $.cookie(&apos;killPhone&apos;,inputPhone,&#123;expires:7,path: &apos;/seckill&apos;&#125;)</div><div class="line">                        window.location.reload();</div><div class="line"></div><div class="line">                    &#125;else&#123;</div><div class="line">                        //正常下会有一个前端字典</div><div class="line">                       $(&apos;#killPhoneMessage&apos;).hide().html(&apos;&lt;label class=&quot;label label-danger&quot;&gt;手机号码错误&lt;/label&gt;&apos;).show(300);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            //用户已经登录</div><div class="line">            //计时交互</div><div class="line">            $.get(seckill.URL.now(),function(result)&#123;</div><div class="line">                if(result &amp;&amp; result.success)&#123;</div><div class="line">                    var nowTime = result.data;</div><div class="line">                    seckill.countdown(secKillId,nowTime,startTime,endTime);</div><div class="line"></div><div class="line">                &#125;else&#123;</div><div class="line">                    consolw.error(&apos;result:&apos;,result);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在detail.jsp页面中引入seckill.js文件，并进行初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    $(function()&#123;</div><div class="line">       //使用EL表达式传入参数</div><div class="line">       seckill.detail.init(&#123;</div><div class="line">         secKillId: $&#123;secKill.secKillId&#125;,</div><div class="line">         startTime: $&#123;secKill.startTime.time&#125;,</div><div class="line">         endTime: $&#123;secKill.endTime.time&#125;</div><div class="line">       &#125;);</div><div class="line">    &#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-mvc/" rel="tag"># spring mvc</a>
+          
+            <a href="/tags/mybatis/" rel="tag"># mybatis</a>
+          
+            <a href="/tags/web-project/" rel="tag"># web project</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/03/sublime-install/" rel="next" title="Sublime安装记录">
+                <i class="fa fa-chevron-left"></i> Sublime安装记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/27/tomcat-eof-exception/" rel="prev" title="Tomcat启动报java.io.EOFException错误">
+                Tomcat启动报java.io.EOFException错误 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/03/seckill-project/"
+           data-title="JAVA高并发秒杀API项目的学习笔记" data-url="http://yoursite.com/2016/07/03/seckill-project/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Yaohuiye" />
+          <p class="site-author-name" itemprop="name">Yaohuiye</p>
+          <p class="site-description motion-element" itemprop="description">人生三件事：读书、锻炼、旅行</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">159</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">151</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yaohuiye" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/yaohuiye" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yaohuiye" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建Maven项目"><span class="nav-number">1.</span> <span class="nav-text">创建Maven项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的设计"><span class="nav-number">2.</span> <span class="nav-text">数据库的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAO实体和接口"><span class="nav-number">3.</span> <span class="nav-text">DAO实体和接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务层设计"><span class="nav-number">4.</span> <span class="nav-text">业务层设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WEB层设计"><span class="nav-number">5.</span> <span class="nav-text">WEB层设计</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yaohuiye</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<div class="link-by">
+  链接 -
+  <a class="theme-link" href="https://coding.net/pages" target="new">
+    Hosted by Coding Pagesmain
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yaohuiye2014"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

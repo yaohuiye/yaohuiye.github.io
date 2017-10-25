@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    
+    <entry>
+      <title><![CDATA[Flask入门Demo]]></title>
+      <url>%2F2017%2F10%2F25%2Fpython-flask-start%2F</url>
+      <content type="text"><![CDATA[虚拟环境 在虚拟环境中可以安装私有包，而不会影响系统中安装的全局解释器。避免包的混乱和版本的冲突。 安装 在mac下执行命令 1sudo easy_install virtualenv demo1、 创建项目文件夹coder_home 2、 为项目创建虚拟环境(项目中会有一个venv文件夹) 12$ cd coder_home$ virtualenv venv -p=python3.6 3、 激活虚拟环境 1$ source venv/bin/activate 4、 安装flask环境.使用virtualevn工具创建虚拟环境时会自动安装pip 1$ pip3 install flask 5、 在项目下创建hello.py 123456789101112131415from flask import Flaskapp = Flask(__name__)@app.route(&apos;/&apos;)def index(): user_agent = request.headers.get(&apos;User-Agent&apos;) return &apos;&lt;h1&gt;Hello World. Your browser is %s&lt;/h1&gt;&apos; % user_agent@app.route(&apos;/user/&lt;name&gt;&apos;)def user(name): return &apos;&lt;h1&gt;Hello, %s&lt;/h1&gt;&apos; % nameif __name__ == &apos;__main__&apos;: app.run(debug=True) 6、 启动 1$ python hello.py 7、 运行 输入http://localhost:5000访问 示例项目1https://github.com/miguelgrinberg/flasky.git]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Python语言之Re库学习]]></title>
+      <url>%2F2017%2F03%2F24%2Fpython-re%2F</url>
+      <content type="text"><![CDATA[介绍Re库是Python的标准库，主要用于字符串匹配 导入模块1import Re 表示类型raw string原生字符串类型：r&apos;text&apos;。当正则表达式中包含转义符时，使用raw string 1r&apos;[1-9]\d&#123;5&#125;&apos; 使用方法函数式用法：一次性操作1match = re.search(r&apos;[1-d]\d&#123;5&#125;&apos;,&apos;Hello 2345678&apos;) 面向对象用法：编译后的多次操作 将正则表达式的字符串形式编译成正则表达式对象1regex = re.compile(pattern,flags=0) 12regex = re.compile(r&apos;[1-d]\d&#123;5&#125;&apos;)match = regex.search(&apos;Hello 2345678&apos;) 功能函数 re.search(pattern,string,flags=0) 在字符串中搜索匹配正则的第一个位置，返回match对象 123match = re.search(r&apos;[1-d]\d&#123;5&#125;&apos;,&apos;Hello 2345678&apos;)if match: print(match.group(0)) re.match(pattern,string,flags=0) 从字符串的开始位置起匹配正则表达式，返回match对象 123match = re.match(r&apos;[1-9]\d&#123;5&#125;&apos;,&apos;100081&apos;)if match: print(match.group(0)) re.findall(pattern,string,flags=0) 以列表类型返回全部能匹配的子串 1ls = re.findall(r&apos;[1-9]\d&#123;5&#125;&apos;,&apos;100081 100065&apos;) re.split(pattern,string,maxsplit=0,flags=0) 将字符串按照正则匹配结果进行分割，返回列表类型 1ls = re.split(r&apos;[1-9]\d&#123;5&#125;&apos;,&apos;Hello100081 sd100065 sd&apos;,maxsplit=2) re.finditer(pattern,string,flags=0) 搜索字符串，返回一个匹配结果的迭代类型，每个迭代元素是match对象 123for m in re.finditer(r&apos;[1-9]\d&#123;5&#125;&apos;,&apos;Hello100081 sd100065 sd&apos;): if m: print(m.group(0)) re.sub(pattern,repl,string,count=0,flags=0) 在一个字符串中替换所有匹配正则的子串，返回替换后的字符串 1re.sub(r&apos;[1-9]\d&#123;5&#125;&apos;,&apos;:zipcode&apos;,&apos;Hello100081 sd100065 sd&apos;,count=1) 参数说明 pattern：正则表达式 string：待匹配的字符串 repl：替换匹配字符串的字符串 count：匹配的最大替换次数 maxsplit：最大分割数，剩余部分作为最后一个元素输出 flags：正则表达式使用时的控制标记 re.I(re.IGNORECASE)：忽略大小写 re.M(re.MULTILINE)：正则中的^操作符能够将给定字符串的每行作为匹配的开始 re.S(re.DOTALL)：正则中的.操作符能够匹配所有字符，默认匹配除换行外的所有字符 match对象属性 .string：待匹配的文本 .re：匹配时使用的正则 .pos：正则搜索文本的开始位置 .endpos：正则搜索文本的结束位置 方法 .group(0)：获取匹配后的字符串 .start()：匹配字符串在原始字符串的开始位置 .end()：匹配字符串在原始字符串的结束位置 .span()：返回(开始位置,结束位置) 贪婪匹配和最小匹配 Re库默认采用贪婪匹配，即输出匹配最长的子串 12match = re.search(r&apos;PY.*N&apos;,&apos;PYANBNCNDN&apos;)match.group(0) 结果：’PYANBNCNDN’ 最小匹配，即输出匹配最短的子串 12match = re.search(r&apos;PY.*?N&apos;,&apos;PYANBNCNDN&apos;)match.group(0) 结果：’PYAN’ 最小匹配操作符 *?：前一个字符0次或无限次扩展，最小匹配 +?：前一个字符1次或无限次扩展，最小匹配 ??：前一个字符0次或1次扩展，最小匹配 {m,n}?：扩展前一个字符m至n次(含n)，最小匹配 学习参考学习参考于中国大学imooc课程：嵩天老师的《Python网络爬虫与信息提取》]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[常用的正则表达式]]></title>
+      <url>%2F2017%2F03%2F23%2Flearn-regex%2F</url>
+      <content type="text"><![CDATA[正则表达式常用字符 操作符 说明 实例 . 任何单个字符 .*，表示匹配任意字符 [^] 非字符集，对单个字符给出排除范围 [^abc]，表示非a或b或c的单个字符 * 前一个字符的0次或多次 abc*，表示ab、abc、abcc、abccc等 + 前一个字符的1次或多次 abc+，表示abc、abcc、abccc等 ? 前一个字符的0次或1次 abc?，表示ab、abc &#124; 或，左右表达式任意一个 abc&#124;edf，表示abc或edf {m} 前一个字符m次 ab{2}c，表示abbc {m,n} 前一个字符m至n次 ab{1,2}c，表示abc、abbc ^ 匹配字符串开头 ^abc，表示abc且在一个字符串的开头 $ 匹配字符串结尾 abc%，表示abc且在一个字符串的结尾 () 分组标记，内部只能使用&#124;操作符 (abc)表示abc，(abc&#124;def)表示abc、def \d 数字，等价于[0-9] .*，表示匹配任意字符 \w 单词字符，等价于[A-Za-z0-9] .*，表示匹配任意字符 举例说明整数形式的字符串1^-?\d+$ 正整数形式的字符串1^[0-9]*[0-9]*$ 英文字符组成的字符串1^[A-Za-z]+$ 26个字母的字母和数字组成的字符串1^[A-Za-z0-9]+$ 中国境内邮政编码6位1[1-9]\d&#123;5&#125; 中文字符1[\u4e00-\u9fa5] IP地址1^(([1-9]?\d|1\d&#123;2&#125;|2[0-4]\d|25[0-5]).)&#123;3&#125;([1-9]?\d|1\d&#123;2&#125;|2[0-4]\d|25[0-5])&#123;1&#125;$ 学习参考学习参考于中国大学imooc课程：嵩天老师的《Python网络爬虫与信息提取》]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[JSTL表达式把一个拼接的字符串进行分隔输出]]></title>
+      <url>%2F2017%2F03%2F22%2Fjstl-split-string%2F</url>
+      <content type="text"><![CDATA[在JSTL表达式中，标签可以根据某个分隔符分隔指定字符串，相当于java.util.StringTokenizer类。123&lt;c:forTokens items=&quot;$&#123;tags&#125;&quot; delims=&quot;,&quot; var=&quot;tag&quot;&gt; &lt;li&gt;$&#123;tag&#125;&lt;/li&gt;&lt;/c:forTokens&gt;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[基础排序的Python语言代码实现]]></title>
+      <url>%2F2017%2F03%2F05%2Fpython-sort-algorithm%2F</url>
+      <content type="text"><![CDATA[选择排序1234567891011121314def sort_min2max(array, n): &apos;&apos;&apos; 排序函数：从小到大排序 :param array:要进行排序的数组 :param n: 要进行排序的数组的个数 &apos;&apos;&apos; for i in range(n): index = i for j in range(i + 1,n): if(array[j] &lt; array[index]): index = j if index != i: array[i],array[index] = array[index],array[i] 插入排序1234567891011121314151617181920def sort_min2max(array,n): &apos;&apos;&apos; 插入排序：从小到大排序，优化后版本 :param array 要排序的数组 :param n 要排序的数组个数 &apos;&apos;&apos; for i in range(1,n): #寻找array[i]的合适插入位置 now = array[i] index = 0 for j in range(i,-1,-1): index = j if array[j - 1] &gt; now: array[j] = array[j - 1] else: break array[index] = now 希尔排序1234567891011121314151617181920&apos;&apos;&apos;希尔排序：从小到大排列:param array:要排序的数组:param n: 要排序的数组的个数:return:&apos;&apos;&apos;h = 1while h &lt; n//3: h = 3 * h + 1while h &gt;= 1: for i in range(h,n): now = array[i] j = i while j &gt;= h and now &lt; array[j-h]: array[j]=array[j-h] j -= h array[j] = now h /= 3 冒泡排序1234567891011121314151617def sort_min2max(array, n): &apos;&apos;&apos; 冒泡排序：从小到大排序 :param array:要排序的数组 :param n: 要排序的数组的个数 :return: &apos;&apos;&apos; swapped = True while swapped: swapped = False for i in range(1,n): if array[i - 1] &gt; array[i]: array[i -1],array[i] = array[i],array[i - 1] swapped = True #已经将最大的值放到了最后面，则可减少最末值的判断 n -= 1]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Python语言之request库学习]]></title>
+      <url>%2F2017%2F03%2F02%2Fpython-requests-learn%2F</url>
+      <content type="text"><![CDATA[说明request库是python中一个通过HTTP协议请求去爬取网页信息的第三方库，通过GET、POST等类型向目标域发送request请求，返回响应结果Response，通过对响应结果的解析，即可得到我们想要的信息 术语 HTTP：超文本传输协议 一个基于请求与响应模式的、无状态的应用层协议 无状态：第一次和第二次请求没有关联 HTTP协议采用URL作为定位网络资源的标识 API说明 基础API：requests.request(method,url,**kwargs) 示例说明eg: requests.get(url,params=None,**kwargs) url：是访问的网站地址 params: 是附加的参数 kwargs：控制访问的参数，在GET请求中有12个 requests的七个主要的API 构造一个请求，其他六个API的基础方法：requests.request() GET请求：requests.get() POST请求：requests.post() 获取头信息：requests.head() put请求：requests.put() 提交局部修改的请求：requests.patch() 删除请求：requests.delete() 请求返回的对象Response对象的属性 状态码：r.status_code 响应内容：r.text 从Http header中猜测出的的编码方式：r.encoding。如果 header中不存在charset，则认为编码为ISO-8859-1 从内容中分析出的响应内容编码方式：r.apparent_encoding 响应内容的二进制形式：r.content Requests库的异常 网络连接错误异常，如DNS查询失败、拒绝连接：requests.ConnectionError HTTP错误异常：requests.HTTPError URL缺失异常：requests.URIRequired 超过最大重定向次数：requests.TooManyRedirects 连接远程服务器超时：requests.ConnectTimeout 请求URL超时：requests.Timeout 控制参数**kwargs params:参数 json:JSON格式的数据 data：POST参数 headers:HTTP的头字段 cookies auth：认证参数 files:字典类型，传输文件 timeout:超时时间 proxies:设置代理服务器 allow_redirects:True/False，是否允许重定向 stream：True/False，获取内容是否立即下载 verify：SSL相关参数 cert:本地SSL证书路径 常用的抛出异常方法 r.raise_for_status()：如果不是200，产生异常requests.HTTPError 安装requests库系统已安装python以及pip插件，打开控制台，输入如下命令进行安装 1pip install requests 简单使用 导入包 1import requests 发送get请求，访问百度首页 1r = requests.get(&apos;http://www.baidu.com&apos;) 获取状态码 1r.status_code 设置编码 1r.encoding = &apos;utf-8&apos; 获取响应内容 1r.text 判断返回的对象类型 1type(r) #requests.models.Response 获取响应的头部信息 1r.headers 带参数的GET请求 123params = &#123;&apos;username&apos;:&apos;yaohuiye&apos;,&apos;password&apos;:&apos;123abc&apos;&#125;r = requests.request(&apos;GET&apos;,&apos;http://yaohuiye.com/blog&apos;,params = params)print(r.url) #打印链接 爬取网页的通用代码框架12345678910111213141516171819202122# -*- coding: utf-8 -*-import requestsimport timedef getHTMLText(url): try: r = requests.get(url, timeout=30) r.raise_for_status() #如果状态码不是200，则引发HTTPError异常 r.encoding = r.apparent_encoding return r.text except: return &apos;产生异常&apos;if __name__ == &apos;__main__&apos;: url = &apos;http://www.baidu.com&apos; startTime = time.clock() for i in range(100): getHTMLText(url) endTime = time.clock() print(&apos;消耗了%d秒&apos;%(endTime - startTime)) 爬取图片并存储12345678910111213141516171819202122232425262728import osimport requestsdef fetch(url,imageDir): try: if not os.path.exists(imageDir): os.mkdir(imageDir) imagePath = imageDir + &apos;/&apos; + url.split(&apos;/&apos;)[-1] if not os.path.exists(imagePath): r = requests.get(url) r.raise_for_status() with open(imagePath,&apos;wb&apos;) as f: f.write(r.content) f.close() print(&apos;save success&apos;) else: print(&apos;file exists&apos;) except: print(&apos;fetch fail&apos;)if __name__ == &apos;__main__&apos;: url = &apos;http://img.1985t.com/uploads/attaches/2016/01/60320-bbZEcch.jpg&apos; imageDir = &apos;F://images&apos; fetch(url,imageDir) 问题尽管Requests库功能很友好、开发简单（其实除了import外只需一行主要代码），但其性能与专业爬虫相比还是有一定差距的。 使用技巧当一些请求响应的内容比较大时，可以通过header请求先去获取到header中的信息，然后判断一些相关信息后，再采取措施去请求数据 学习参考学习参考于中国大学imooc课程：嵩天老师的《Python网络爬虫与信息提取》]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[FastJSON的时间格式化]]></title>
+      <url>%2F2017%2F02%2F19%2Ffastjson-time-format%2F</url>
+      <content type="text"><![CDATA[问题在项目中某模块的列表展示时发表时间有格式的限制，格式需为“yyyy-MM-dd HH:mm:ss”。模块的列表数据是采用了FastJSON这个JSON组件直接进行数据解析。如果没有相应的处理，导致了解析出来的时间格式为“yyyy-MM-dd HH:mm:ss.0”，多了一个”.0”的字符 解决方法通过FastJSON的注解来解决，通过@JSONField注解的属性format来进行指定，如下所示：12345public class Article&#123; @JSONField(format=&quot;yyyy-MM-dd HH:mm:ss&quot;) private Timestamp time; ...//省略其他属性&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[编写模糊查询的SQL语句]]></title>
+      <url>%2F2017%2F02%2F19%2Fsql-like-create%2F</url>
+      <content type="text"><![CDATA[问题之前项目在使用到LIKE查询时，使用的方式如下：1、编写SQL语句1sql = SELECT * FROM Dictionary WHERE name LIKE ? 2、在程序中对查询的关键字添加上左右的%通配符1name = &quot;%&quot; + name + &quot;%&quot; 3、执行查询语句1dao.query(sql,tagName) 之所以将通配符放到Java程序中进行拼接，是因为如果将%放到sql语句中，sql语句执行会报错，类似如下：1sql = SELECT * FROM Dictionary WHERE name LIKE %?% 这就使得在程序中嵌入了sql语句的关键字，JAVA代码与SQL代码没有严格区分。 解决方法1、编写SQL语句，即在占位符的左右加上%，其中%号用单引号包裹起来，然后空一格1sql = SELECT * FROM Dictionary WHERE name LIKE &apos;%&apos; ? &apos;%&apos; 2、执行查询语句1dao.query(sql,tagName) 如此便可正确的执行sql语句，从而将sql代码与JAVA代码分离]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[SVN安装记录]]></title>
+      <url>%2F2017%2F02%2F15%2Fsvn-install%2F</url>
+      <content type="text"><![CDATA[SVN安装地址 VisualSVN：http://subversion.apache.org/packages.html TortoiseSVN：http://tortoisesvn.net/downloads.html 安装步骤一路选择安装路径，Next... 在服务器中安装Visual SVN作为SVN的服务端，安装完成后，打开Visual SVN图形界面，可方便的进行版本库添加、用户创建。 在服务器中安装TortoiseSVN，用于版本库的签出、签入、更新、提交操作。 在客户端中安装TortoiseSVN，用于版本库的签出、签入、更新、提交操作。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java学习笔记-enum]]></title>
+      <url>%2F2017%2F02%2F15%2Fjava-enum%2F</url>
+      <content type="text"><![CDATA[一、java枚举知识点： 它不能有public的构造函数，这样做可以保证客户代码没有办法新建一个enum的实例。 所有枚举值都是public,static,final的。 Enum默认实现了java.lang.Comparable接口。 Enum覆盖了了toString方法，因此我们如果调用Color.Blue.toString()默认返回字符串”Blue”. Enum提供了一个valueOf方法，这个方法和toString方法是相对应的。调用valueOf(“Blue”)将返回Color.Blue. Enum还提供了values方法，这个方法使你能够方便的遍历所有的枚举值。 Enum还有一个oridinal的方法，这个方法返回枚举值在枚举类种的顺序，这个顺序根据枚举值声明的顺序而定 二、JAVA根据枚举的顺序索引，去查询获取对应的枚举：12345678910/** * 根据索引获取 * @param &lt;T&gt; * @param clazz * @param ordinal * @return */public static &lt;T extends Enum&lt;T&gt;&gt; T valueOf(Class&lt;T&gt; clazz, int ordinal) &#123; return (T)clazz.getEnumConstants()[ordinal];&#125; 三、JAVA根据枚举的name，去查询获取对应的枚举：12345678910/** * 根据name获取 * @param &lt;T&gt; * @param enumType * @param name * @return */public static &lt;T extends Enum&lt;T&gt;&gt; T valueOf(Class&lt;T&gt; enumType, String name) &#123; return (T)Enum.valueOf(enumType, name);&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hexo博客搭建笔记]]></title>
+      <url>%2F2017%2F02%2F12%2Fhexo-note%2F</url>
+      <content type="text"><![CDATA[Hexo是一款优秀的静态博客，本文主要记录了在搭建Hexo博客时的一些安装配置。通过Hexo配置了自己的个人博客，采用了Next主题。访问域名：http://yaohuiye.comgithub源码：https://github.com/yaohuiye/yaohuiye.github.io 环境安装 安装NodeJs 为防止网络问题导致下载卡顿.NoteJs配置为使用淘宝镜像，输入如下的命令：npm install -g cnpm --registry=https://registry.npm.taobao.org 通过如下的命令安装hexo： cnpm install -g hexo-cli cnpm install hexo --save 验证hexo版本，此刻安装的最新版本是3.2.2hexo -v 安装Git，并在Github上拥有一个账号。因为项目是部署在Github中，利用到了其提供的Pages功能 Hexo指令熟悉 清理生成文件hexo clean 新建文章hexo new &quot;postName&quot; == hexo n &quot;postName&quot; 新建页面hexo new page &quot;pageName&quot; 生成静态页面至public目录hexo generate == hexo g 开启预览访问端口（默认端口4000，’ctrl + c’关闭server）hexo server == hexo s 将.deploy目录部署到GitHubhexo deploy == hexo d备注：命令可以联结使用，如：hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy。如hexo s -g 生成博客 创建一个博客目录blog 在blog文件夹中进入git的控制台 进行Hexo博客的初始化hexo initcnpm install 运行博客hexo s -g 在浏览器中输入：http://localhost:4000 ,则会展示博客内容 配置博客 主要的配置文件是blog目录下的_config.yml。在这个配置文件中可以修改博客的标题title,简介description,语言lang,主题theme 博客采用了NexT主题，安装步骤如下：（1）进入blog目录下，打开git的控制台，输入如下的命令： git clone https://github.com/iissnan/hexo-theme-next themes/next（2）在blog根目录下的_config.yml中修改theme的值，修改为next（3）重新运行博客，在浏览器中即可看到效果备注：next提供了非常完整的帮助文档，具体可参考虑链接：http://theme-next.iissnan.com/getting-started.html 设置站点的图标favicon.ico（1）制作一个favicon.ico文件，将其放到blog/source目录下 设置404页面（1）这里主要引用的是腾讯的公益找人404.html（2）参考链接：http://theme-next.iissnan.com/theme-settings.html#volunteer-404 设置分类页面categories（1）运行命令：hexo new page categories（2）此时在source目录下会生成categories文件夹，categories文件夹中会有一个index.md（3）打开index.md，完善如下的内容。type: “categories”一定要添加，不然页面上不会生成tag列表。如果有评论功能，则添加上comments: false来禁止。 123456 ---title: 分类date: 2017-02-12 15:25:57,type: &quot;categories&quot;comments: false --- 设置标签页面tags（1）运行命令：hexo new page tags（2）此时在source目录下会生成tags文件夹，tags文件夹中会有一个index.md（3）打开index.md，完善如下的内容。type: “tags”一定要添加，不然页面上不会生成tag列表。如果有评论功能，则添加上comments: false来禁止。 123456 ---title: 标签date: 2017-02-12 15:25:57,type: &quot;tags&quot;comments: false --- 设置评论（1）这里设置的是多说的评论（2）参考链接：http://theme-next.iissnan.com/third-party-services.html#duoshuo 设置分享（1）这里设置的是JiaThis（2）参考链接：http://theme-next.iissnan.com/third-party-services.html#share-jiathis 设置站内搜索（1）这里设置的是Local Search。需要安装hexo-generator-searchdb插件（2）参考链接：http://theme-next.iissnan.com/third-party-services.html#local-search 设置about页面（1）运行命令：hexo new page about（2）此时在source目录下会生成about文件夹，about文件夹中会有一个index.md（3）在index.md中进行个人介绍内容的编辑 设置统计分析（1）这里设置的是百度统计（2）参考链接：http://theme-next.iissnan.com/third-party-services.html#analytics-baidu 设置社交账号展示（1）参考链接：http://theme-next.iissnan.com/theme-settings.html#author-sites 设置页面文章的篇数（1）安装相关插件cnpm install --save hexo-generator-index cnpm install --save hexo-generator-archive cnpm install --save hexo-generator-tag（2）在_config.yml配置文件中添加上如下的配置 12345678index_generator: per_page: 5archive_generator: per_page: 20 yearly: true monthly: truetag_generator: per_page: 10 添加RSS（1）安装插件cnpm install hexo-generator-feed --save（2）在_config.yml修改配置： 1234feed type: atom path: atom.xml limit: 20 添加sitemap（1）安装插件cnpm install hexo-generator-sitemap --save（2）在_config.yml修改配置： 12sitemap: path: sitemap.xml 标题栏展示字数统计以及阅读时长（1）安装插件（2）找到themes/next/layout/_marcro文件夹中的post.swig文件（3）定位到post-time的元素，在元素后面追加如下的代码： 12345678910111213141516171819&lt;span class=&quot;post-time&quot;&gt; &amp;nbsp; | &amp;nbsp; &lt;span class=&quot;post-meta-item-icon&quot;&gt; &lt;i class=&quot;fa fa-calendar-o&quot;&gt;&lt;/i&gt; &lt;/span&gt; &lt;span class=&quot;post-meta-item-text&quot;&gt;字数统计:&lt;/span&gt; &lt;span class=&quot;post-count&quot;&gt;&#123;&#123; wordcount(post.content) &#125;&#125;(字)&lt;/span&gt; &lt;/span&gt; &lt;span class=&quot;post-time&quot;&gt; &amp;nbsp; | &amp;nbsp; &lt;span class=&quot;post-meta-item-icon&quot;&gt; &lt;i class=&quot;fa fa-calendar-o&quot;&gt;&lt;/i&gt; &lt;/span&gt; &lt;span class=&quot;post-meta-item-text&quot;&gt;阅读时长:&lt;/span&gt; &lt;span class=&quot;post-count&quot;&gt;&#123;&#123; min2read(post.content) &#125;&#125;(分)&lt;/span&gt; &lt;/span&gt; （4）参考链接：http://www.joryhe.com/2016-06-06-hexo_wordcount_setting_your_post.html 加载google字体缓慢的解决（1）打开next/_config.xml文件，在font属性下修改host为//fonts.css.network12345font: enable: true # Uri of fonts host. E.g. //fonts.googleapis.com (Default) host: //fonts.css.network 部署到github，使之可以通过username.github.io来进行站点的访问（1）参考链接：http://blog.csdn.net/u3d_ysj/article/details/50525820 部署到coding（1）参考链接：http://www.jianshu.com/p/7ad9d3cd4d6e# 域名申请以及域名解析（1）域名是在godaddy中购买，省去了备案的手续（2）域名解析是在dnspod中配置的 写博客 如写一个test文章，输入如下的命令hexo n &quot;test&quot; 在_post中就生成了一个test.md文件 指定分类，在categories中添加上分类，如categories: 测试 指定标签，在tags中添加上标签，如 123tags:-test-测试 编写一段简介，然后换行添加上一行 ，这部分简介就会有列表页面展示 编写文章内容 重新生成页面，启动服务hexo s -g 确定文章写好后，将其提交到github中hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy 参考链接Maupassant主题：https://www.haomwei.com/technology/maupassant-hexo.htmlHexo搭建Github-Pages博客填坑教程：http://www.jianshu.com/p/35e197cb1273Next主题：https://github.com/iissnan/hexo-theme-nextNext主题使用文档： http://theme-next.iissnan.com/关于Github的配置、域名申请、图床：http://ibruce.info/2013/11/22/hexo-your-blog/]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hello hexo]]></title>
+      <url>%2F2017%2F02%2F12%2Fhello-world%2F</url>
+      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[MarkDown语法入门]]></title>
+      <url>%2F2017%2F02%2F12%2Flearn-markdown%2F</url>
+      <content type="text"><![CDATA[MarkDown简介Markdown是一种轻量级标记语言，创始人为John Gruber和Aaron Swartz。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML文档” Markdown编辑器配置如果你使用Sublime编辑器，可以在该编辑器中添加上MarkdownPreview插件。在编辑器中使用Ctrl+Shift+P，选择Markdown Preview in browser命令，在浏览器中查看Markdown的效果 标题标题分为1到6种级别，1为最大，6为最小。使用相应个数的#来生成。或者使用底线形式，利用=表示[最高级标题]和-表示[第二级标题]代码如下： ### 这是级别为3的标题 ### ###### 这是级别为6的标题 ###### 这是最高级标题 ============= 这是第二级标题 ---------------------- 效果如下： 这是级别为3的标题这是级别为6的标题这是最高级标题这是第二级标题段落和换行使用一个或多个空行分隔内容段来生成段落在行末输入2个或以上’空格’再回车来生成换行 强调被1个*或_包围起来的文字，表示斜体被2个*或_包围起来的文字，表示粗体备注：如果在*或者_两边都有空白的话，那就是表示为普通符号代码如下： *单个星号* _单个下划线_ 效果如下：单个星号单个下划线 分隔线在一行内使用3个以上的-或者_来表示，行内除此之外不能有其它内容 代码如下：____ 效果如下： 区块引用使用&gt;作为段落前缀来标识引用文字段落。代码如下： &gt;我引用了一段文字 &gt;我引用了另一段文字 效果如下： 我引用了一段文字我引用了另一段文字 列表使用*+-表示无序列表使用数字跟一个英文句点表示有序列表代码如下： * 类型一 * 类型二 + 类型三 1. 类型一 2. 类型二 3. 类型三 效果如下： 类型一 类型二 类型三 类型一 类型二 类型三 代码使用反引号把文字括起来表示行内代码。使用4个空格或一个Tab缩进，表示代码区块代码如下： 这是行内代码`Console.log(&apos;hello&apos;)` Javascript: var show = function(){ console.log(&quot;hello,world&quot;); } 效果如下：这是行内代码Console.log(&quot;hello&quot;) Javascript: var show = function(){ console.log(&quot;hello,world&quot;) } 链接使用[链接名称](链接地址)表示行内式的链接代码如下： [百度](http://www.baidu.com) 效果如下：百度 图片使用![提示文本](图片地址)表示行内式的图片代码如下： ![百度翻译](http://fanyi.baidu.com/static/translation/img/header/logo_cbfea26.png) 效果如下： 表格代码如下：123456789| 排序方法 | 平均情况 | 最好情况 | 最坏情况 | 辅助空间 | 稳定性 ||:-----|:-----|:-----|:-----|:-----|:-----|| 冒泡排序 | O(n²) | O(nlogn) | O(n²) | O(1) | 稳定 || 简单选择 | O(n²) | O(n²) | O(n²) | O(1) | 稳定 || 直接插入 | O(n²) | O(n) | O(n²) | O(1) | 稳定 || 希尔排序 | O(nlogn)~O(n²) | O(n^1.3) | O(n²) | O(1) | 不稳定 || 堆排序 | O(nlogn) | O(nlogn) | O(nlogn) | O(1) | 不稳定 || 归并排序 | O(nlogn) | O(nlogn) | O(nlogn) | O(n) | 不稳定 || 快速排序 | O(nlogn) | O(nlogn) | O(n²) | O(nlogn)~O(n) | 不稳定 | 效果如下： 排序方法 平均情况 最好情况 最坏情况 辅助空间 稳定性 冒泡排序 O(n²) O(nlogn) O(n²) O(1) 稳定 简单选择 O(n²) O(n²) O(n²) O(1) 稳定 直接插入 O(n²) O(n) O(n²) O(1) 稳定 希尔排序 O(nlogn)~O(n²) O(n^1.3) O(n²) O(1) 不稳定 堆排序 O(nlogn) O(nlogn) O(nlogn) O(1) 不稳定 归并排序 O(nlogn) O(nlogn) O(nlogn) O(n) 不稳定 快速排序 O(nlogn) O(nlogn) O(n²) O(nlogn)~O(n) 不稳定 注： 第一行：第一行要显示的是表头，类似Thead 第二行：对齐方式。|:—–|是左对齐，|:—–:|是居中对齐，|—–:|是右对齐 表格中的内容如有|符号，则使用可以使用&amp;#124;来代替 参考资源 Markdown快速入门 Markdown语法说明]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[前端限制可以采用jquery的ajaxPrefilter这个函数来进行阻止数据的重复请求]]></title>
+      <url>%2F2016%2F12%2F01%2Fajax-request-repeat%2F</url>
+      <content type="text"><![CDATA[jQuery.ajaxPrefilter()函数用于指定预先处理Ajax参数选项的回调函数。在所有参数选项被jQuery.ajax()函数处理之前，可以使用该函数设置的回调函数来预先更改任何参数选项。 步骤如下：1、在发送请求前缓存请求的地址2、下一次发送请求时，判断地址是否与缓存的地址一样，如果一样，则取消请求的发送3、当请求完成后清除缓存的请求地址 代码如下：123456789101112131415161718192021222324252627//请求缓存对象var requests = &#123;&#125;$.ajaxPrefilter(function(options, originalOptions, jqXHR)&#123; var key = options.url; //缓存对象中不包含请求地址，则缓存请求的地址，否则视为重复提交，阻止请求 if(!request[key])&#123; requests[key] = jqXHR; &#125;else&#123; jqXHR.abort(); &#125; var complete = options.complete; options.complete = function(jqXHR, textStatus)&#123; //请求完成后，清除缓存请求的地址 requests[key] = null; if($.isFunction(complete))&#123; complete.apply(this, arguments); &#125; &#125;&#125;) 参考链接：http://www.365mini.com/page/jquery_ajaxprefilter.htm]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java学习笔记-获取年和月的方法]]></title>
+      <url>%2F2016%2F11%2F05%2Fjava-year-month%2F</url>
+      <content type="text"><![CDATA[代码123Calendar cal = Calendar.getInstance();int year = cal.get(Calendar.YEAR);//获取年份int month=cal.get(Calendar.MONTH);//获取月份]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Integer类型变量与Long类型变量的比较]]></title>
+      <url>%2F2016%2F09%2F20%2Fjava-integer-long-compare%2F</url>
+      <content type="text"><![CDATA[问题12345publc static void main()&#123; Integer I =1; Long L = 1L; System.out.println(I.equals(L))&#125; 存储了两个相同数值的Long变量与Integer变量，通过equals方法比较时，返回的是false，即不相等。 问题分析equals方法是对象中的比较存储内容的比较方法，但是要求比较的双方都是同一类型才可以。上面一个是Long类型，一个是Integer类型，所以即使它们存储的都是1的数值，但比较出来还是不相等。 解决方法将两个数值，转换为基本类型long和int然后用双等于号来进行比较12345publc static void main()&#123; Integer I =1; Long L = 1L; System.out.println(I.intValue() == L.longValue())&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Tomcat如何判断session过期]]></title>
+      <url>%2F2016%2F09%2F16%2Ftomcat-session-expired%2F</url>
+      <content type="text"><![CDATA[问题Tomcat的session失效时间是怎么计算，怎么去判断session过期 问题分析1、当tomcat启动后，会开启一个后台线程，去查询所有的session对象2、检查不活动的session的时间是否超过了设定值，如果超过了则将其删除。 判断是否超过设定值的源代码如下： 判断条件： 1int timeIdle =(int) ((timeNow - session.getLastUsedTime()) / 1000L); 从此判断条件可以看出，失效时间就是当前时间减去session的最近使用的时间]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hibernate对于复合主键的映射的注解方式]]></title>
+      <url>%2F2016%2F09%2F07%2Fhibernate-multi-key%2F</url>
+      <content type="text"><![CDATA[复合主键，采用的Hibernate注解@EmbeddedId进行声明123456public class UserArticleId&#123; private Integer userId; private Integer articleId; //getter and setter ...&#125; 12345678910111213141516public class UserArticle&#123; private UserArticleId id; @EmbeddedId @AttributeOverrides(&#123; @AttributeOverride(name=&quot;userId&quot;,column=@Column(name=&quot;userId&quot;)) @AttributeOverride(name=&quot;articleId&quot;,column=@Column(name=&quot;articleId&quot;)) &#125;) public UserArticleId getId()&#123; return this.id; &#125; public void setId(UserArticleId id)&#123; this.id = id; &#125;&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解数据库的读写分离]]></title>
+      <url>%2F2016%2F08%2F10%2Fproject-db-read-write%2F</url>
+      <content type="text"><![CDATA[为什么进行读写分离1、如果没有读写分离，则如果频繁写，就会导致表被锁住，读的性能就会受到影响2、将读与写分离，改善在业务锁方面的争用情况提高性能；提高数据库机器的抗压能力；数据备份，进行容灾 怎么进行读写分离1、物理数据库的读写分离：一个读数据库服务器，一个写数据库服务器2、程序的读写分离（1）两个数据源：一个用于读，一个用于写（2）通过Spring的AOP切面技术，在每个数据访问方法请求前，通过约定的前缀判断该请求是读还是写，如get、count是读数据，而update、add、del是写数据，如果是读请求则调用读数据源，如果是写请求则调用写数据源 读写分离存在的问题1、主从同步不及时，导致用户查看到最新的数据会出现延时2、有一些业务操作既要进行读又要进行写的操作，那要调用读数据源还是写数据源（应细化业务操作的粒度，单一职责，一个大的业务由多个小的业务组成）]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[指定Bean对象中转化为JSON数据的属性的方法]]></title>
+      <url>%2F2016%2F08%2F09%2Fgson-field%2F</url>
+      <content type="text"><![CDATA[问题在Bean对象中有一些属性是不需要转化为JSON数据的，因此需要能够指定转化为JSON数据的属性。 解决方法使用Gson，可以通过如下的方法来进行配置1、在要输出的属性上添加上@Expose注解12345678public class Article&#123; private Integer id; @Expose @SerializedName(&quot;title&quot;) private String ArticleTitle; //getter and setter ...&#125; 2、Gson采用new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()进行创建对象，创建此对象，然后调用生成json数据的方法：gson.toJson(object)12345678public static void main()&#123; Article article = new Article(); article.setId(1); article.setArticleTitle(&apos;test title&apos;); Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() System.out.println(gson.toJson(article));&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决webView加载HTML内容出现中文乱码的问题]]></title>
+      <url>%2F2016%2F07%2F27%2Fandroid-webview-problem%2F</url>
+      <content type="text"><![CDATA[问题Android项目通过HTTP请求去加载某一静态页面的HTML内容，然后将这些HTML内容通过webView展示出来。这使用了webView的loadData方法来实现。但在运行时，出现了中文乱码。 分析原因原因是android 4.0以上的版本，Webview若使用loadData会出现中文乱码。loadData()中的html 代码中不能包含’#’、’%’、’\’、’?’四种特殊字符，这就为我们内嵌css样式等制造了麻烦，因为css中经常用’#’, ‘%’等字符。 解决方法解决方法是使用loadDataWithBaseURL方法，而不是loadData123456789public void getHtmlData()&#123; HttpRequestApi.getRegisterHtml(this,new HttpCommonCallback()&#123; public void onSuccess(String data)&#123; super.onSuccess(data); //webView.loadData(data,&quot;text/html&quot;,&quot;utf-8&quot;) webView.loadDataWithBaseURL(&quot;&quot;, data,&quot;text/html&quot;,&quot;utf-8&quot;); &#125; &#125;);&#125; 参考链接：http://blog.sina.com.cn/s/blog_4b93170a0102e0e9.html]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决Android项目无法启动的问题]]></title>
+      <url>%2F2016%2F07%2F25%2Fandroid-start-fail%2F</url>
+      <content type="text"><![CDATA[问题Android项目进行SVN更新后，在启动时出现异常，启动失败。出现了如下的异常信息：12Unable to execute dex: Cannot merge newindex 65993 into a non-jumbo instruction!Conversion to Dalvikformat failed: Unable to execute dex: Cannot merge new index 65993 into anon-jumbo instruction! 解决方法在项目的project.properties文件中加入dex.force.jumbo=true配置，然后清理工作，进行重新编译。 参考链接：http://www.myexception.cn/mobile/1844046.html]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Emmet语法笔记]]></title>
+      <url>%2F2016%2F07%2F23%2Femmet-grammar%2F</url>
+      <content type="text"><![CDATA[后代:&gt; eg:nav&gt;ul&gt;li 兄弟:+ eg:div+p+bq 上级:^ eg:div+div&gt;p&gt;span+em^bq 分组:() eg:div&gt;(header&gt;ul&gt;li*2&gt;a)+footer&gt;p 乘法: eg:ul&gt;li5 自增符号:$ eg:ul&gt;li.item$5 eg:ul&gt;li.item$@35 ID和类属性:#,. eg:p.class1.class2#id 自定义属性:[] eg:p[title=”Hello”] 文本:{} eg:p&gt;{Click}+a{here}+{to continue} 参考链接： http://www.w3cplus.com/tools/emmet-cheat-sheet.html]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Android项目与服务端项目关联，实现session保持]]></title>
+      <url>%2F2016%2F07%2F22%2Fandroid-session%2F</url>
+      <content type="text"><![CDATA[问题服务端项目是一个web项目，采用了session用于存储用户登录后的状态，当session没有失效时，用户就可以访问各种需要登录访问权限的资源。在浏览器与web服务器的交互请求时在header中都会携带一个sessionid的cookie，web服务器通过这个sessionid来判断访问用户的状态session是否存在。 APP不同于浏览器，当其发送请求给web服务器时，并不会自动携带sessionid。那么Android APP与服务端项目之间，如何去判断用户是否登录来确定是否执行请求? 解决方法这个问题的解决思路是： APP第一次向web服务器发送登录请求时，如果登录成功就获取sessionid的值，并将其保存在一个静态变量中 接下来的请求中，就可以将这个sessionid设置在APP构造的http请求的cookie中 web服务器就可以通过这个sessionid来识别用户的状态 参考链接：http://l62s.iteye.com/blog/1663113]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[手动更新maven私服nexus的中央仓库的索引]]></title>
+      <url>%2F2016%2F07%2F19%2Fmaven-nexus-index-update%2F</url>
+      <content type="text"><![CDATA[在进行maven的私服nexus配置时，更新中央仓库的依赖的索引，老是出现错误，更新失败。因为镜像在国外，而且索引文件比较大，所以自动索引消耗的时间太长，解决办法是手工进行索引的配置。步骤如下： 访问 http://repo.maven.apache.org/maven2/.index/ 下载中心仓库最新版本的索引文件，在一长串列表中，我们需要下载如下两个文件（一般在列表的末尾位置）nexus-maven-repository-index.gznexus-maven-repository-index.properties 网上查找并下载jar包indexer-cli-5.1.1.jar，需要通过这个jar包来解压索引文件 将上面三个文件（.gz &amp; .properties &amp; .jar）放置到同一目录下 运行如下命令： 1java -jar indexer-cli-5.1.1.jar -u nexus-maven-repository-index.gz -d indexer 等待程序运行完成之后可以发现indexer文件夹下出现了很多文件，将这些文件放置到{nexus-home}/sonatype-work/nexus/indexer/central-ctx目录下 重新启动nexus]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Sublime安装记录]]></title>
+      <url>%2F2016%2F07%2F03%2Fsublime-install%2F</url>
+      <content type="text"><![CDATA[为sublime添加上package control 1、按ctrl+~组合键打开控制台 2、执行网页https://packagecontrol.io/installation#st3提供的指令 3、重启 安装插件 1、Emmet：前端的Zen Coding.Write less , show more.安装后可直接使用，Tab键触发，Alt+Shift+W是个代码机器 2、AutoFileName:输入URL或图片网址，自动提供路径蒌档名建议 3、BracketHighlighter：自动显示HTML标签或者JS的各种对应区块 4、SideBarEnhancements:提供侧边栏的右键菜单，按下CTRL+K+B显示或隐藏侧边栏 5、ConvertToUTF8：中文转码 6、TrailingSpaces：显示空格 7、SideBarFolders：打开的文件夹都太多了，再用这个来管理文件夹 8、安装MarkDown 1）安装Markdown Preview 插件 2）自定义快捷键，在Key Bindings-User中添加上： 1&#123; &quot;keys&quot;: [&quot;alt+m&quot;], &quot;command&quot;: &quot;markdown_preview&quot;, &quot;args&quot;: &#123;&quot;target&quot;: &quot;browser&quot;, &quot;parser&quot;:&quot;markdown&quot;&#125; &#125; 3）按Alt+M,在浏览器中预览 常用快捷键1234567891011121314151617181920212223242526272829303132333435Ctrl+Shift+P：打开命令面板Ctrl+P：搜索项目中的文件Ctrl+G：跳转到第几行Ctrl+W：关闭当前打开文件Ctrl+Shift+W：关闭所有打开文件Ctrl+Shift+V：粘贴并格式化Ctrl+D：选择单词，重复可增加选择下一个相同的单词Ctrl+L：选择行，重复可依次增加选择下一行Ctrl+Shift+L：选择多行Ctrl+Shift+Enter：在当前行前插入新行Ctrl+X：删除当前行Ctrl+M：跳转到对应括号Ctrl+U：软撤销，撤销光标位置Ctrl+J：选择标签内容Ctrl+F：查找内容Ctrl+Shift+F：查找并替换Ctrl+H：替换Ctrl+R：前往 methodCtrl+N：新建窗口Ctrl+K+B：开关侧栏Ctrl+Shift+M：选中当前括号内容，重复可选着括号本身Ctrl+F2：设置/删除标记Ctrl+/：注释当前行Ctrl+Shift+/：当前位置插入注释Ctrl+Alt+/：块注释，并Focus到首行，写注释说明用的Ctrl+Shift+A：选择当前标签前后，修改标签用的F11：全屏Shift+F11：全屏免打扰模式，只编辑当前文件Alt+F3：选择所有相同的词Alt+.：闭合标签Alt+Shift+数字：分屏显示Alt+数字：切换打开第N个文件Shift+右键拖动：光标多不，用来更改或插入列内容鼠标的前进后退键可切换Tab文件按Ctrl，依次点击或选取，可需要编辑的多个位置按Ctrl+Shift+上下键，可替换行 参考链接 1、http://www.jianshu.com/p/5905f927d01b 2、http://jingyan.baidu.com/article/f006222838bac2fbd2f0c87d.html 3、https://github.com/jikeytang/sublime-text]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[JAVA高并发秒杀API项目的学习笔记]]></title>
+      <url>%2F2016%2F07%2F03%2Fseckill-project%2F</url>
+      <content type="text"><![CDATA[一步一步的搭建JAVA WEB项目，采用Maven构建，基于MYBatis+Spring+Spring MVC+Bootstrap技术的秒杀项目学习的视频：http://www.imooc.com/learn/587 创建Maven项目 创建目录，执行Maven命令 1mvn archetype:generate -DgroupId=org.seckill -DartifactId=seckill -DarchetypeArtifactId=maven-archetype-webapp -DarchetypeCatalog=local 问题：Maven命令执行到Generating Project in Batch mode 卡住，参考链接 将项目导入到IDEA工具中 修改项目配置 修改web.xml中的servlet版本，默认是2.3，其不支持JSP的EL表达式。从Tomcat中的示例的web.xml中拷贝3.0的版本配置到项目中 补全目录。项目的main目录下创建java目录，在src目录下创建test目录，test目录下创建java和sources目录 打开pom.xml，进行依赖的配置 单元测试依赖：Junit4 日志依赖：slf4j+logback。(lf4j是规范/接口，log4j,common-logging,logback是日志的实现) 数据库依赖：mysql-connector-java、c3p0 DAO框架：mybatis依赖:mybatis Servlet web相关依赖：standard、jstl、jackson-databind、servlet-api Spring依赖:spring-core、spring-beans、spring-context、spring-jdbc、spring-tx、spring-web、spring-webmvc、spring-test123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117&lt;dependencies&gt; &lt;!---3.0使用编程方式，4.0使用注解方式--&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;version&gt;4.11&lt;/version&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.slf4j&lt;/groupId&gt; &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt; &lt;version&gt;1.7.12&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt; &lt;artifactId&gt;logback-core&lt;/artifactId&gt; &lt;version&gt;1.1.1&lt;/version&gt; &lt;/dependency&gt; &lt;!--实现slf4j接口并进行整合--&gt; &lt;dependency&gt; &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt; &lt;artifactId&gt;logback-classic&lt;/artifactId&gt; &lt;version&gt;1.1.1&lt;/version&gt; &lt;/dependency&gt; &lt;!--数据库相关依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.35&lt;/version&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;c3p0&lt;/groupId&gt; &lt;artifactId&gt;c3p0&lt;/artifactId&gt; &lt;version&gt;0.9.1.2&lt;/version&gt; &lt;/dependency&gt; &lt;!--DAO框架：mybatis依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.mybatis&lt;/groupId&gt; &lt;artifactId&gt;mybatis&lt;/artifactId&gt; &lt;version&gt;3.3.0&lt;/version&gt; &lt;/dependency&gt; &lt;!--mybatis自身实现的spring的整合依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.mybatis&lt;/groupId&gt; &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt; &lt;version&gt;1.2.3&lt;/version&gt; &lt;/dependency&gt; &lt;!--servlet web相关依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;taglibs&lt;/groupId&gt; &lt;artifactId&gt;standard&lt;/artifactId&gt; &lt;version&gt;1.1.2&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;jstl&lt;/groupId&gt; &lt;artifactId&gt;jstl&lt;/artifactId&gt; &lt;version&gt;1.2&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt; &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt; &lt;version&gt;2.5.4&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;javax.servlet&lt;/groupId&gt; &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt; &lt;version&gt;3.1.0&lt;/version&gt; &lt;/dependency&gt; &lt;!--Spring依赖--&gt; &lt;!--spring核心--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-core&lt;/artifactId&gt; &lt;version&gt;4.1.7.RELEASE&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-beans&lt;/artifactId&gt; &lt;version&gt;4.1.7.RELEASE&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-context&lt;/artifactId&gt; &lt;version&gt;4.1.7.RELEASE&lt;/version&gt; &lt;/dependency&gt; &lt;!--spring的DAO层依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt; &lt;version&gt;4.1.7.RELEASE&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-tx&lt;/artifactId&gt; &lt;version&gt;4.1.7.RELEASE&lt;/version&gt; &lt;/dependency&gt; &lt;!--spring的WEB层依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-web&lt;/artifactId&gt; &lt;version&gt;4.1.7.RELEASE&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt; &lt;version&gt;4.1.7.RELEASE&lt;/version&gt; &lt;/dependency&gt; &lt;!--spring的单元测试依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-test&lt;/artifactId&gt; &lt;version&gt;4.1.7.RELEASE&lt;/version&gt; &lt;/dependency&gt;&lt;/dependencies&gt; 数据库的设计 在项目main目录下创建sql目录，新建 schema.sql，作为数据库的创建脚本 脚本代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243-- 数据库初始化脚本-- 创建数据库CREATE DATABASE seckill;-- 使用数据库use seckill;-- 创建秒杀库存表：使用InnoDB引擎，其支持事务。主键自增设置为从1000开始，字符格式设置为UTF8CREATE TABLE seckill( seckill_id bigint NOT NULL AUTO_INCREMENT COMMENT &apos;商品库存id&apos;, name varchar(120) NOT NULL COMMENT &apos;商品名称&apos;, number int NOT NULL COMMENT &apos;库存数量&apos;, start_time timestamp NOT NULL COMMENT &apos;秒杀开启时间&apos;, end_time timestamp NOT NULL COMMENT &apos;秒杀结束时间&apos;, create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;创建时间&apos;, PRIMARY KEY (seckill_id), KEY idx_start_time(start_time), KEY idx_end_time(end_time), KEY idx_create_time(create_time))ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT=&apos;秒杀库存表&apos;;-- 秒杀成功明细表CREATE TABLE success_killed( seckill_id bigint NOT NULL COMMENT &apos;秒杀商品id&apos;, user_phone int NOT NULL COMMENT &apos;用户手机号&apos;, state tinyint NOT NULL COMMENT &apos;状态标示：-1指无效，0指成功，1指已付款&apos;, create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;创建时间&apos;, PRIMARY KEY (seckill_id,user_phone), KEY idx_create_time(create_time))ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT=&apos;秒杀成功明细表&apos;;-- 初始化数据INSERT INTO seckill(name,number,start_time,end_time)VALUES(&apos;1000元秒杀iphone6&apos;,100,&apos;2016-06-28 00:00:00&apos;,&apos;2016-06-29 00:00:00&apos;),(&apos;500元秒杀iphone5&apos;,200,&apos;2016-06-28 00:00:00&apos;,&apos;2016-06-29 00:00:00&apos;),(&apos;200元秒杀小米4&apos;,300,&apos;2016-06-28 00:00:00&apos;,&apos;2016-06-29 00:00:00&apos;),(&apos;100元秒杀红米note&apos;,400,&apos;2016-06-28 00:00:00&apos;,&apos;2016-06-29 00:00:00&apos;);-- show create table seckill;-- 为什么手写DDL，记录每次上线的DDL修改 DAO实体和接口 创建实体包org.seckill.entity 创建DAO包org.seckill.dao 创建SecKill实体类，生成getter和setter,重写toString 123456789101112131415161718192021222324252627282930313233343536373839 private long secKillId; private String name; private int number; private Date startTime; private Date endTime; private Date createTime; ``` - 创建SuccessKilled实体类，生成getter和setter，重写toString ``` private long secKillId; private long userPhone; private short state; private Date createTime; ``` - 创建DAO接口SecKillDao,添加减库存，根据ID查询秒杀对象，查询秒杀商品列表方法 ``` /** * 减库存 * @param secKillId * @param killTime * @return如果影响行数大于1，表示更新的记录行数 */ int reduceNumber(long secKillId,Date killTime); /** * 根据id查询秒杀对象 * @param secKillId * @return */ SecKill queryById(long secKillId); /** * 根据偏移量查询秒杀商品列表 * @param offset * @param limit * @return */ List&lt;SecKill&gt; queryAll(int offset,int limit); 创建DAO接口SuccessKilledDao,添加插入购买明细，根据ID查询购买明细实体的方法 1234567891011121314/** * 插入购买明细，可过滤重复 * @param secKillId * @param userPhone * @return插入的行数 */int inertSuccessKilled(long secKillId,long userPhone);/** *根据ID查询SuccessKilled并携带秒杀产品对象实体 * @param secKillId * @return */SuccessKilled queryByIdWithSecKill(long secKillId); 基于MyBaits实现DAO接口 创建mybatis-config.xml全局配置文件 1234567891011121314151617&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;&lt;!DOCTYPE configuration PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;&lt;configuration&gt; &lt;!--配置全局属性--&gt; &lt;settings&gt; &lt;!--使用jdbc的getGeneratedKeys获取数据库自增主键值--&gt; &lt;setting name=&quot;useGenerateKeys&quot; value=&quot;true&quot;/&gt; &lt;!--使用列别名替换列名 默认为true--&gt; &lt;setting name=&quot;useColumnLabel&quot; value=&quot;true&quot;/&gt; &lt;!--开启驼峰命名转换--&gt; &lt;setting name=&quot;mapUnderscoreCamelCase&quot; value=&quot;true&quot; &lt;/settings&gt;&lt;/configuration&gt; 创建mapper文件夹，用于存储mybatis映射文件 创建SecKilledDao.xml映射文件 12345678910111213141516171819202122232425262728293031&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;&lt;mapper namespace=&quot;org.seckill.dao.SecKillDao&quot;&gt; &lt;!--为DAO接口方法提供sql语句配置--&gt; &lt;update id=&quot;reduceNumber&quot;&gt; &lt;!--具体的sql--&gt; update seckill set number = number -1 where seckill_id = #&#123;secKillId&#125; and start_time &lt;![CDATA[ &lt;= ]]&gt; #&#123;killTime&#125; and end_time &gt;= #&#123;killTime&#125; and number &gt; 0; &lt;/update&gt; &lt;select id=&quot;queryById&quot; resultType=&quot;SecKill&quot; parameterType=&quot;long&quot;&gt; select seckill_id,name,number,start_time,end_time,create_time from seckill where seckill_id = #&#123;secKillId&#125; &lt;/select&gt; &lt;select id=&quot;queryAll&quot; resultType=&quot;SecKill&quot;&gt; select seckill_id,name,number,start_time,end_time,create_time from seckill order by create_time desc limit #&#123;offset&#125;,#&#123;limit&#125; &lt;/select&gt;&lt;/mapper&gt; 创建SuccessKilledDao.xml映射文件 123456789101112131415161718192021222324252627282930&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;&lt;mapper namespace=&quot;org.seckill.dao.SuccessKilledDao&quot;&gt; &lt;!--为DAO接口方法提供sql语句配置--&gt; &lt;insert id=&quot;insertSuccessKilled&quot;&gt; &lt;!--ignore忽略主键冲突--&gt; insert ignore into success_killed(seckill_id,user_phone) values (#&#123;secKilled&#125;,#&#123;userPhone&#125;) &lt;/insert&gt; &lt;select id=&quot;queryByIdWithSecKill&quot; resultType=&quot;SuccessKilled&quot;&gt; &lt;!--根据id查询seccessKilled并携带seckill实体 如何告诉mybatis把结果映射到successkilled同时映射到seckill属性 mybatis可以自由控制sql--&gt; select sk.seckill_id, sk.user_phone, sk.create_time, sk.state, s.seckill_id &quot;seckill.seckill_id&quot;, s.name &quot;seckill.name&quot;, s.number &quot;seckill.number&quot;, s.start_time &quot;seckill.start_time&quot;, s.end_time &quot;seckill.end_time&quot;, s.create_time &quot;seckill.crate_time&quot; from success_killed sk inner join seckill s on sk.seckill_id = s.seckill_id where sk.seckill_id = #&#123;secKillId&#125; &lt;/select&gt;&lt;/mapper&gt; mybatis整合spring 创建spring文件，用于存储spring配置文件 创建spring-dao.xml配置文件 创建jdbc.properties配置文件，用于存储数据库相关信息 1234driver=com.mysql.jdbc.Driverurl=jdbc:mysql://127.0.0.1:3306/seckill?useUnicode=true&amp;characterEncoding=utf-8username=rootpassword=purple 在spring-dao.xml配置文件中进行四个步骤的配置 配置数据库相关参数 配置数据库连接池 配置sqlSessionFactory对象 配置扫描dao接口包，动态实现 dao接口，并注入到spring容器中 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd&quot;&gt; &lt;!--配置整合mybatis过程--&gt; &lt;!--配置数据库相关参数--&gt; &lt;context:property-placeholder location=&quot;classpath:jdbc.properties&quot;/&gt; &lt;!--数据库连接池--&gt; &lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt; &lt;property name=&quot;driverClass&quot; value=&quot;$&#123;driver&quot; /&gt; &lt;property name=&quot;jdbcUrl&quot; value=&quot;$&#123;url&#125;&quot;/&gt; &lt;property name=&quot;user&quot; value=&quot;$&#123;username&#125;&quot;/&gt; &lt;property name=&quot;password&quot; value=&quot;$&#123;password&#125;&quot;/&gt; &lt;property name=&quot;maxPoolSize&quot; value=&quot;30&quot;/&gt; &lt;property name=&quot;minPoolSize&quot; value=&quot;10&quot;/&gt; &lt;!--关闭连接后不自动commit--&gt; &lt;property name=&quot;autoCommitOnClose&quot; value=&quot;false&quot;/&gt; &lt;!--获取连接超时的时间--&gt; &lt;property name=&quot;checkoutTimeout&quot; value=&quot;1000&quot;/&gt; &lt;!--获取连接失败的重试次数--&gt; &lt;property name=&quot;acquireRetryAttempts&quot; value=&quot;2&quot;/&gt; &lt;/bean&gt; &lt;!--配置sqlSessionFactory对象--&gt; &lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt; &lt;!--注入数据库连接池--&gt; &lt;property name=&quot;dataSource&quot; value=&quot;dataSource&quot;/&gt; &lt;!--配置mybatis全局配置文件--&gt; &lt;property name=&quot;configLocation&quot; value=&quot;classpath:mybatis-config.xml&quot;/&gt; &lt;!--扫描entity包，使用别名--&gt; &lt;property name=&quot;typeAliasesPackage&quot; value=&quot;org.seckill.entity&quot;/&gt; &lt;!--扫描sql配置文件--&gt; &lt;property name=&quot;mapperLocations&quot; value=&quot;mapper/*.xml&quot;/&gt; &lt;/bean&gt; &lt;!--配置扫描dao接口包，动态实现 dao接口，并注入到spring容器中--&gt; &lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt; &lt;!--注入sqlSessionFactory对象--&gt; &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory&quot;/&gt; &lt;!--给出扫描Dao接口包--&gt; &lt;property name=&quot;basePackage&quot; value=&quot;org.seckill.dao&quot;/&gt; &lt;/bean&gt;&lt;/beans&gt; Junit4与Spring进行整合，进行Junit4单元测试 创建SecKillDao的单元测试类 12345678910111213141516171819202122232425262728293031@RunWith(SpringJUnit4ClassRunner.class)@ContextConfiguration(&quot;classpath:spring/spring-dao.xml&quot;)public class SecKillDaoTest &#123; //注入DAO实现类依赖 @Resource private SecKillDao secKillDao; @Test public void testReduceNumber() throws Exception &#123; Date killTime = new Date(); int result = secKillDao.reduceNumber(1000L,killTime); System.out.println(result); &#125; @Test public void testQueryById() throws Exception &#123; long id = 1000; SecKill secKill = secKillDao.queryById(id); System.out.println(secKill.getName()); &#125; @Test public void testQueryAll() throws Exception &#123; List&lt;SecKill&gt; secKillList = secKillDao.queryAll(0,1000); for(SecKill row : secKillList)&#123; System.out.println(row.toString()); &#125; &#125;&#125; 创建SuccessKilledDao的单元测试类 12345678910111213141516171819@RunWith(SpringJUnit4ClassRunner.class)@ContextConfiguration(&quot;classpath:spring/spring-dao.xml&quot;)public class SuccessKilledDaoTest &#123; @Resource private SuccessKilledDao successKilledDao; @Test public void testInertSuccessKilled() throws Exception &#123; int result = successKilledDao.insertSuccessKilled(1000L,28059830451L); System.out.println(result); &#125; @Test public void testQueryByIdWithSecKill() throws Exception &#123; SuccessKilled successKilled = successKilledDao.queryByIdWithSecKill(1000L,2147483647L); System.out.println(successKilled.toString()); &#125;&#125; 学习点 单元测试类可以利用IDEA的快捷键，直接在要测试的类中进行代码的生成 mybatis的传参，需要在DAO接口方法的形参中使用@Param注解进行指明 业务层设计 秒杀业务接口设计 创建业务包service 创建数据传输实体包dto 创建异常包exception 创建dto实体 创建暴露秒杀地址DTO：Exposer 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192public class Exposer &#123; /** * 是否开启秒杀 */ private boolean exposed; /** * 秒杀ID */ private long secKillId; /** * 一种加密措施 */ private String md5; /** *系统当前时间（毫秒值） */ private long now; private long start; private long end; public Exposer(boolean exposed, String md5, long secKillId) &#123; this.exposed = exposed; this.md5 = md5; this.secKillId = secKillId; &#125; public Exposer(boolean exposed, long now, long start, long end) &#123; this.exposed = exposed; this.now = now; this.start = start; this.end = end; &#125; public Exposer(boolean exposed, long secKillId) &#123; this.exposed = exposed; this.secKillId = secKillId; &#125; public boolean isExposed() &#123; return exposed; &#125; public void setExposed(boolean exposed) &#123; this.exposed = exposed; &#125; public long getSecKillId() &#123; return secKillId; &#125; public void setSecKillId(long secKillId) &#123; this.secKillId = secKillId; this.secKillId = secKillId; &#125; public String getMd5() &#123; return md5; &#125; public void setMd5(String md5) &#123; this.md5 = md5; &#125; public long getNow() &#123; return now; &#125; public void setNow(long now) &#123; this.now = now; &#125; public long getStart() &#123; return start; &#125; public void setStart(long start) &#123; this.start = start; &#125; public long getEnd() &#123; return end; &#125; public void setEnd(long end) &#123; this.end = end; &#125;&#125; 创建封装秒杀执行后结果DTO:SecKillExecution 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061public class SecKillExecution &#123; private long secKillId; /** * 秒杀执行结果状态 */ private int state; /** * 状态表示 */ private String stateInfo; private SuccessKilled successKilled; public SecKillExecution(long secKillId, int state, String stateInfo, SuccessKilled successKilled) &#123; this.secKillId = secKillId; this.state = state; this.stateInfo = stateInfo; this.successKilled = successKilled; &#125; public SecKillExecution(long secKillId, int state, String stateInfo) &#123; this.secKillId = secKillId; this.state = state; this.stateInfo = stateInfo; &#125; public long getSecKillId() &#123; return secKillId; &#125; public void setSecKillId(long secKillId) &#123; this.secKillId = secKillId; &#125; public int getState() &#123; return state; &#125; public void setState(int state) &#123; this.state = state; &#125; public String getStateInfo() &#123; return stateInfo; &#125; public void setStateInfo(String stateInfo) &#123; this.stateInfo = stateInfo; &#125; public SuccessKilled getSuccessKilled() &#123; return successKilled; &#125; public void setSuccessKilled(SuccessKilled successKilled) &#123; this.successKilled = successKilled; &#125;&#125; 创建异常类 创建业务相关异常:SecKillException 123456789public class SecKillException extends RuntimeException&#123; public SecKillException(String message) &#123; super(message); &#125; public SecKillException(String message, Throwable cause) &#123; super(message, cause); &#125;&#125; 创建重复秒杀异常类：RepeatKillException 123456789public class RepeatKillException extends SecKillException&#123; public RepeatKillException(String message, Throwable cause) &#123; super(message, cause); &#125; public RepeatKillException(String message) &#123; super(message); &#125;&#125; 创建秒杀关闭异常类：SecKillCloseException 123456789public class SecKillCloseException extends SecKillException&#123; public SecKillCloseException(String message) &#123; super(message); &#125; public SecKillCloseException(String message, Throwable cause) &#123; super(message, cause); &#125;&#125; 创建SecKillService业务接口:SecKillService 创建查询所有的秒杀记录方法：getSecKillList 创建查询单个秒杀记录方法:getById 创建秒杀开启时输出秒杀接口地址方法:exportSecKillUrl 创建执行秒杀操作方法:executeSecKill123456789101112131415161718192021222324252627282930public interface SecKillService &#123; /** * 查询所有的秒杀记录 * @return */ List&lt;SecKill&gt; getSecKillList(); /** * 查询单个秒杀记录 * @param secKillId * @return */ SecKill getById(long secKillId); /** * 秒杀开启时输出秒杀接口地址 * 否则输出系统时间和秒杀时间 * 防止用户猜测出秒杀地址的规律 * @param secKillId */ Exposer exportSecKillUrl(long secKillId); /** *执行秒杀操作 * @param secKillId * @param userPhone * @param md5 */ SecKillExecution executeSecKill(long secKillId,long userPhone,String md5) throws SecKillException,RepeatKillException,SecKillCloseException;&#125; 业务接口设计的学习点 站在使用者的角度进行设计接口，不要冗余设计 方法定义粒度，目的明确。非常友好的让使用者调用接口 参数要简炼 返回类型要清晰 秒杀业务接口实现 新建enums枚举包，将数据字典放到枚举中 在枚举包下创建秒杀状态枚举：SecKillStatEnum 12345678910111213141516171819202122232425262728293031323334public enum SecKillStatEnum &#123; SUCCESS(1,&quot;秒杀成功&quot;), END(0,&quot;秒杀结束&quot;), REPEAT(-1,&quot;重复秒杀&quot;), INNER_ERROR(-2,&quot;系统异常&quot;), DATA_REWRITE(-3,&quot;数据篡改&quot;); private int state; private String stateInfo; SecKillStatEnum(int state, String stateInfo) &#123; this.state = state; this.stateInfo = stateInfo; &#125; public int getState() &#123; return state; &#125; public String getStateInfo() &#123; return stateInfo; &#125; public static SecKillStatEnum stateOf(int index)&#123; for(SecKillStatEnum state : values()) &#123; if(state.getState() == index)&#123; return state; &#125; &#125; return null; &#125;&#125; 在service包下新建impl包 创建SecKillServiceImpl实现类，实现SecKillService接口方法123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596public class SecKillServiceImpl implements SecKillService&#123; private Logger logger = LoggerFactory.getLogger(SecKillService.class); private SecKillDao secKillDao; private SuccessKilledDao successKilledDao; //混淆字符，用于混淆MD5 private final String salt = &quot;sdlkjs#$#$dfowierlkjafdmv232k3j@@##$&quot;; @Override public List&lt;SecKill&gt; getSecKillList() &#123; return secKillDao.queryAll(0,4); &#125; @Override public SecKill getById(long secKillId) &#123; return secKillDao.queryById(secKillId); &#125; @Override public Exposer exportSecKillUrl(long secKillId) &#123; SecKill secKill = secKillDao.queryById(secKillId); if(null == secKill)&#123; return new Exposer(false,secKillId); &#125; Date startTime = secKill.getStartTime(); Date endTime = secKill.getEndTime(); Date nowTime = new Date(); if(nowTime.getTime() &lt; startTime.getTime() || nowTime.getTime() &gt; endTime.getTime())&#123; return new Exposer(false,secKillId,nowTime.getTime(),startTime.getTime(),endTime.getTime()); &#125; //转化特定字符串的过程，不可逆 String md5 = getMD5(secKillId); return new Exposer(true,md5,secKillId); &#125; @Override public SecKillExecution executeSecKill(long secKillId, long userPhone, String md5) throws SecKillException, RepeatKillException, SecKillCloseException &#123; if(null == md5 || md5.equals(getMD5(secKillId)))&#123; throw new SecKillException(&quot;seckill datarewirte&quot;); &#125; try&#123; //执行秒杀逻辑，减库存，记录购买行为 Date nowTime = new Date(); //减库存 int updateCount = secKillDao.reduceNumber(secKillId,nowTime); if(updateCount &lt;= 0)&#123; //没有更新到记录，秒杀结束 throw new SecKillCloseException(&quot;seckill is Closed&quot;); &#125;else&#123; //记录购买行为 int insertCount = successKilledDao.insertSuccessKilled(secKillId,userPhone); //唯一：secKillId,userPhone if(insertCount &lt;= 0)&#123; //重复秒杀 throw new RepeatKillException(&quot;seckill repeated&quot;); &#125;else&#123; //秒杀成功 SuccessKilled successKilled = successKilledDao.queryByIdWithSecKill(secKillId,userPhone); return new SecKillExecution(secKillId, SecKillStatEnum.SUCCESS,successKilled); &#125; &#125; &#125;catch(SecKillCloseException e1)&#123; throw e1; &#125;catch(RepeatKillException e2)&#123; throw e2; &#125;catch (Exception e)&#123; logger.error(e.getMessage(),e); //所有编译期异常，转化为运行期异常 throw new SecKillException(&quot;seckill inner error:&quot; + e.getMessage()); &#125; &#125; /** * 生成MD5 * @param secKillId * @return */ private String getMD5(long secKillId)&#123; String base = secKillId + &quot;/&quot; + salt; String md5 = DigestUtils.md5DigestAsHex(base.getBytes()); return md5; &#125;&#125; 基于Spring托管Service实现类 创建Spring的service配置spring-service.xml，进行service包下的注解类型的扫描配置 1234567891011&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd&quot;&gt; &lt;!--扫描service包下所有注解的类型--&gt; &lt;context:component-scan base-package=&quot;org.seckill.service&quot;/&gt;&lt;/beans&gt; 在service实现类中添加上@Service的注解，在类中的dao对象添加上@Autowired的注解 配置并使用Spring声明式事务 在spring-service.xml中添加上配置事务管理器 1234&lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt; &lt;!--注入数据库连接池--&gt; &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;&lt;/bean&gt; 在spring-service.xml中添加上配置基于注解的声明式事务 1&lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;/&gt; 在业务类的executeSecKill方法中添加上@Transactional事务注解 学习点：使用注解控制事务方法的优点 开发团队达到一致约定，明确标注事务方法的编程风格 保证事务方法的执行时间尽可能短，不要穿插其他网络操作RPC/HTTP请求，或者剥离到事务方法外部 不是所有的方法都需要事务，如只有一条修改操作，只读操作就不需要事务控制 Service集成测试 添加上logback的日志配置文件logback.xml 123456789101112131415161718&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;configuration debug=&quot;true&quot;&gt; &lt;!-- ch.qos.logback.core.ConsoleAppender 控制台输出 --&gt; &lt;appender name=&quot;STDOUT&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt; &lt;encoder&gt; &lt;pattern&gt;[%-5level] %d&#123;HH:mm:ss.SSS&#125; [%thread] %logger&#123;36&#125; - %msg%n&lt;/pattern&gt; &lt;/encoder&gt; &lt;/appender&gt; &lt;!-- 日志级别 --&gt; &lt;root&gt; &lt;level value=&quot;debug&quot; /&gt; &lt;appender-ref ref=&quot;STDOUT&quot; /&gt; &lt;/root&gt;&lt;/configuration&gt; 使用IDEA为SecKillService业务接口创建单元测试类SecKillServiceTest 编写单元测试方法 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859@RunWith(SpringJUnit4ClassRunner.class)@ContextConfiguration(&#123;&quot;classpath:spring/spring-dao.xml&quot;,&quot;classpath:spring/spring-service.xml&quot;&#125;)public class SecKillServiceTest &#123; private final Logger logger = LoggerFactory.getLogger(this.getClass()); @Autowired private SecKillService secKillService; @Test public void testGetSecKillList() throws Exception &#123; List&lt;SecKill&gt; list = secKillService.getSecKillList(); logger.info(&quot;list=&#123;&#125;&quot;,list); &#125; @Test public void testGetById() throws Exception &#123; SecKill secKill = secKillService.getById(1000L); logger.info(&quot;secKill:&#123;&#125;&quot;,secKill); &#125; /** * 测试完整业务，注意集成测试代码完整逻辑，注意可重复执行 * @throws Exception */ @Test public void testSecKillLogic() throws Exception &#123; long id = 1000L; Exposer exposer = secKillService.exportSecKillUrl(id); if(exposer.isExposed())&#123; logger.info(&quot;exposer=&#123;&#125;&quot;,exposer); long phone = 18059830432L; SecKillExecution secKillExecution = secKillService.executeSecKill(id,phone,exposer.getMd5()); logger.info(&quot;secKillExecution:&#123;&#125;&quot;,secKillExecution); &#125;else&#123; //秒杀未开始 logger.warn(&quot;exposer=&#123;&#125;&quot;,exposer); &#125; &#125; @Test public void testExportSecKillUrl() throws Exception &#123; long id = 1000L; Exposer exposer = secKillService.exportSecKillUrl(id); logger.info(&quot;exposer=&#123;&#125;&quot;,exposer); &#125; @Test public void testExecuteSecKill() throws Exception &#123; long id = 1000L; long phone = 18059830452L; String md5 = &quot;f1974250b060f51c4a8e48df67232d53&quot;; SecKillExecution secKillExecution = secKillService.executeSecKill(id,phone,md5); logger.info(&quot;secKillExecution:&#123;&#125;&quot;,secKillExecution); &#125;&#125; 单元测试的学习点 集成测试的业务逻辑的完整性 注意测试的可重复执行 WEB层设计 设计Restful接口 SpringMVC整合Spring 在web.xml中配置DispatcherServlet 创建web包 创建spring-web.xml配置文件 在spring-web.xml进行SpringMVC的配置 开启SpringMVC注解模式 servlet-mapping映射路径 配置jsp显示viewResolver 扫描web相关的bean12345678910111213141516171819202122232425262728293031323334353637&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot; xmlns:conext=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt; &lt;!--配置Spring MVC--&gt; &lt;!--开启SpringMVC注解模式--&gt; &lt;!--简化配置 1、自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter 2、提供一系列功能：数据绑定，数字和日期的转化@NumberFormat,@DataTimeFormat xml,json默认读写支持 --&gt; &lt;mvc:annotation-driven/&gt; &lt;!--servlet-mapping映射路径--&gt; &lt;!--静态资源默认servlet配置 1、加入对静态资源的处理：js，css，img 2、允许使用/做整体映射 --&gt; &lt;mvc:default-servlet-handler/&gt; &lt;!--配置jsp显示viewResolver--&gt; &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt; &lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.JstlView&quot;/&gt; &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp&quot;/&gt; &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt; &lt;/bean&gt; &lt;!--扫描web相关的bean--&gt; &lt;conext:component-scan base-package=&quot;org.seckill.web&quot;/&gt;&lt;/beans&gt; 实现秒杀相关的Restful接口 创建控制类SecKillController，实现获取列表，获取单条数据，获取系统时间，获取秒杀地址，秒杀的方法1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889@Controller@RequestMapping(&quot;/seckill/&quot;)//模块/资源public class SecKillController &#123; private final Logger logger = LoggerFactory.getLogger(this.getClass()); @Autowired private SecKillService secKillService; @RequestMapping(name=&quot;/list&quot;,method= RequestMethod.GET) public String list(Model model)&#123; List&lt;SecKill&gt; list = secKillService.getSecKillList(); model.addAttribute(&quot;list&quot;,list); return &quot;list&quot;; &#125; @RequestMapping(value=&quot;/&#123;secKillId&#125;/detail&quot;,method=RequestMethod.GET) public String detail(@PathVariable(&quot;secKillId&quot;) Long secKillId,Model model)&#123; if(secKillId == null)&#123; return &quot;redirect:/seckill/list&quot;; &#125; SecKill secKill = secKillService.getById(secKillId); if(secKill == null)&#123; return &quot;redirect:/seckill/list&quot;; &#125; model.addAttribute(&quot;secKill&quot;,secKill); return &quot;detail&quot;; &#125; @RequestMapping(value=&quot;/&#123;secKillId&#125;/exposer&quot;,method = RequestMethod.POST, produces = &#123;&quot;application/json;charset=utf-8&quot;&#125;) @ResponseBody public SecKillResult&lt;Exposer&gt; exposer(@PathVariable(&quot;secKillId&quot;) Long secKillId)&#123; SecKillResult&lt;Exposer&gt; result = null; try&#123; Exposer exposer = secKillService.exportSecKillUrl(secKillId); result = new SecKillResult&lt;Exposer&gt;(true,exposer); &#125;catch(Exception e)&#123; logger.error(e.getMessage(),e); result = new SecKillResult&lt;Exposer&gt;(false,e.getMessage()); &#125; return result; &#125; @RequestMapping(value=&quot;/&#123;secKillId&#125;/&#123;md5&#125;/execution&quot;, method = RequestMethod.POST, produces = &#123;&quot;application/json;charset=utf-8&quot;&#125;) public SecKillResult&lt;SecKillExecution&gt; excute(@PathVariable(&quot;secKillId&quot;) Long secKillId, @PathVariable(&quot;md5&quot;) String md5, @CookieValue(value=&quot;killPhone&quot;,required = false) Long userPhone)&#123; //springmvc valid if(userPhone == null)&#123; return new SecKillResult&lt;SecKillExecution&gt;(false,&quot;未注册&quot;); &#125; SecKillResult&lt;SecKillExecution&gt; result = null; try&#123; SecKillExecution secKillExecution = secKillService.executeSecKill(secKillId,userPhone,md5); result = new SecKillResult&lt;SecKillExecution&gt;(true,secKillExecution); &#125;catch(RepeatKillException e)&#123; SecKillExecution secKillExecution = new SecKillExecution(secKillId, SecKillStatEnum.REPEAT); result = new SecKillResult&lt;SecKillExecution&gt;(false,secKillExecution); &#125;catch(SecKillCloseException e)&#123; SecKillExecution secKillExecution = new SecKillExecution(secKillId, SecKillStatEnum.END); result = new SecKillResult&lt;SecKillExecution&gt;(false,secKillExecution); &#125;catch(Exception e)&#123; logger.error(e.getMessage(),e); SecKillExecution secKillExecution = new SecKillExecution(secKillId, SecKillStatEnum.INNER_ERROR); result = new SecKillResult&lt;SecKillExecution&gt;(false,secKillExecution); &#125; return result; &#125; @RequestMapping(value=&quot;/time/now&quot;,method=RequestMethod.GET) public SecKillResult&lt;Long&gt; time()&#123; Date now = new Date(); return new SecKillResult&lt;Long&gt;(true,now.getTime()); &#125;&#125; 基于Bootstrap开发页面结构 创建jsp文件夹，创建common/header.jsp,common/tag.jsp,list.jsp,detail.jsp，并引入bootstrap框架，jquery、cookie、countdown插件，可以从百度和bootcss的CDN中引入插件。 链接：http://www.bootcdn.cn/ 创建js文件seckill.js，进行登录、计时的交互逻辑的编码,并在详细页面中引入 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137var seckill = &#123; //封装秒杀相关ajax的url URL: &#123; now: function()&#123; return &apos;/seckill/time/now&apos;; &#125;, exposer: function(id)&#123; return &apos;/seckill/&apos; + id + &apos;/exposer&apos;; &#125;, execution : function(id,md5)&#123; return &apos;/seckill/&apos; + id + &apos;/&apos; + md5 + &apos;/execution&apos;; &#125; &#125;, //处理秒杀逻辑 handleSecKillKill: function(secKillId,node)&#123; node.hide().html(&apos;&lt;button class=&quot;btn btn-primary btn-lg&quot; id=&quot;killBtn&quot;&gt;开始秒杀&lt;/button&gt;&apos;); $.post(seckill.URL.exposer(secKillId),&#123;&#125;,function(result)&#123; if(result &amp;&amp; result.success)&#123; var exposer = result.data; if(exposer.exposed)&#123; //开启秒杀 //获取秒杀地址 var killUrl = seckill.URL.execution(secKillId,exposer.md5); console.log(&apos;killUrl:&apos;,killUrl); //绑定一次点击事件 $(&apos;#killBtn&apos;).one(&apos;click&apos;,function()&#123; //执行秒杀请求 $(this).addClass(&apos;disabled&apos;); $.post(killUrl,&#123;&#125;,function(result)&#123; if(result &amp;&amp; result.success)&#123; var killResult = result.data; var state = killResult.state; var stateInfo = killResult.stateInfo; node.html(&apos;&lt;span class=&quot;label label-success&quot;&gt;&apos;+stateInfo+&apos;&lt;/span&gt;&apos;); &#125; &#125;); &#125;); node.show(); &#125;else&#123; //未开启秒杀 //重新计算计时逻辑 seckill.countdown(secKillId,exposer.now,exposer.start,exposer.end); &#125; &#125;else&#123; console.error(&apos;result:&apos;,result); &#125; &#125;); &#125;, //计时 countdown: function(secKillId,nowTime,startTime,endTime)&#123; var $secKillBox = $(&apos;#seckill-box&apos;); if(nowTime &gt; endTime)&#123; $secKillBox.html(&apos;秒杀结束&apos;); &#125;else if(nowTime &lt; startTime)&#123; $secKillBox.html(&apos;秒杀未开始&apos;); var killTime = new Date(startTime + 1000); $secKillBox.countdown(killTime,function(event)&#123; var format = event.strftime(&apos;秒杀倒计时：%D天 %H时 %M分 %S秒&apos;); $secKillBox.html(format); &#125;).on(&apos;finish.countdown&apos;,function()&#123; //获取秒杀地址，控制实现逻辑，执行秒杀 seckill.handleSecKillKill(secKillId,$secKillBox); &#125;); &#125;else&#123; //秒杀开始 seckill.handleSecKillKill(secKillId,$secKillBox); &#125; &#125;, //验证手机号 validatePhone: function(phone)&#123; if(phone &amp;&amp; phone.length == 11 &amp;&amp; !isNaN(phone))&#123; return true; &#125;else&#123; return false; &#125; &#125;, //详情页秒杀逻辑 detail: &#123; //详情页初始化 init: function(params)&#123; //用户手机验证和登录，计时交互 //规划交互流程 //在cookie中查找手机号 var killPhone = $.cookie(&apos;killPhone&apos;), startTime = params.startTime, endTime = params.endTime, secKillId = params.secKillId; //验证手机号 if(!seckill.validatePhone(killPhone))&#123; var killPhoneModal = $(&apos;#killPhoneModal&apos;); killPhoneModal.modal(&#123; show: true, backdrop: &apos;static&apos;,//禁止位置关闭 keyboard: false//关闭键盘事件 &#125;); $(&apos;#killPhoneBtn&apos;).click(function()&#123; var inputPhone = $(&apos;#killPhoneKey&apos;).val(); if(seckill.validatePhone(inputPhone))&#123; //电话写入cookie $.cookie(&apos;killPhone&apos;,inputPhone,&#123;expires:7,path: &apos;/seckill&apos;&#125;) window.location.reload(); &#125;else&#123; //正常下会有一个前端字典 $(&apos;#killPhoneMessage&apos;).hide().html(&apos;&lt;label class=&quot;label label-danger&quot;&gt;手机号码错误&lt;/label&gt;&apos;).show(300); &#125; &#125;); &#125; //用户已经登录 //计时交互 $.get(seckill.URL.now(),function(result)&#123; if(result &amp;&amp; result.success)&#123; var nowTime = result.data; seckill.countdown(secKillId,nowTime,startTime,endTime); &#125;else&#123; consolw.error(&apos;result:&apos;,result); &#125; &#125;); &#125; &#125;&#125; 在detail.jsp页面中引入seckill.js文件，并进行初始化 12345678910&lt;script type=&quot;text/javascript&quot;&gt; $(function()&#123; //使用EL表达式传入参数 seckill.detail.init(&#123; secKillId: $&#123;secKill.secKillId&#125;, startTime: $&#123;secKill.startTime.time&#125;, endTime: $&#123;secKill.endTime.time&#125; &#125;); &#125;);&lt;/script&gt;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Tomcat启动报java.io.EOFException错误]]></title>
+      <url>%2F2016%2F06%2F27%2Ftomcat-eof-exception%2F</url>
+      <content type="text"><![CDATA[问题在项目开发过程中，启动Tomcat时，报出了如下的错误： 异常：IOException while loading persisted sessions: java.io.EOFException 问题分析EOFException表示输入过程中意外地到达文件尾或流尾的信号,导致从session中获取数据失败。Tomcat的session持久化机制的用意在于重启Tomcat之后保持之前的session。但是Tomcat非正常关闭后，有一些活动session被持久化（表现为一些临时文件），在重启时，Tomcat尝试去恢复这些session的持久化数据但又读取失败，就会抛出此异常。此异常不影响系统的使用。 解决办法将Tomcat中的work\Catalina\localhost\xxx\SESSIONS.ser删除。（如果正常关闭服务端，该文件是自动删除的） 参考链接1、http://leoyy.iteye.com/blog/1551246]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决Eclipse的javascript validator的build问题]]></title>
+      <url>%2F2016%2F06%2F24%2Feclipse-validator-problem%2F</url>
+      <content type="text"><![CDATA[问题在编译项目时，MyEclipse经常出现错误提示框，提示errors running builder ‘javascript validator’ on project 问题分析这是因为在对Javascript进行校验时报错 解决办法项目不需要MyEclipse对Javascript进行校验检查，因此解决办法就是去掉这个功能。如下图所示，在MyEclipse中进入项目的属性面板，在Builders中进行去掉js的校验功能 参考链接1、http://www.cnblogs.com/enshrineZither/p/4062248.html]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决FastJSON的重复引用的问题]]></title>
+      <url>%2F2016%2F06%2F17%2Ffastjson-ref%2F</url>
+      <content type="text"><![CDATA[问题在项目中使用了第三方的JSON开源库FastJSON进行数据的JSON解析。在获取某模块的数据后，将其转化为JSON数据。转化的JSON数据如下： 1&#123;&quot;data&quot;:[&#123;&quot;name&quot;:&quot;张三&quot;,&quot;userId&quot;:23&#125;,&#123;&quot;$ref&quot;:&quot;$.data[0]&quot;&#125;],&quot;status&quot;:200&#125; 解析出来的JSON出现了{“$ref”:”$.data[0]”}这一串，导致前端人员无从下手进行数据的处理 分析原因查找相关资料，了解这是FastJSON的一个循环引用检测的功能所导致的，如果说有相同的对象重复解析时，其会转化为$ref来进行重复引用。上面之所以出现这种情况就是因为转化为JSON数据的是两个相同的用户对象，第一个用户对象能转化为正常的JSON数据，而第二个用户对象与第一个用户对象重复，那么FastJSON就会判断对象重复，然后就会通过$ref来进行重复引用。 解决方法 可以通过DisableCircularReferenceDetect用来禁止循环引用检测。如下所示： 1JSONObject.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[修改迁出的SVN项目的IP地址]]></title>
+      <url>%2F2016%2F06%2F01%2Fsvn-relocate-ip%2F</url>
+      <content type="text"><![CDATA[问题SVN服务器的IP地址改变，需要对迁出来的项目的SVN的IP地址进行修改。如果说没有安装SVN客户端，那就无法直接使用客户端提供的relocate方法进行重写地址。 解决方法 在SVN配置文件中查找存储SVN的IP地址的位置，尝试直接手动进行地址的修改 查看项目中的.svn文件夹，文件夹中存储在了一个叫wc.db的数据库文件中，如下图所示： 使用Sqllite打开这个数据库文件，然后打开REPOSITORY表，如下图所示： 直接将表中的root字段对应的值，修改为对应的IP地址，即可解决此问题。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[使用winscp实现Window系统和Linux系统的文件目录操作]]></title>
+      <url>%2F2016%2F05%2F23%2Fwinscp-install%2F</url>
+      <content type="text"><![CDATA[简介winscp是一个Windows环境下使用SSH的开源图形化SFTP客户端。同时支持SCP协议。它的主要功能就是在本地与远程计算机间安全的复制文件。参考链接：http://baike.baidu.com/item/winscp?fr=aladdin 使用步骤 网络上查找，下载winscp。 winscp是一个绿色软件，不需要安装可直接使用 在目录中找到winscp可执行文件，双击，进入主界面 输入要连接的linux电脑的IP地址、FTP端口、登录的用户名和密码信息，点击登录 登录成功后，可看到两个计算机的目录 结构，左边为本机，右边为远程的Linux计算机的 此时就可以将windows中的文件上传到linux中 或者将linux中的文件下载到windows中]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Spring配置文件的版本与jar包不一致，导致项目启动失败]]></title>
+      <url>%2F2016%2F05%2F19%2Fspring-version-problem%2F</url>
+      <content type="text"><![CDATA[问题公司网络不稳定，当断网的时候，重启web项目时，项目启动失败，提示出了如下的错误：1org.xml.sax.SAXParseException; lineNumber: 14; columnNumber: 65; schema_reference.4: 无法读取方案文档 &apos;http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&apos;, 原因为 1) 无法找到文档; 2) 无法读取文档; 3) 文档的根元素不是 &lt;xsd:schema&gt; 分析原因上述错误因为Spring的xsd文件spring-beans-3.0.xsd没有获取到，无法连接到Spring的官网上去请求到此文件。查询资料，了解到Spring首先会到本地项目的Spring的jar中查找xsd文件，如果要查找的文件的版本高于jar的版本，那么将远程到官网中进行请求文件。因为web项目采用的Spring版本是2.5，而在Spring配置文件中声明的是3.0版本。所以会远程到官网中请求文件，但目下处于断网状态，请求不成功。 解决办法将项目的Spring配置文件声明中的3.0版本修改为2.5版本，与jar包保持一致，即可解决此问题。 参考链接：http://blog.csdn.net/bluishglc/article/details/7596118]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[SQL的UNION与UNION ALL的差别]]></title>
+      <url>%2F2016%2F05%2F14%2Fsql-learn-union%2F</url>
+      <content type="text"><![CDATA[在SQL语句中，UNION和UNION ALL都可用于合并结果集。两者的最主要的差别是： 使用UNION，会剔除合并结果集中的重复的数据 使用UNION ALL，则会保留合并结果集中的重复的数据]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Java中的方法形参的引用问题]]></title>
+      <url>%2F2016%2F05%2F10%2Fjava-function-arg%2F</url>
+      <content type="text"><![CDATA[示例12345678910public static void main(String[] args)&#123; Article article = null; initData(article); System.out(null == article);&#125;public static void initArticle(Article article)&#123; article = new Article(); article.setId(1);&#125; 执行程序输出的是true 因此在编写程序时，要注意方法体内对于引用变量的实例化问题]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[linux环境执行ifconfig命令提示未找到]]></title>
+      <url>%2F2016%2F03%2F05%2Flinux-ifconfig%2F</url>
+      <content type="text"><![CDATA[问题在Linux CentOS环境中，要查看网络状态，输入ifconfig命令时，出现了未找到命令的问题 12[root@chaoge ~]# ifconfig-bash: ifconfig: 未找到命令 解决办法需要安装net-tools这个网络工具，执行如下的命令进行安装 1yum install net-tools]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java学习笔记-DecimalFormat]]></title>
+      <url>%2F2016%2F03%2F04%2Fjava-decimal-format%2F</url>
+      <content type="text"><![CDATA[在java中，可以使用了DecimalFormat这个类来进行浮点数的保留小数位数的操作代码如下：123//其中0.00表示保留两位小数DecimalFormat df = new DecimalFormat(&quot;0.00&quot;)System.out.println(df.format(0.3333333333333)) 运行输出的值：0.33]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[SQL语句中的中文排序实现]]></title>
+      <url>%2F2016%2F02%2F23%2Fsql-chinese-sort%2F</url>
+      <content type="text"><![CDATA[问题在项目中需要将科室表中的数据按科室中文名称排序。编写了如下的SQL语句进行实现：1SELECT * FROM Department ORDER BY name ASC 执行结果如下图所示：从图中可以看出，其并没有按照中文的A\B\C的顺序进行排序，并不是期望的结果。 原因分析查阅资料：http://www.jb51.net/article/28876.htm 资源中提及： 在MySQL中，我们经常会对一个字段进行排序查询，但进行中文排序和查找的时候，对汉字的排序和查找结果往往都是错误的。出现这个问题的原因是因为MySQL在查询字符串时是大小写不敏感的，在编绎MySQL时一般以ISO-8859字符集作为默认的字符集，因此在比较过程中，中文编码字符大小写转换造成了这种现象。 解决方法解决的办法是在查询语句的 order by 部分使用 CONVERT 函数，如下修改后的SQL：1SELECT * FROM Department WHERE ORDER BY CONVERT(name USING GBK) ASC; 查询出来的结果，符合期望，如下图所示：]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Intellij IDEA15安装记录]]></title>
+      <url>%2F2016%2F02%2F15%2FIntellij-IDEA15-install%2F</url>
+      <content type="text"><![CDATA[程序安装与破解 下载安装包在网上查找了并下载15.0.2版本的安装包。下载链接 双击安装包，进行安装，一路Next 安装完成后，打开IDEA，进行破解 进入IDEA的注册界面，选择”License server” 输入“http://15.idea.lanyus.com/” 点击ok，即快速进行了激活 JRebel安装 在IDEA中下载并安装JRebel插件 打开IDEA的Setting配置界面，进入Plugins界面 在界面中选择Browse Repositories，进入插件的查询界面 查找到JRebel插件，点击进行install 安装成功后，进行IDEA的重启 JReble插件破解 使用授权服务器，打开JRebel标签界面：Help &gt; JRebel Activation &gt; I already have a license &gt; Connect to License Server Group URL 填写：http://idea.lanyus.com/{username} 【用任意用户名替换 {username}】 Email 随意填写 点击激活按钮进行激活 在Tomcat中配置 进入Tomcat配置界面 在VM Options配置项中输入如下代码：-Xms512m -Xmx512m -XX:MaxPermSize=1024m -noverify -javaagent:C:\Users\Administrator\.IntelliJIdea15\config\plugins\jr-ide-idea\lib\jrebel\jrebel.jar -Drebel.spring_plugin=true其中的的jrebel.jar地址根据实际安装的路径进行修改，一般在系统用户文件夹的.IntelliJIdea15文件夹下 参考链接：Jrebel6.3.3破解，配置图文教程 SVN问题解决 启动IDEA后，报出SVN的错误,错误提示如下： 1`Can&apos;t use Subversion command line client:svn Probably the path to Subversion executable is wrong` 解决办法这是因为电脑中安装的SVN客户端时，没有安装svn的命令程序所导致的。解决办法是下载Slik svn。下载链接安装Slik svn完成后，在IDEA的svn界面中，修改Use command line client。选择安装的slik svn下的svn.exe 参考链接：问题解决链接 快捷键 写代码时用Alt + Insert（Code|Generate…）可以创建类里面任何字段的getter与setter方法。 按Ctrl + N再键入类的名字可以快速地在编辑器里打开任何一个类。从显示出来的下拉列表里选择类。同样的方法你可以通过使用Ctrl + Shift + N打开工程中的非Java文件。 Ctrl + D复制当前行，Ctrl + Y删除当前行。 Ctrl + Shift + U，Ctrl + Shift + Alt + U显示类继承结构图，再按Alt + M。 Alt + F1，回到当前文件所在的目录结构。 Ctrl + Shift + V，粘贴最近复制过的一些信息。 Ctrl + Shift + F7，高亮显示所有该文本，按Esc高亮消失。 Ctrl + E 最近打开的文件。 Ctrl + P 方法参数提示。 Alt + Up/Down 在方法间快速移动定位。 Ctrl + W 选中代码，连续按会有其他效果。 Shift + F6 选中目录结构的文件，重命名 Ctrl + Alt + F12 进入当前文件所在磁盘位置 Ctrl + Shift + F 搜索文件 Ctrl + Shift + R 搜索指定范围文件，替换文字 Ctrl + Shift +W 返回上一次选择的代码块状态 Ctrl + Shift + J 自动将下一行合并到当前行末尾 Ctrl + Tab Switcher 导航 与 Ctrl + E 类似效果 Ctrl + Shift + C 复制当前文件磁盘路径到剪贴 Ctrl + Space+空格 自动完成，方法以及变量的提示 Ctrl + Alt + L 代码格式化]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决MyEclipse部署项目失败的问题]]></title>
+      <url>%2F2016%2F01%2F29%2Feclipse-deploy-problem%2F</url>
+      <content type="text"><![CDATA[问题解决MyEclipse编译后，classes目录下没有类文件，也没有目录和配置文件的问题今天打开项目，在MyEclipse进行部署时，部署失败，提示没有找到applicationContext.xml配置文件 问题解决1、进入Tomcat的部署项目文件夹classes，发现此文件夹为空。那说明项目并没有正常的编译2、昨天项目是可以启动正常，下班时因为电脑卡住，MyEclipse无法响应，直接在任务管理器中强制的结束进程。那么可能是因为强制退出导致了今天的问题3、参考资料：http://aayy520.blog.163.com/blog/static/231822602011231575230/4、资料说明：项目的配置文件.classpath中少了一行代码”“，其说明了源文件的位置5、但是在查看项目的.classpath，发现这行代码是存在的，排除掉这点问题6、试着将项目清理下，点击MyEclipse上的Project菜单的clean项7、等待清理完成后，发现classes文件夹中出现了编译文件了8、试着启动项目，项目启动成功]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Jquery的返回元素的索引值方法]]></title>
+      <url>%2F2016%2F01%2F26%2Fjquery-index%2F</url>
+      <content type="text"><![CDATA[HTML代码123456&lt;ul class=&quot;container&quot;&gt; &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;javascript:void(0);&quot;&gt;元素1&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;javascript:void(0);&quot;&gt;元素2&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;javascript:void(0);&quot;&gt;元素3&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;javascript:void(0);&quot;&gt;元素4&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt; 问题获取class为active的li元素，在所有的同级li元素中的索引值 解决方法在Jquery 里面 提供了一个index()函数，此函数是搜索与参数表示的对象匹配的元素，并返回相应元素的索引值解决代码如下1var index = $(&apos;.container li&apos;).index($(&apos;li.active&apos;)[0]);]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决MyEclipse不能自动编译项目的问题]]></title>
+      <url>%2F2016%2F01%2F22%2Feclipse-auto-build-problem%2F</url>
+      <content type="text"><![CDATA[问题在MyEclipse中进行某开发项目的开发，当修改了java代码后，项目不能自动编译，导致还要重启项目，才能看到最新的效果。之前是没有出现此问题，只要不是配置新增类、接口方法、静态变量，其他的java代码的修改都是可以直接刷新页面展示效果。 解决方法1、在MyEclipse中菜单栏的Project中选中Build Automatically选项，启动项目的自动编译功能2、在MyEclipse中菜单栏的Project中选中Clean选项，进行项目的清理3、经过上述两个步骤后，项目即可再进行自动编译操作 参考链接http://jingyan.baidu.com/article/c45ad29cdcad4f051753e2a2.html]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[定义一个静态Long类型变量遇到的问题]]></title>
+      <url>%2F2016%2F01%2F14%2Fjava-long-problem%2F</url>
+      <content type="text"><![CDATA[问题 定义了一个静态变量，用于表示30天的毫秒数。并将其输出到控制台 12345public static final long DAY_THIRTY = 30*24*60*60*1000;public static void main(String[] args)&#123; System.out.println(DAY_THIRTY);&#125; 期望的输出结果：2592000000 实际的输出结果：-1702967296 实际输出结果与期望不符合 问题分析 Integer的最大值：2147483647 Long的最大值：9223372036854775807那么此变量的值范围是在Integer的最大值与Long的最大值之间，上述定义的静态变量的值大于Integer的最大值，小于Long的最大值，其应是一个Long类型，但是却定义为了Integer类型。 解决方法 修改静态变量，在数值后加上L后缀，来表示数值是Long类型的1public static final long DAY_THIRTY = 30*24*60*60*1000L;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[SQL查询全部列的缺点]]></title>
+      <url>%2F2016%2F01%2F08%2Fsql-all-columns-query%2F</url>
+      <content type="text"><![CDATA[说明SQL语句中查询全部列的方式是SELECT FROM 表名*。在项目开发中，如果直接使用这个方式来查询数据，会比较快捷，不用程序员去数据表提取出要获取的字段名称。但是并不推荐这样做，应按需要，查询指定的列。 查询全部列的缺点1、SELECT 语句取出表中的所有字段，不论该字段的数据对调用的应用程序是否有用，将对服务器资源造成浪费，甚至会对服务器的性能产生一定的影响2、如果表的结构在以后发生了改变，那么SELECT 语句可能会取到不正确的数据甚至是出错。3、执行SELECT 语句时，首先要查找出表中有哪些列，然后才能开始执行SELECT 语句，这在某些情况会产生性能问题。4、使用SELECT 语句将不会使用到覆盖索引，不利于查询的性能优化。5、从项目角度，SELECT 语句没有列明将要取出哪些字段进行操作，代码不清晰]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[为富文本编辑器UMEditor添加上提示语的功能]]></title>
+      <url>%2F2015%2F12%2F24%2Fjs-umeditor%2F</url>
+      <content type="text"><![CDATA[目的编辑器添加上相应的提示内容，如“请输入简介，最多只能输入137个字符”。在UM编辑器中，并没有提供进行提示语设置的功能。添加提示语，要解决的问题如下：（1）在编辑器添加上提示语，并设置提示语的样式，即设置为了灰色的样式（2）当用户点击编辑器时，进行编辑时，提示语要从编辑器中清除（3）当用户离开编辑器时，如果没有编辑的内容，那么则要加上提示语的展示（4）当进行保存草稿或者提交表单时，要将保存的内容中过滤掉提示语，不要将提示语传递到后端，保存到数据库中（5）当一个页面有多个编辑器时，每个编辑器有自己独立的提示语，要防止提示语的混淆（6）当使用getContent()和getContentTxt()获取内容和纯文本内容时，要判断是否存在提示语，如果存在则要返回空，以防止在前端校验是否填写内容中判断出错。 解决方案（1）获取到提示语，并为这个提示语添加上包裹元素label，为这个label添加上样式，如下：1&lt;label style=&quot;color:gray;&quot;&gt;请输入简介，最多只能输入137个字符&lt;/label&gt; （2）绑定编辑器的聚焦事件focus，当事件被触发时，如果编辑器内容包括了提示语内容，那么则进行清除（3）绑定编辑器的失焦事件blur，当事件被触发时，如果编辑器中不存在内容时，则添加上提示语（4）提交表单时，保存内容是从编辑器生成的一个隐藏的文本域中提取的。因此当没有填写内容时，就要去掉这个文本域中包含的提示语内容。这个通过禁止编辑器的自动同步编辑内容到文本域的功能，然后在失焦事件中判断有填写内容时，则手动同步内容到文本域中（5）封装一个富文本编辑器的初始化对象，在一个页面中可以实例化多个实例（6）在上述封装的初始化对象中添加上获取纯文本内容和获取带格式内容的方法，在方法中进行过滤掉提示语的判断 实现代码 实现效果1、调用方式1var editor = new UMEditor(&#123;id:&apos;editor&apos;,tip:&apos;请输入发病过程，最多只能输入3177个字符&apos;,height:150&#125;) 2、实现效果]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决使用gulp进行js压缩出现的问题]]></title>
+      <url>%2F2015%2F12%2F21%2Fgulp-js-min%2F</url>
+      <content type="text"><![CDATA[问题采用gulp的js压缩插件gulp-ugify进行js的压缩。压缩时，抛出了异常从上面的错误信息，并不能看出哪个js有错误，导致压缩失败 问题分析 查阅资料，可以在gulp的压缩调用方法中添加上一个输出错误信息的方法，来查看具体报错的位置 再次输入命令运行如上的错误信息，则可以看到是zh_TW.js的第1465行报出的错误，错误内容是unexpected token operator “=”，expected punc “:”意思就是操作符=是非法的语法。期望的是操作符: 查看zh_TW.js的源码，第1465行的代码如下： 将其修改为： 如此再运行压缩命令，则能正常的执行]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决使用gulp进行页面引用路径替换时出现的问题]]></title>
+      <url>%2F2015%2F12%2F19%2Fgulp-rev-collector%2F</url>
+      <content type="text"><![CDATA[问题使用gulp的页面替换引用路径插件gulp-rev-collector时，当替换js路径时，也将包含的jsp文件路径也替换掉。具体问题如下：1、使用gulp的插件gulp-rev，已经为user_login.js这个文件生成了相应的版本号，其对应的映射关系如下： 原路径：user/user_login.js 添加版本号后的路径：user/user_login.js?v=fbbfda1be52、使用gulp的插件，根据上述的映射地址，进行jsp页面上的引用路径的替换 3、执行2步骤时，其除了将js引用替换之外，也将jsp页面中的包含文件user_login.jsp也替换掉了，如下所示 替换前： 替换后这就导致了user_login.jsp加载不到，导致报错问题的产生。 解决思路对此问题进行解决，查看插件的源码，其是使用文件名的正则表达式进行替换的，也就是对jsp文件进行一行一行的匹配，当匹配到对应的文件名，那么它就将其替换过来 那么需要做的改动就是修改正则表达式，修改为匹配后缀为js，但不匹配后缀是jsp的正则表达式 原正则表达式 1var reg = new RegExp(&apos;hello\.js&apos;,&apos;g&apos;) 修改后正则表达式 1var reg = new RegExp(&apos;hello.js(?!p)&apos;,&apos;g&apos;) 其中的(?!p)表示不匹配‘p’字符 源码修改1、在插件的index.js的替换位置，进行如下代码的变更：]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript判断网站是手机访问，还是电脑访问]]></title>
+      <url>%2F2015%2F12%2F04%2Fjs-check-device%2F</url>
+      <content type="text"><![CDATA[思路通过网站的navigator对象中的userAgent用户代理信息进行分析判断 判断代码12345var ua = navigator.userAgent;var ipad = ua.match(/(iPad).*OS\s([\d_]+)/), isIphone = !ipad &amp;&amp; ua.match(/(iPhone\sOS)\s([\d_]+)/), isAndroid = ua.match(/(Android)\s+([\d.]+)/), isMobile = isIphone || isAndroid;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[使用stopWatch进行请求消耗时间的监控]]></title>
+      <url>%2F2015%2F12%2F02%2Fjava-stopwatch%2F</url>
+      <content type="text"><![CDATA[目的为观察项目的未缓存的页面请求以及缓存的页面请求的消耗时间的对比，判断出缓存是否有提高性能 方案方案：通过在项目中添加上一个Filter过滤器，在过滤器的过滤方法中拦截到页面请求，对其进行时间的监控其中对于时间的监控可以使用Spring提供的一个StopWatch工具类来进行实现如下所示： StopWatch说明1、StopWatch类可以做类似任务执行时间控制，也就是封装了一个对开始时间，结束时间记录操作的java类。2、常用方法： start：开始进行时间监测 stop：停止进行时间监测 preetyPrint：将运行的结果格式化输出 getTotalTimeMillis：获取总共的请求时间]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[禁止UE编辑器输入emoji表情图片]]></title>
+      <url>%2F2015%2F11%2F29%2Fjs-umeditor-emoji%2F</url>
+      <content type="text"><![CDATA[问题在手机访问添加页面时，在UE编辑器中进行内容的编辑，用户可以在手机的输入法中选择输入一个emoji表情。当提交内容到后端时，就出现了添加失败的情况。 解决方法考虑此问题的解决方法是限制富文本编辑器输入emoji表情图片1、添加上限制规则：采用正则表达式来判断用户是否输入了emoji表情的字符123456789var emojiFilter = function(content)&#123; var reg = new RegExp(/[\ud83c-\ud83c]|[\ud83d-\ud83d]|[\u2600-\u27ff]|[\udc00-\udfff]|[\udc00-\udfff]/); //如果判断出内容中存在emoji表情的字符，则提示用户不能输入，再将内容中的emoji表情清除掉 if(reg.test(content))&#123; alert(&apos;不能输入emoji图片&apos;) content = content.replace(/[\ud83c-\ud83c]|[\ud83d-\ud83d]|[\u2600-\u27ff]|[\udc00-\udfff]|[\udc00-\udfff]/g,&apos;&apos;) &#125; return content;&#125; 2、在UE编辑器的内容改变事件中，调用上述方法1234ueEditor.addListener(&apos;contentChange&apos;,function()&#123; var content = emojiFilter(ueEditor.getContent()); ueEditor.setContent(content);&#125;)]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决表单输入框中点击键盘回车键后提交的问题]]></title>
+      <url>%2F2015%2F11%2F27%2Fweb-form-problem%2F</url>
+      <content type="text"><![CDATA[问题在一个添加页面中，有认证号码输入框、上传附件两个编辑元素。当输入认证号码后，还没有上传附件时，即点击键盘上的回车键，页面就跳转到了信息上传成功的页面这是一个添加表单form，只有一个输入框，如下的结构：1234&lt;form&gt; &lt;input type=”text” name=””/&gt; &lt;input type=”button” value=”提交”/&gt;&lt;/form&gt; 问题分析通过查阅相关的资料，这是浏览器的一种默认行为。浏览器在解析网页时，如果发现页面上有表单和一个提交按钮，那么在打开页面时，焦点就会落在这个提交按钮上。如果此时这个表单还只有一个单行文本输入框(text)，那么在这个输入框中按下回车键，不管还有多少其他类型的表单组件（单选框、上传插件），浏览器就会自动的提交表单。如果表单中含有两个或者多个单行输入框，那么无论是否包含其他类型的表单组件，按回车键，浏览器都不会自动的提交表单。 解决方法因此对于此问题的解决办法，是再添加上一个文本输入框即可，这个文本输入框可通过样式设置为隐藏。如下所示：12345&lt;form&gt; &lt;input type=”text” name=””/&gt; &lt;input style=”display:none”/&gt; &lt;input type=”button” value=”提交”/&gt;&lt;/form&gt;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[使用localStorage实现前端缓存方案]]></title>
+      <url>%2F2015%2F11%2F19%2Fweb-js-cache%2F</url>
+      <content type="text"><![CDATA[问题说明项目的前端页面经常使用到一些字典类型的数据，如用户类型、国家地区、民族这些。因为这些数据不经常变化，如果每刷新一次页面都向后端发送一次数据请求，那显得有更多的消耗。因此考虑前端缓存，可以采用了html5的localStorage来存储存。思路如下：1、以字典获取数据的url作为key，获取到的字典数据作为value进行存储2、当下一次用户请求时，先根据url去localStorage中判断是否存在此key3、如果存在则直接从localStorage中返回数据，否则发送异步请求到后端进行数据的请求，然后再将数据存储到localStorage中 了解localStorage1、localStorage技术的缓存只适用于支持HTML5的浏览器2、localStorage的容量上限为5M3、localStorage没有时间限制，是持久化的本地存储，除非主去的进行清除数据，否则数据永远不会过期。 缓存更新策略问题因为localStorage是长久保存，虽说稳定后，字典数据更新的次数很少，但是还是会有更新的时候。举例：如果我在医院字典表中修改了一个医院的名称，怎么使用户浏览器的本地存储的医院缓存失效，简要进行数据的获取，以保持数据的最新？ 解决思路思路：通过维护一张字典版本表来进行操作，当有数据变化时，开发者将此字典版本表中的版本号更改，使之与缓存中的版本号不一致，从而重新获取数据1、在js中创建一个全局的字典版本对象dict，记录每个字典对应的数据请求url和版本号，如下所示：1234var dict = &#123; hospital:&#123;&apos;url&apos;:请求地址,&apos;version&apos;:版本号&#125;, country:&#123;&apos;url&apos;:请求地址,&apos;version&apos;:版本号&#125;&#125; 2、以字典项的url作为localStorage的key，在key对应的value中不只存储了字典数据，并存储版本号version3、当获取字典数据时，从字典维护表中取出字典对应的版本号version，将其与本地缓存中存储的版本号version进行对比。如果两个版本号一样，则表示字典数据没有发生变化，已是最新。如果两者版本号不一致，则表示本地缓存中的字典数据不是最新的，那么则重新进行数据的获取，再存储到本地缓存中。123456789101112131415var data = null;if(null !== (data = localStorage.getItem(dictionary.country[&apos;url&apos;])))&#123; //将数据转换为JSON对象 data = JSON.stringfy(data); //判断版本号，如果版本号不相等，则将数据清空，重新获取数据 if(data.version !== dict.country[&apos;version&apos;])&#123; data = null; $.getJSON(dict.country[&apos;url&apos;],function(response)&#123; data = response.data; localStorage.setItem(&apos;url&apos;,&#123;&apos;version&apos;:dict.country[&apos;version&apos;],&apos;data&apos;:data&#125;); &#125;); &#125;&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hibernate的二级缓存]]></title>
+      <url>%2F2015%2F11%2F16%2Fhibernate-second-cache%2F</url>
+      <content type="text"><![CDATA[问题因为项目没有配置上二级缓存，那就有如下的情况出现：对于字典类、标签类等很少发生变化的数据，每次用户访问都是直接去访问数据库，这也就加大了数据库服务器的压力，并使得用户的等待时间延长。因为项目采用的是Hibernate作为DAO框架，因此了解了下Hibernate的缓存。 Hibernate的缓存说明一级缓存 一级缓存（Session缓存）的缓存生命周期是Session的生命周期，当用户登录开始生成，用户注销或者session超时后即销毁 不同的用户具备不同的session，不同的用户具备一个一级缓存 二级缓存 Hibernate默认是关闭二级缓存，需要开发者手动开启，并接入第三方的缓存插件 二级缓存是可以跨越多个session，属于系统级的缓存，其缓存的生命周期是可以进行调整的 什么样的数据适合存放到第二级缓存中？1、很少被修改的数据2、不是很重要的数据，允许出现偶尔并发的数据3、不会被并发访问的数据4、参考数据像标签、字典类的数据，就具备上述的特征，因此就更适用放在二级缓存中，来加快项目的访问 二级缓存配置EhCache是Hibernate支持的二级缓存第三方插件。集成的配置步骤如下1、在项目中引入ehCache的依赖jar包2、在项目的Spring的hibernate配置文件applicationContext-hibernate.xml中启动二级缓存的配置，并设置缓存提供商以及指定缓存文件的地址3、在要配置二级缓存的Bean实体中，加上Cache注解，以及相关的缓存策略。如下在字典表中添加上Cache注解，以及读写的缓存策略4、在缓存配置文件ehcache.xml中设置字典表的缓存集合5、如此就对字典实体Dictionarys作了二级缓存的配置。6、当首次对字典数据进行列表查询时，其就会将数据加入到二级缓存中，实体的ID作为缓存集合子项的key值。下次通过ID来获取字典实体，就会先到二级缓存中查询，如果有，则直接返回，如果没有则会再去从数据库中获取，并加入到二级缓存中 参考文档http://www.blogjava.net/supercrsky/articles/238580.html]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解JSP的编译流程，考虑是否可对其进行预编译来提高页面的性能]]></title>
+      <url>%2F2015%2F11%2F11%2Fjsp-pre-build%2F</url>
+      <content type="text"><![CDATA[问题在考虑页面性能时，考虑是否事先将JSP页面进行编译为类文件，这样用户访问的时候，就少去了一个JSP页面编译的步骤，可以节省掉这一段时间 JSP生命周期在执行JSP网页时，通常可分为两个时期：编译时期（Translation Time）和请求时期（Request Time） 在编译时期，JSP网页被转换成Servlet类，然后被编译成类文件 在请求时期，Servlet类执行后，响应结果至客户端 JSP编译流程1、当用户第一次请求JSP页面时，JSP引擎会通过预处理把JSP文件中的静态数据（HTML文本）和动态数据（Java脚本）全部转换为Java代码转换方式：对于HTML文本只是简单的用out.println()方法包裹起来，对于Java脚本只是保留或做简单的处理2、JSP引擎编译生成的JAVA文件，编译成Servlet类文件（.class），默认的情况下存放在部署Tomcat的根目录下的work目录中3、编译后的class对象被加载到容器中，并根据用户的请求生成HTML格式的响应页面 JSP页面的编译工作是在页面第一次被访问时进行的，所以JSP引擎在第一次处理JSP请求时，发送请求的用户在收到响应前可能有较长的延迟。但在后续的请求中，这些工作都已经完成，时间延迟问题将不复存在。也就是说，当处理后续的用户访问时，JSP和Servlet的执行速度是一样的 问题思路从上面的资料可以看出，JSP页面只有在第一次被访问时才会进行编译，之后用户请求就不会再重新编译。而项目中的页面这么多，第一个用户是不可能一下次将全部的页面都点击一遍的，来使其进行编译生成。那么在部署时，事先将所有的JSP页面进行预编译，就可以解决此问题，节省掉用户访问的页面的编译过程的时间]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript判断一个数是整数的方法]]></title>
+      <url>%2F2015%2F11%2F02%2Fjs-check-number%2F</url>
+      <content type="text"><![CDATA[说明1、js中提供的isNaN是判断是否非数字字符（整数或者小数），但是不能判断一个数是否整数。2、为了判断一个数是否整数，还需要补充上一个条件，判断参数是否包含小数点。如果有则不是整数。1234if(isNaN(number) || -1 &lt; number.indexOf(&apos;.&apos;))&#123; alert(&apos;请输入正确的整数&apos;); return false;&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[DNS缓存的查看以及刷新]]></title>
+      <url>%2F2015%2F10%2F29%2Fdns-cache-refresh%2F</url>
+      <content type="text"><![CDATA[DNS会被系统缓存。这是为了提高网站的访问速度，系统会在成功访问某网站后将该网站的域名、IP地址信息缓存到本地。下次访问该域名时直接通过IP进行访问。因此当在host中变更了域名的IP映射后，在测试时需要及时对DNS缓存进行刷新 解决方法1、打开CMD控制台，输入如下的命令，来刷新本地DNS缓存：1ipconfig /flushdns 2、查看DNS缓存：1ipconfig /displaydns]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[JSTL表达式如何输出序号]]></title>
+      <url>%2F2015%2F10%2F23%2Fjstl-out-index%2F</url>
+      <content type="text"><![CDATA[目的在JSP页面上，通过JSTL的forEach进行数据的迭代，使其输出到页面中。考虑forEach怎么去获取到遍历的序号值。 解决方法1、通过forEach的varStatus属性来获取到序号123&lt;c:forEach items=&quot;list&quot; varStatus=&quot;status&quot; var=&quot;row&quot;&gt; 序号：$&#123;row.index + 1&#125;&lt;/c:forEach&gt; 通过了varStatus对象的index属性来获取当前遍历的索引，然后将其作加1操作，就可以获取到对应的序号值]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript的字母大小写的转换方法]]></title>
+      <url>%2F2015%2F10%2F20%2Fjs-upper-lower%2F</url>
+      <content type="text"><![CDATA[目的在javascript中可以采用字符串的方法toUpperCase或者toLowerCase方法进行大小写的转换 代码实现1、转换为大写123var keyword = &apos;Byby&apos;;keyword = keyword.toUpperCase();console.log(keyword); 输出：BYBY 2、转换为小写123var keyword = &apos;Byby&apos;;keyword = keyword.toUpperCase();console.log(keyword); 输出：byby]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决CAS报出的无法识别票据的异常]]></title>
+      <url>%2F2015%2F10%2F16%2Fcas-unknown-ticket%2F</url>
+      <content type="text"><![CDATA[问题查看CAS单点登录项目的日志信息，有时出现了如下的错误信息：12org.jasig.cas.client.validation.AbstractTicketValidationFilter - org.jasig.cas.client.validation.TicketValidationException 未能够识别出目标 &apos;ST-1-ncWS6TkNVKJac2Py6O1E-cas&apos;票根 问题分析查阅资料，这是因为用过的ticket就不能再用，因此当系统检测到某一ticket被第二次使用时，则会报出如下的异常信息。 解决方法在CAS的ticketExpirationPolicies.xml配置文件中可对于ticket的使用次数、多久失效进行配置 第一个参数numberOfUses：发放的ticket用几次后失效， 第二个参数timeToKill：ticket多久失效。 为了安全性，CAS的ticket默认是设置为只能使用一次。因此当上述报出了票据失效的问题，则要再重新去获取新的ticket。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决在MyEclipse中编译项目时出现的错误]]></title>
+      <url>%2F2015%2F10%2F15%2Feclipse-builder-tool%2F</url>
+      <content type="text"><![CDATA[问题在MyEclipse中运行单点登录项目时，报出了如下的错误1Errors running builder &apos;Integrated External Tool Builder&apos; on project &apos;Test&apos;.The builder launch configuration could not be found. 解决方法在项目中右键打开properties面板，在Builders面板中移除掉错误的外部工具”Invalid External Tool Builder”]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[注册表单的账号和密码禁止自动填充的问题解决]]></title>
+      <url>%2F2015%2F10%2F14%2Fform-auto-compelete%2F</url>
+      <content type="text"><![CDATA[问题解决浏览器保存密码后，对注册表单的账号和密码进行自动填充的问题1、登录页面的自动填充2、注册页面的自动填充 解决方法问题复现通过问题的复现，这是浏览器的保存密码所导致的：1、第一次登录时，登录成功后浏览器会提醒是否保存密码，选择保存2、下次登录时，浏览器就会智能的将用户名和密码输入框进行自动填充值3、这在登录表单自动填充是可以的，但是在注册表单中进行自动填充就显得多余，因为用户本来就是要注册一个新的账号，设置一个新的密码。 失败的解决方法1、Html5提供了一个禁自动填充的属性autocomplete1&lt;input type=&quot;text&quot; name=&quot;username&quot; placeholder=&quot;请输入注册邮箱或手机号码&quot; autocomplete=&quot;off&quot;/&gt; 2、验证，并无法解决这个问题，禁止失效 进一步分析1、发现登录表单和注册表单都具备了name为username的input输入框元素（账号）以及name为password的input输入框元素（密码）2、猜想浏览器是否是根据input输入框元素的name属性来标识为哪个输入框填充账号，为哪个输入框填充密码3、尝试，将注册表单的输入框的name属性进行修改4、验证，解决此问题，浏览器就没有再为注册表单的账号和密码自动填充值了。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解UUID]]></title>
+      <url>%2F2015%2F10%2F08%2Fjava-uuid%2F</url>
+      <content type="text"><![CDATA[生成方法在Java中可通过JDK提供的方法UUID.randomUUID()来实现UUID的生成的1String uuid = UUID.randomUUID().toString().replaceAll(&quot;-&quot;, &quot;&quot;); 问题UUID是否具备唯一性 问题答案1、UUID是指通用唯一识别码（Universally Unique Identifier），它的目的是让分布式系统中的所有元素都能有唯一的辨别信息。2、UUID的标准类型包含32个16进位数字，以连字号分为五段，形式为8-4-4-4-12的32个字符。如：20F644DE-23C5-4E04-BE38-991710D2DA133、为了保证UUID的唯一性，规范定义了包括网卡MAC地址、时间戳、名字空间（Namespace）、随机或伪随机数、时序等元素，以及从这些元素生成UUID的算法。UUID的复杂特性在保证了其唯一性的同时，意味着只能由计算机生成。4、UUID的重复率非常低。32位的UUID，经过16^32+1次生成后，必然会产生至少一次重复，但是16^32超过了39位数，即使每秒并发10000次，365天不停的并发，也基本不可以遇到一次重复。即，在特定的环境下（如每秒并发率不超过10000的情况），UUID的生成复杂性，使得UUID不存在重复的情况]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[使用dom4j进行xml文件的解析]]></title>
+      <url>%2F2015%2F09%2F25%2Fjava-dom4j-xml%2F</url>
+      <content type="text"><![CDATA[问题解析下面这一段短信XML信息，要获取到短信状态returnstatus以及短信内容message的值12345678&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;&lt;returnsms&gt; &lt;returnstatus&gt;Success&lt;/returnstatus&gt; &lt;message&gt;ok&lt;/message&gt; &lt;remainpoint&gt;9986&lt;/remainpoint&gt; &lt;taskID&gt;21661998&lt;/taskID&gt; &lt;successCounts&gt;1&lt;/successCounts&gt;&lt;/returnsms&gt; 解决方法解析工具在Java中可以使用dom4j这个第三方工具包来进行解析。dom4j是一个Java的XML API，类似于jdom，用来读写XML文件的，其对于xml文件的解析提供了非常方便的方法。诸如Hibernate等框架都使用了这个工具进行xml的解析 解析代码]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript的setTimeout和setInterval方法]]></title>
+      <url>%2F2015%2F09%2F17%2Fjs-time-function%2F</url>
+      <content type="text"><![CDATA[说明 setInterval方法的定义是可按照指定的周期（以毫秒计）来调用函数或计算表达式。 setTimeout方法的定义是在指定的毫秒数后调用函数或计算表达式。 从定义上来看setInterval是可重复，周期性执行。而setTimeout是不可重复性的，一次执行。 setTimeout只执行code一次。如果要多次调用，使用setInterval或者让code自身再次调用setTimeout 示例代码123setInterval(function()&#123; console.log(&apos;save&apos;)&#125;,60000) 1234567891011var save = function()&#123; setTimeout(function()&#123; save(); &#125;,6000); console.log(&apos;save&apos;)&#125;setTimeout(function()&#123; save();&#125;,60000);]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解jsessionid]]></title>
+      <url>%2F2015%2F09%2F15%2Ftomcat-jsessionid%2F</url>
+      <content type="text"><![CDATA[1、jsessionid是session的标识ID2、jsessionid是Tomcat中对sessionid的叫法3、url中会出现jsessionid字符串，因为Tomcat会去判断浏览器是否开启了cookie。如果没有就会重写url，在url中添加上jsessionid标识，方便服务器通过这个找到session的标识ID]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[为什么手机验证码通常为6位数字]]></title>
+      <url>%2F2015%2F09%2F11%2Fproject-phone-six%2F</url>
+      <content type="text"><![CDATA[原因1、沿袭银行卡密码的6位数字，照顾用户的习惯2、超过6位就有记忆障碍，低于6位用户觉得不安全，因此6位刚好合适。位数多，被破解的概率就小，但位数过多又会影响到用户的体验 从记忆的角度来看，4位数字验证码可以被2/2来记忆，而6位数字验证码可以被2/2/2、3/3来记忆。双数，就容易被人看了记住。 3、手机验证码一般为数字，是为了用户体验，方便用户快速的记忆和输入4、加大密码破解的难度 如果手机验证码是数字的话，那么4位的验证码，有0.01%的概率被破解。而5位的话就有0.0001%被破解。有资料说明4位数验证码在5分钟内能被破解，而6位数验证码被破解时间在10小时左右。因为一般系统都设置验证码5分钟有效，那么设置为4位数字的验证码，就很容易被破解掉。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解MyEclipse解决SVN的文件版本冲突的方法]]></title>
+      <url>%2F2015%2F09%2F07%2Feclipse-svn-fle-confict%2F</url>
+      <content type="text"><![CDATA[版本冲突在进行项目的公共资源文件的修改时，多人开发过程中，容易造成文件冲突。因此在进行文件的提交时，先进行同步，判断是否有冲突。如果有冲突，MyEclipse会对文件标识上一个红色的图标。 解决版本冲突的方法原先做法1、先将冲突文件的本地版本备份一份2、再覆盖更新该冲突文件，把对方的修改保留3、再从备份文件中将自己的改动拷贝到最新的这个文件中来解决的 便捷做法MyEclipse对冲突文件有一个更好的处理。打开冲突文件，进行如下的判断1、如果你和对方修改的不是同一行，那么可以直接进行文件的更新，他会将对方的更改行覆盖到你本地文件对应的行位置，然后保留你本地改动的行数据，然后再进行提交即可2、如果你和对方修改的是同一行，按上面的原先做法进行解决]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解URL伪静态urlRewrite的热部署]]></title>
+      <url>%2F2015%2F09%2F06%2Furlrewrite-auto-load%2F</url>
+      <content type="text"><![CDATA[问题项目使用了第三方组件urlRewrite进行项目的url伪静态的实现。对于一个模块的url配置需要写在URL配置文件urlrewrite.xml中，并重启项目，进行测试。那么如果一个URL配置写错了，如将添加的URL配置，少写了一个参数，此时在urlrewrite.xml文件中进行更正后，还需要重新启动项目，这样tomcat才会加载到这个最新的配置文件。因为项目较大，启动比较慢，那就要花费时间在等待。因此考虑是否可以在修改了URL配置文件后，即可重新加载到这个最新配置文件，而不需要重新启动项目，做到热部署。 解决方法1、在urlRewrite的过滤器UrlRewriteFilter中有一个过滤器的参数confReloadCheckInterval，对此参数进行配置即可解决问题。 confReloadCheckInterval: 配置文件重加载间隔. 0表示随时加载, -1表示不重加载, 默认-1 2、在web.xml的UrlRewriteFilter添加上此参数1234&lt;init-param&gt; &lt;param-name&gt;confReloadCheckInterval&lt;/param-name&gt; &lt;param-value&gt;0&lt;/param-value&gt;&lt;/init-param&gt; 3、当修改了urlrewirte.xml中的url后，在控制台可以看到加载的提示1org.tuckey.web.filters.urlrewrite.UrlRewriteFilter INFO:loaded(conf ok)]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[log4j指定包或者指定类的日志输出]]></title>
+      <url>%2F2015%2F08%2F27%2Flog4j-class-out%2F</url>
+      <content type="text"><![CDATA[问题项目使用了log4j进行日志的输出。当对某个类文件进行功能调试，期望在控制台只看到这个类文件的日志内容。因为不作相关配置的话，控制台输出的并不只是缓存拦截器中的日志信息，还包括了其他类的日志信息，这就导致了我要查看的日志信息被其他信息糅合着，查看起来比较不方便。 解决方法在配置文件log4j.properties中在log4j.rootLogger属性之上设置一个log4j.logger.包名.类名 属性12log4j.logger.com.yaohuiye.it.interceptor.CacheInterceptor=INFO,stdout,Dlog4j.rootLogger = WARN, stdout,D,E 这即是指定了只输出类CacheInterceptor的日志信息]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解GZIP压缩]]></title>
+      <url>%2F2015%2F08%2F24%2Fweb-gzip%2F</url>
+      <content type="text"><![CDATA[在YSLOW中测试项目的前端资源性能时，插件提示进行开启GZIP，对于这个GZIP之前没有了解。查阅资料进行相关的了解。 1、这是一种压缩技术，可以将请求的响应内容压缩，减少请求的大小，加快网站加载的速度。2、这一般是指WWW服务器中安装的一个功能。3、HTTP协议上的GZIP编码是一种用来改进WEB应用程序性能的技术。4、大流量的WEB站点常常使用GZIP压缩技术来让用户感受更快的速度。5、当有人来访问这个服务器中的网站时，服务器中的这个功能就将网页内容压缩后传输到来访的电脑浏览器中显示出来。6、一般对纯文本内容可压缩到原大小的40%。当然，这个就会占用服务器的CPU资源。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[关于项目中敏感信息数据的安全性]]></title>
+      <url>%2F2015%2F08%2F21%2Fproject-secret-data%2F</url>
+      <content type="text"><![CDATA[问题在开发项目中，有一些敏感信息，如邮箱的密码、数据库的密码、短信接口的密码等，都是明文写在项目的系统配置文件的，那也就是说只要能签出项目的成员都可以查获到这些敏感信息。 如果像数据库密码，这些明文写在项目的系统配置文件，相关人员看到了也无法登录，因为数据库存储在公司内部服务器，可通过IP限制来确定涉及人员的权限。但像短信接口的账号和密码，被相关人员察觉到了后台管理的登录路径，以及用户名和密码，那么其就可以在公司以外进行登录操作，查看公司的相关短信信息，更甚者其可以利用这个获取到的用户名和密码进行短信发送类似程序的制作，而不需要自己再申请相关的账号。 解决方法想到的一个加强防范的措施就是在系统配置文件中存储的是加密后的密码。如第三方短信接口支持传递加密后的密码参数，其提供了相关的加密算法。那么我们就可以按照这个加密算法进行加密后，将加密后的密码存储到项目的系统配置文件中。通过此步骤加大密码被获取到的难度，也不是说完全杜绝，如果说用户知悉了这个加密算法，并且这个加密算法还是可逆的，那还是可以进行破解的。 因此，有如下的建议：1、项目中不存储明文的敏感信息，进行一层加密，加大破解的难度。让知道的人越少越好。2、定期更新敏感信息。如在项目员工离职后，进行项目密码的修改。那离职员工离职后，就无法进行恶意的操作。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[防止短信轰炸的措施]]></title>
+      <url>%2F2015%2F08%2F20%2Fphone-msg-get-often%2F</url>
+      <content type="text"><![CDATA[为了避免短信接口被软件或个人恶意利用，有如下的防范措施1、IP限制，如：一个IP一天只发5条2、时间限制，如：一分钟同一个号码只能发一条3、手机号的限制 如：一个手机号码一天只能发5条4、用户点击发送短信时，还需要输入网站验证码，才能发送成功]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[在apache中设置静态资源文件的缓存]]></title>
+      <url>%2F2015%2F08%2F17%2Fapache-static-files%2F</url>
+      <content type="text"><![CDATA[问题Apache如何对静态资源文件进行缓存配置，以减少HTTP请求数量，加快加载速度？ 解决方法打开.htaccess或者httpd.conf文件，添加上如下内容。1、启用”Expires headers”扩展，然后指定一个默认的过期时间123456&lt;IfModule mod_expires.c&gt; # Enable expirations ExpiresActive On # Default directive ExpiresDefault &quot;access plus 1 month&quot;&lt;/IfModule&gt; 2、在ExpiresDefault下方，继续增加某一类型文件的过期时间。根据网站的状况改变参数。配置内容如下：1234567891011# My faviconExpiresByType image/x-icon &quot;access plus 1 year&quot;# ImagesExpiresByType image/gif &quot;access plus 1 month&quot;ExpiresByType image/png &quot;access plus 1 month&quot;ExpiresByType image/jpg &quot;access plus 1 month&quot;ExpiresByType image/jpeg &quot;access plus 1 month&quot;# CSSExpiresByType text/css &quot;access 1 month&quot;# JavascriptExpiresByType application/javascript &quot;access plus 1 year&quot;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[EL表达式获取Map的值]]></title>
+      <url>%2F2015%2F08%2F05%2Fjstl-map-out%2F</url>
+      <content type="text"><![CDATA[问题定义一个文章的集合：12Map&lt;Long,Article&gt; map = new HashMap&lt;Long,Article&gt;();map.put(123,Article); 在JSP中如何通过EL表达式来获取到123对应的message实体？ 解决方法1、EL表达式来获取，代码如下：1$&#123;map[123]&#125; 2、获取此文章内容，就可通过如下的方式：1$&#123;map[123].content&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Java Mail设置邮件发件人标识]]></title>
+      <url>%2F2015%2F08%2F03%2Fjava-mail-reconized%2F</url>
+      <content type="text"><![CDATA[问题在java中使用mail发送邮件时，如何设置邮件发件人的标识？如像人人网发送的邮件，其发件人标识就会显示为人人网安全中心，而非其邮箱地址。这更方便于用户识别是哪个网站发送的邮件。 解决方法Java Mail提供了设置personal name的api方法，在创建邮件发送人地址中，可进行设置。如下所示：1Address from = new InternetAddress(fromAddress,&quot;XXX公司客服&quot;);]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[EL表达式中的连接字符串的方法concat]]></title>
+      <url>%2F2015%2F07%2F31%2Fel-concat%2F</url>
+      <content type="text"><![CDATA[问题在调试bug的过程中，需要在JSP页面中的EL表达式里进行字符串连接。错误方法：12$&#123;age + &quot;岁&quot;&#125;$&#123;age.append(&quot;岁&quot;)&#125; EL表达式中会将+只当做加法，而不是字符串连接。且不支持Java的字符串方法append来追加。 解决方法EL表达式支持concat连接方法来进行字符串的连接。正确方法：1$&#123;age.concat(&quot;岁&quot;)&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解session的时长的设置]]></title>
+      <url>%2F2015%2F07%2F30%2Fsession-time-method%2F</url>
+      <content type="text"><![CDATA[1、在 [项目名]/WEB-INF/web.xml 配置文件中添加如下内容（单位为分钟，只针对该项目起作用）123&lt;session-config&gt; &lt;session-timeout&gt;60&lt;/session-timeout&gt;&lt;/session-config&gt; 2、[tomcat_home]/conf/web.xml 中的 修改配置（此配置数全局的，表明该tomcat下所有的应用session的过期时间）123&lt;session-config&gt; &lt;session-timeout&gt;60（此处修改为自己想要的）&lt;/session-timeout&gt;&lt;/session-config&gt; 3、第1个方法优先级高于第2个，第1项配置了，第2项就不起作用了。4、Session设置如果太长可能导致内存无法有效被回收。一般来说，建议设置为30（分钟）就够了，最长也尽量别超过60（分钟）。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[EL表达式中判断字符串中是否包含关键词的方法]]></title>
+      <url>%2F2015%2F07%2F25%2Fel-contain%2F</url>
+      <content type="text"><![CDATA[问题在JSP页面中采用JSTL表达式判断地区字符中否包含北京市，如果包含则去掉第二个北京市的展示。原做法采用的方法是indexOf方法，判断条件如下所示：123&lt;c:if test=&quot;$&#123;location.indexOf(&apos;北京市&apos;) &gt; -1&#125;&quot;&gt; ...&lt;/c:if&gt; 这会抛出异常，因为在EL表达式中并不支持indexOf方法 解决方法可采用contains来判断，如下所示的条件：123&lt;c:if test=&quot;$&#123;location.contains(&apos;北京市&apos;)&#125;&quot;&gt; ...&lt;/c:if&gt;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决启动myeclipse失败的内存问题]]></title>
+      <url>%2F2015%2F07%2F24%2Feclipse-memory-out%2F</url>
+      <content type="text"><![CDATA[问题打开MyEclipse，启动项目时，发现无法启动tomcat，并报出了如下的异常信息：12Error occurred during initialization of VMCould not reserve enough space for object heap 解决方法通过查阅资料，这是因为MyEclipse分配给JVM的内存不足，需要将其调大。1、打开MyEclipse安装目录下的配置文件eclipse.ini2、将分配给JVM的内存调大，如将参数-Xmx348M调整为-Xmx512M]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[web.xml文件可以进行的参数定义]]></title>
+      <url>%2F2015%2F07%2F21%2Fweb-xml-param%2F</url>
+      <content type="text"><![CDATA[web.xml里面可以定义两种参数：(1)application范围内的参数，存放在servletcontext中，在web.xml中配置如下：1234567&lt;context-param&gt; &lt;param-name&gt;context/param&lt;/param-name&gt; &lt;param-value&gt;avalible during application&lt;/param-value&gt; &lt;param-name&gt;name1&lt;/param-name&gt; &lt;param-value&gt;value1&lt;/param-value&gt; &lt;/context-param&gt; (2)servlet范围内的参数，只能在servlet的init()方法中取得，在web.xml中配置如下：12345678&lt;servlet&gt; &lt;servlet-name&gt;MainServlet&lt;/servlet-name&gt; &lt;servlet-class&gt;com.wes.controller.MainServlet&lt;/servlet-class&gt; &lt;init-param&gt; &lt;param-name&gt;param1&lt;/param-name&gt; &lt;param-value&gt;avalible in servlet init()&lt;/param-value&gt; &lt;/init-param&gt;&lt;/servlet&gt; 这两种方式都可以用来初始化参数，然后在类文件和JSP页面中进行调用。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Spring JDBC插入数据后获得该记录的ID的方法]]></title>
+      <url>%2F2015%2F07%2F13%2Fspring-jdbc-get-id%2F</url>
+      <content type="text"><![CDATA[问题在开发中，注册一个用户，需要向User表中添加一条数据，然后取得这条新增数据的用户id，以进行下一步的操作。项目的DAO是采用的是Spring JDBC技术来实现。问题：如何通过Spring JDBC来获取到新插入数据的记录ID。 解决方法通过keyHolder类，以及jdbcTemplate提供的PreparedStatementCreator类来实现：]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决window.location.href在IE浏览器下跳转出错的问题]]></title>
+      <url>%2F2015%2F07%2F01%2Fjs-redirect-ie%2F</url>
+      <content type="text"><![CDATA[问题在项目中文章列表（URL：article/list）中使用js代码进行登录页面的跳转：1window.location.href= &apos;user/login&apos; 当在非IE浏览器下，浏览器会解析到如下正确的链接：1http://www.yaohuiye.com/user/login 但在IE浏览器下，浏览器会解析到如下错误的链接：1http://www.yaohuiye.com/article/user/login 这多了一级article目录，不能跳转到正确的登录页面。 问题分析这是因为IE浏览器会根据当前路径的上一级路径来定位，而非IE浏览器会根据根路径来进行定位。 解决办法是在IE浏览器下采用完整的路径进行跳转：1window.location.href = &quot;http://www.yaohuiye.com/user/login&quot;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript的正则全局替换]]></title>
+      <url>%2F2015%2F06%2F29%2Fjs-replace-all%2F</url>
+      <content type="text"><![CDATA[在javascript中可以采用字符串的replace方法进行字符的替换。如下所示：12var s = &quot;a,b,c&quot;;s.replace(&quot;,&quot;,&quot;、&quot;) 上述语句会将s替换为”a、b,c”。但这只会替换第一处出现的目标字符，而不是全局替换。 如果要采用全局替换，就需要用到正则表达式。字符串的replace是支持正则替换的。如下正则，就可以进行全局替换1s.replace(/,/g,&quot;、&quot;)。 后缀g表示全局匹配]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java判断用户访问的设备是手机还是PC]]></title>
+      <url>%2F2015%2F06%2F25%2Fjava-is-mobile%2F</url>
+      <content type="text"><![CDATA[思路判断用户访问的设备是手机还是PC，可以通过浏览器发送过来的请求表头中的user-agent进行判断。在user-agent中如果包含Android或者iPhone或者Windows Phone，那就可以判断出设备为手机。 代码1234567891011121314151617181920public String getIsMobile()&#123; //判断是否手机访问 boolean isMobile = false; HttpServletRequest request = ServletActionContext.getRequest(); String userAgent = request.getHeader(&quot;user-agent&quot;); String[] mobileDevices = new String[]&#123;&quot;Android&quot;,&quot;iPhone&quot;,&quot;Windows Phone&quot;&#125;; int len = mobileDevices.length; for (int i = 0; i &lt; len; i++) &#123; if (userAgent.contains(mobileDevices[i])) &#123; isMobile = true; break; &#125; &#125; return isMobile;&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript的console.trace()]]></title>
+      <url>%2F2015%2F06%2F19%2Fjs-trace%2F</url>
+      <content type="text"><![CDATA[问题在项目中修复一个bug：当用户点击顶部导航中的注册按钮，跳转到登录页面，同时将注册层弹出。但是分析代码找不到触发弹出注册层的事件绑定代码在哪里。 解决方法console.trace()，根据网上资料说明，其会打印出事件的调用堆栈。那么就可以从栈树就可以找出上一层调用代码。 1、首先知道注册弹出层的弹出效果是在register.js文件中的名称为switchShow的函数中实现。2、在switchShow函数中添加上语句console.trace()1234function switchShow()&#123; console.trace(); ...&#125; 3、然后重新刷新下页面，在浏览器的控制台输出了如下的语句：4、从语句中，我就可以定位于login.js的第32行是弹出层的上一层调用代码。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解JMeter聚合报告中的90%Line参数]]></title>
+      <url>%2F2015%2F06%2F16%2Ftest-90-line%2F</url>
+      <content type="text"><![CDATA[问题使用JMeter进行项目的性能测试时，在聚合报告中有一个90% Line参数。这个参数是怎么计算出来的？ 定义在Jemeter的官网解释： 90% Line - 90% of the samples took no more than this time. The remaining samples at least as long as this. 原来的误解理解：90%用户的平均响应时间，就是剔除掉偏移比较大的10%的数据，然后计算出剩下90%的数据的平均值。如：1,2,2,3,3,3,4,4,4,10这10个数字，去除掉10个数字中最大的，计算出剩下数字的平均值。也就是(1+2+2+3+3+3+4+4+4)/9=2.89,也就是90%Line值为2.89 正确的理解理解：数据从小到大进行排列，找到他的第90%数，那么这些数据中就有90%的数将小于等于这个第90%数。如上述的1,2,2,3,3,3,4,4,4,10这10个数字，第90%数就是4（第9个数），那么它的90% Line也就是4。在Jmeter中的表示意思：90%用户响应时间不会超过4秒]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决Solr的定时索引出现的403问题]]></title>
+      <url>%2F2015%2F06%2F15%2Fsolr-index-403%2F</url>
+      <content type="text"><![CDATA[问题在查看开发索引服务器中的定时索引日志信息，发现在启动定时重建索引或者定时增量索引时，索引失败。日志信息中记录了异常信息为403的错误，错误内容如下：1Unsupported Media Type 解决方法通过查阅资料，这是在发送定时索引请求时，没有在请求头Head中加入Content-Type。Content-Type为内容类型，是用于定义网络文件的类型和网页的编码。 在定时索引工具包的BaseTimerTask类中的发送http请求方法，添加上Content-Type类型。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解静态代码分析]]></title>
+      <url>%2F2015%2F06%2F10%2Fjava-code-analysis%2F</url>
+      <content type="text"><![CDATA[问题在审核项目成员的代码时,考虑否可以借助于一些外部工具来提高代码评审的效率和质量。比如代码中常出现操作符左右没有空格、代码块没有换行等规范问题，那么应该是可以有工具能针对于这些规范进行识别的。如此也就能提高代码评审的效率，使评审人员更关注于代码的业务逻辑检查上 静态代码分析静态代码分析是指无需运行被测代码，仅通过分析或检查源程序的语法、结构、过程、接口等来检查程序的正确性，找出代码隐藏的错误和缺陷，如参数不匹配，有歧义的嵌套语句，错误的递归，非法计算，可能出现的空指针引用等。这种分析可以在代码编译之前，帮助开发人员快速有效的定位代码缺陷并及时纠正问题。 静态代码分析工具网上常用的静态代码分析工具包括了Checkstyle、FindBugs、PMD、Jtest]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解单元测试与代码覆盖率的关系]]></title>
+      <url>%2F2015%2F06%2F09%2Funit-test-code%2F</url>
+      <content type="text"><![CDATA[介绍在做单元测试时，代码覆盖率常常被拿来作为衡量测试好坏的指标。 常用方式代码覆盖率最常用的几种方式包括：1、语句覆盖：度量被测代码中每个可执行语句是否被测试到2、判定覆盖：度量方法中每一个判定的分支是否都被测试到。判定覆盖不是将判官的分支进行排列组合，而是只要每个分支都有被测试到就可以了。3、条件覆盖：度量判定中的每个子表达式结果true和false是否被测试到。条件覆盖不是将判定中的每个条件表达式的结果进行排列组合，而是只要每个条件表达式的结果true和false都被测试到了就可以。4、路径覆盖：度量方法的每一个分支是否都被测试到，且如果有多个分支嵌套，则需要对这多个分支进行排列组合 举例说明1234567891011int test(int a, int b)&#123; int flag = 0; if (a &lt; 10)&#123;// 分支一 flag += 1; &#125; if (b &lt; 10)&#123;// 分支二 flag += 10; &#125; return flag;&#125; 此方法，flag总共有四个返回值：0，1，10，11 1、采用语句覆盖，只要设计如下的测试用例，代码覆盖率即可达到100%。但是它的测试并不全面，没有考虑到所有的分支情况。12输入：a = 5,b=5输出：flag = 11 2、采用判定覆盖，只要设计如下的测试用例，代码覆盖率真即可达到100%。但是它的测试并不全面，虽然考虑到了所有判定分支，但是还是遗落掉了部分的结果。（1）用例112输入：a=5,b=5输出：flag=11 （2）用例212输入：a=15,b=15输出：flag=0 3、采用条件覆盖，只要设计如下的测试用例，代码覆盖率即可达到100%。每一个分支的true和false都有被覆盖到，但是还是遗落掉了部分的结果（1）用例112输入：a=5,b=15输出：flag= 1 （2）用例212输入：a=15,b=5输出：flag=10 4、采用路径覆盖，只要设计如下的测试用例，代码覆盖率真即可达到100%,也覆盖了所有的可能结果（1）用例112输入：a=5,b=5输出：flag=0 （2）用例212输入：a=15,b=5输出：flag=1 （3）用例312输入：a=5,b=15输出：flag=10 （4）用例412输入：a=15,b=15输出：flag=11 从上述就是可以看出，代码覆盖率很重要，但是某个方法的代码覆盖率达到100%，并不代表这个方法就测试通过。在进行单元测试时，应尽可能的采用路径覆盖，考虑到方法的所有分支流程。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解SVN的文件结构]]></title>
+      <url>%2F2015%2F06%2F08%2Fsvn-file-structure%2F</url>
+      <content type="text"><![CDATA[基础知识SVN官方推荐在一个版本库的根目录下创建trunk、branches、tags三个文件夹。 trunk 开发主干，存放日常开发的内容 branches 存放各分支的内容，如为不同客户制定的不同版本 tags 存放某个版本状态的标签，如验证测试版本。 branches和tags的区别 branches和tags本质没有区别，都是通过svn copy方式建立的 差异在于通常branches中的内容是需要继续修改或开发的，tags中的内容是存放不再修改的，这一般通过权限设置来解决，tags通常只给管理员开发写权限。 项目开发到一个稳定版本都需要打个tag，进行总结与备份。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[学习对软件版本号的规范与命名原则]]></title>
+      <url>%2F2015%2F06%2F05%2Fproject-version%2F</url>
+      <content type="text"><![CDATA[软件版本阶段 Alpha版 表示软件在此阶段主要以实现软件功能为主，通常bug较多 Beta版 表示消除了明显和严重的错误，但还是存在一些bug RC版 表示软件已经相当成熟，基本不存在导致错误的bug Release版 表示在上述一系统版本迭代后出来的正式版本，是最终交付给用户使用的版本。 版本号命名规范一般可由四部分组成1主版本号+子版本号+阶段版本号+日期版本号加希腊字母版本号 希腊字母版本号分为base、alpha、beta、RC、release 如1.1.1.150605_beta 版本号修改规则 主版本号 当功能模块有较大变动，如增加多个模块或整体架构发生变化 子版本号 当功能有一定的增加或变化，如增加了对权限控制 阶段版本号 一般是bug修复或者一些小的变动，要经常发布修订版，时间间隔不限。修复一个严重的bug即可发布一个修订版 日期版本号 用于记录修改项目的当前日期 希腊字母版本号 标注当前版本的软件处于哪个开发阶段]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Java中关于反斜杠的处理]]></title>
+      <url>%2F2015%2F06%2F04%2Fjava-string-unique%2F</url>
+      <content type="text"><![CDATA[问题JSON结构例子如下：1[&#123;&quot;content&quot;:&quot;\&quot;&#125;,&#123;&quot;content&quot;:&quot;聊天信息&quot;&#125;] 其中的{“content”:”\”}破坏了JSON结构。因为其中的反斜杠\是转义字符，其会将紧跟其后的双引号&quot;进行转义，也就导致了JSON结构被破坏掉。 解决方法在后台获取到数据后，判断内容中是否存在\，如果存在的话则进行反斜杠的转义，也就是\\。1content.replaceAll(&quot;\\&quot;,&quot;\\\\&quot;) 其中一个\\表示一个反斜杠，两个\\\\表示两个反斜杠。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解IPhone手机的Safari的隐私设置]]></title>
+      <url>%2F2015%2F06%2F02%2Fiphone-safari-secret%2F</url>
+      <content type="text"><![CDATA[IPhone手机上的Safari浏览器的隐私设置中阻止cookie的选项中有四个： 始终阻止 禁止Cookie的使用 仅允许当前网站 只接受当前网站的Cookie设置 允许访问过的网站 接受浏览器访问过的网站的Cookie设置。（之前的浏览过的站点还保存cookie， 登陆新网站不会接受cookie了。 就是不再接受新的cookie了。当清空浏览器的cookie之后 选这个就跟从不接受cookie一个效果。） 始终允许 接受任何网站的Cookie设置 IPhone的浏览器默认选择的选项是：允许访问过的网站。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决发送邮件出现的smtp异常]]></title>
+      <url>%2F2015%2F06%2F01%2Fjava-mail-exception%2F</url>
+      <content type="text"><![CDATA[问题项目发送邮件时，报出如下异常1Unable to locate provider for protocol: smtp 这是因为javax.mail版本的问题，在项目中javax.mail是由MyEclipse的J2EE本地库提供的，版本较老。 解决方法为项目引入较高版本1.4.7的javax.mail工具包]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决CXF客户端在Spring配置下启动出错的问题]]></title>
+      <url>%2F2015%2F05%2F27%2Fcxf-spring-error%2F</url>
+      <content type="text"><![CDATA[问题在项目的Spring配置文件中，通过jaxws:client配置了一个A项目的获取字典数据的方法，项目启动时，报出错误异常。异常信息如下：1java.lang.NoSuchMethodError: org.springframework.beans.factory.support.BeanDefinitionBuilder.setFactoryBean 配置代码如下：123&lt;jaxws:client id=&quot;dictionaryServer&quot;address=&quot;http://www.server.com/CXFServer/dictionaryServerImpl&quot;serviceClass=&quot;com.client.webservice.IDictionaryServer&quot; /&gt; 解决步骤1、通过调试以及查找相关资料时，资料说明： 在Spring 4.x以上，废弃了setFactoryBean方法。而CXF 2.*采用的是调用Spring的这个方法进行Bean的设置。 2、我开发的项目中采用的Spring是4.0.0版本，CXF是2.0.3版本。从而就导致了这个问题。 3、解决办法是降低Spring的版本，或者提高CXF的版本到3.0以上]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[输出日志信息到指定的位置]]></title>
+      <url>%2F2015%2F05%2F27%2Flog4j-log-directory%2F</url>
+      <content type="text"><![CDATA[项目采用log4j技术进行项目运行日志的记录，包括了Info、Warn、Error、Debug四个级别的日志信息。通常部署项目到线上，需要将项目的日志信息输出到指定位置的某一个文件中，方便问题的排查与分析。目的：将项目的日志信息指定到tomcat根目录下的logs文件夹中。在log4j.properties中添加上如下的配置：123456789101112131415### info ###log4j.appender.D = org.apache.log4j.DailyRollingFileAppenderlog4j.appender.D.File = $&#123;catalina.home&#125;/logs/info.loglog4j.appender.D.Append = truelog4j.appender.D.Threshold = DEBUG log4j.appender.D.layout = org.apache.log4j.PatternLayoutlog4j.appender.D.layout.ConversionPattern = %-d&#123;yyyy-MM-dd HH:mm:ss&#125; [ %t:%r ] - [ %p ] %m%n### error ###log4j.appender.E = org.apache.log4j.DailyRollingFileAppenderlog4j.appender.E.File = $&#123;catalina.home&#125;/logs/errors.loglog4j.appender.E.Append = truelog4j.appender.E.Threshold = ERROR log4j.appender.E.layout = org.apache.log4j.PatternLayoutlog4j.appender.E.layout.ConversionPattern = %-d&#123;yyyy-MM-dd HH:mm:ss&#125; [ %t:%r ] - [ %p ] %m%n 其中${catalina.home}在tomcat启动时进行了指定，也就是指tomcat的所处目录地址。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决Solr重建索引时没有索引部分表的数据问题]]></title>
+      <url>%2F2015%2F05%2F17%2Fsolr-rebuild-index-no-data%2F</url>
+      <content type="text"><![CDATA[工作问题在一个站内搜索项目中在进行搜索结果的测试时，发现某个模块的相关表中是存在数据的，但是却查询不到一条结果。通过solr的admin后台管理系统进行查询，也是一样查询不到数据，那就是说明这个模块的数据并没有被索引到索引文档库中 解决步骤 1、首先确定该模块的配置文件内容没有写错。先将其他搜索模块的配置文件内容注释掉，只索引该模块的数据。发现可以正常的索引到索引库中，而且查询得到该模块的相关数据。因此配置文件内容是没有错的 2、将其他搜索模块的配置文件内容取消注释，再进行重建索引，发现这个模块的数据没有索引到索引库中，查询不到有关数据。问题复现。 3、此时在solr的admin页面上发现一个问题，deleted docs【当前core中被删除掉的数据】有1623条。被删除数据的原因最大的可能性是是多张表中的数据采用了相同的id，索引数据被重复id的数据覆盖，最终导致core只剩下5320条文档。 4、查阅资料。资料上说单核的solr是把所有的数据存储在在一个文件中。schema.xml这个文件可以设置主键(一定要有主键),默认是id。因此data-confing.xml,文件定义每张表时也指定了主键。如果有多个entity时就要注意id的唯一性，因为多个entity生成的索引数据是存储在一个文件中的，所以要防止主键重复的问题。如果主键重复，solr不会进行报错，如果出现相同ID的文档，则后一条覆盖前一行。 5、解决主键重复的问题，那就在每个entity的主键添加上一个不同的标识，比如A模块的主键就修改为A_id，B模块的主键就修改为B_id的格式。这样添加上前缀，就能保证主键的不重复了。 6、修改完成后，重建索引，发现能正确的查询到该模块的数据。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[EL表达式获取url参数]]></title>
+      <url>%2F2015%2F05%2F12%2Fel-get-url-param%2F</url>
+      <content type="text"><![CDATA[在JSP页面中可以通过EL表达式的param参数来获取url参数。如下面的url：1http://www.yaohuiye.com/login?name=yaohuiye 在login对应的jsp页面中就可以通过${param.name}来获取到url参数name的值：yaohuiye。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[如何将MyEclipse上的项目上传到SVN上]]></title>
+      <url>%2F2015%2F05%2F08%2Feclipse-svn-share-project%2F</url>
+      <content type="text"><![CDATA[步骤如下：1、前提是MyEclipse中安装了SVN插件2、选择项目，右键Team&gt;Share Projece，进入到分享面板3、在分享面板中选择SVN分享，点击Next按钮，进入到下一个界面4、输入SVN中存放项目的URL地址，完成后点击Next按钮5、看到分享面板中的提交注释中写着初始导入，点击Finish按钮6、选择项目，右键Team&gt;提交，将项目提交到SVN中7、如此等待项目上传到SVN库后，就可以通过SVN将项目签出]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[如何将Tomcat的Session做持久化配置]]></title>
+      <url>%2F2015%2F04%2F29%2Ftomcat-session-persistence%2F</url>
+      <content type="text"><![CDATA[说明在默认的情况下，Tomcat是默认提供了session持久化的，重启后会保持session的状态。在Tomcat关闭时，不会触发Session destroy事件。而是将每个Session中内容写入到文件中。当Tomcat再次启动时，会读取该参数，并且验证Session是否TimeOut（如果检测到超时，则Tomcat会自动触发Session Destroy事件）。 步骤如果要去掉session的持久化，可以作如下的操作：1、打开配置文件$TOMCAT_HOME$/conf/context.xml。在24行处有如下的注释：1234&lt;!-- Uncomment this to disable session persistence across Tomcat restarts --&gt;&lt;!--&lt;Manager pathname=&quot;&quot; /&gt;--&gt; 2、将注释去掉，即可去掉session的持久化]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决CAS的过滤器在项目中不起作用的问题]]></title>
+      <url>%2F2015%2F04%2F27%2Fcas-filter-fail%2F</url>
+      <content type="text"><![CDATA[问题在某客户端项目中配置CAS客户端的配置：需要在web.xml文件添加上几个CAS的过滤器，用于监听过滤各个请求，判断用户登录。但是添加重启后，访问项目某个地址，并没有跳转到CAS的登录页面进行用户认证。备：项目是采用Struts2作为控制层框架。 解决方法在网上查看了资料，看了下Struts2的源码，发现Struts2在FilterDispatcher中调用action。因此，在配置filter的时候一定要将自定义的filter放在FilterDisafcher前面。否则在action都执行完了再调用filter过滤器，那就过滤不了action。filter的执行顺序跟配置的先后有关，先配置的先执行。因此将CAS的过滤器配置到struts配置的前面，重启后，可以正常跳转到CAS的登录页面。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript中如何判断某一个变量是否数组类型]]></title>
+      <url>%2F2015%2F04%2F27%2Fjs-is-array%2F</url>
+      <content type="text"><![CDATA[问题在审核项目代码时，有一句错误代码是其通过变量的length方法来判断变量是否数组类型，如果有length方法的话那这个变量就是数组类型。但试验过，如果这个变量是string字符串类型的话，那也是存在length方法的，因此该方法判断存在着漏洞。 解决方法通过构造函数判断判断某个变量的构造函数是否数组，代码如下：123456var something = [];if(something.constructor === Array)&#123; console.log(&quot;it is array&quot;);&#125;else&#123; console.log(&quot;it is not array&quot;);&#125; 通过instanceof判断判断一个变量是否数组的实例，代码如下：123456var something = [];if(something instanceof Array)&#123; console.log(&quot;it is array&quot;);&#125;else&#123; console.log(&quot;it is not array&quot;);&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[通过Myeclipse将项目导出为jar包]]></title>
+      <url>%2F2015%2F04%2F24%2Feclipse-export-jar%2F</url>
+      <content type="text"><![CDATA[打包步骤 在要打包的项目上右击，选择Export 在弹出的窗口中，选择Java -&gt; JAR File，然后点击next按钮 在JAR File Specification窗口中，设置打包成的文件名和存放位置，点击两侧next 在JAR Manifest Specification窗口中，设置MANIFEST.MF清单文件的配置（1）若仅仅打包成单纯的jar包的话，不用做任何修改，采取默认即可（2）若打包成可执行jar包的话，可以使用已存在的MANIFEST文件或者直接选择Main class 点击Finish按钮，完成打包。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[设置solr索引服务器tomcat的访问权限]]></title>
+      <url>%2F2015%2F04%2F20%2Fsolr-tomcat-priviledge%2F</url>
+      <content type="text"><![CDATA[问题在开发索引服务器中创建了两个索引服务器tomcat，一个用于读，一个用于写。 用于写的索引服务器tomcat需要注意的是服务器的访问权限问题 不具备权限的用户可以远程上写索引服务器并登录solr的admin管理系统，那他就可以对索引数据进行添加、删除、修改等破坏性的操作，那么就会导致了搜索功能失败。 用于读的索引服务器tomcat因为是提供索引查询服务的，那么只要在solr中配置了查询的组件即可 解决方法考虑采用tomcat的访问权限配置来实现。在tomcat的server.xml中配置上一个class名称为org.apache.catalina.valves.RemoteAddrValve的valve属性。通过这个属性来配置允许访问该tomcat的IP地址。 1&lt;Valve className=&quot;org.apache.catalina.valves.RemoteAddrValve&quot; allow=&quot;192.168.0.109&quot;/&gt; 通过上述的配置，重启后，只有在IP为192.168.0.109机器上才能访问到该tomcat，在别的机器上就不能访问。 那么对于写索引服务器的安全措施就有如下的几步：1、写索引服务器配置在内网中，避免外部的访问2、写索引服务器Tomcat配置具备访问权限的电脑的IP3、具备访问权限的电脑配置用户名账号]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[solr的dataimport技术中的删除索引文档方法]]></title>
+      <url>%2F2015%2F04%2F16%2Fsolr-delete-document%2F</url>
+      <content type="text"><![CDATA[问题 索引文档是从数据库生成的 用户可能某一天就删除了一篇文档，而这篇文档在之前已经被索引到索引库中了。 因此如果不对应的删除掉索引库中的文档，那么其他用户还是可以通过搜索的功能搜索出这篇已经不存在的文档。 这就是数据过期的问题，涉及到了搜索的准实时特性。 解决方法可以使用dataimport技术中的deletedPkQuery方法来配置删除索引文档。1、需要数据库相关表中建立一个逻辑删除字段，标识哪一篇文档被删除了2、在deletedPkQuery中配置查询语句：查找出删除标识为true的主键集合，然后solr就可以根据这些主键集合来实现删除文档的操作。12345&lt;entity name=&quot;Article&quot; dataSource=&quot;ds&quot; pk=&quot;id&quot; transformer=&quot;HTMLStripTransformer&quot; query=&quot;select content from article&quot;deletedPkQuery=&quot;select id from article where isDeleted=1&quot;&gt; &lt;field column=&quot;content&quot; name=&quot;content&quot; stripHTML=&quot;true&quot;/&gt;&lt;/entity&gt;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Solr建立索引时过滤HTML标签]]></title>
+      <url>%2F2015%2F04%2F10%2Fsolr-filter-html%2F</url>
+      <content type="text"><![CDATA[索引的内容conten字段，存储的是富文本的内容。因此在创建索引时，需要对该字段过滤掉HTML标签。1、在数据库的读取文件data-config.xml 中的entity标记里边添加 transformer=”HTMLStripTransformer”代码。123&lt;entity name=&quot;Article&quot; dataSource=&quot;ds&quot; pk=&quot;id&quot; transformer=&quot;HTMLStripTransformer&quot; query=&quot;select content from article&quot;&gt; &lt;field column=&quot;content&quot; name=&quot;content&quot;/&gt;&lt;/entity&gt; 2、在field 字段需要过滤html代码的字段添加 stripHTML=”true”123&lt;entity name=&quot;Article&quot; dataSource=&quot;ds&quot; pk=&quot;id&quot; transformer=&quot;HTMLStripTransformer&quot; query=&quot;select content from article&quot;&gt; &lt;field column=&quot;content&quot; name=&quot;content&quot; stripHTML=&quot;true&quot;/&gt;&lt;/entity&gt; 3、修改schema.xml文件中的TextField的fieldType标记中的内容]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[JDBC的配置解决中文乱码]]></title>
+      <url>%2F2015%2F04%2F03%2Fjdbc-utf8%2F</url>
+      <content type="text"><![CDATA[在JDBC的配置数据库地址中添加上了两个参数参数useUnicode=true&amp;character.Encoding=UTF-8。添加上这两个参数是为JDBC在默认情况下会采用操作系统的默认编码和数据库通信，如果数据库采用的编码不是系统默认的编码，那就要进行显式指定，否则会发生中文乱码。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Struts2中设置默认的action为404页面]]></title>
+      <url>%2F2015%2F03%2F28%2Fstruts2-default-action%2F</url>
+      <content type="text"><![CDATA[问题在一个Struts2项目中，遇到问题：如果用户输入不存在的地址时，怎么跳转到404页面。对这个问题进行了解决 解决方法对这个问题可以使用了Struts2配置文件中的默认属性default-action-ref来解决。步骤如下：1、首先在配置文件中定义一个全局的没有找到地址的action，在这个action中跳转到404页面1234&lt;!-- 定义全局action --&gt;&lt;action name=&quot;notFound&quot;&gt; &lt;result&gt;/page/common/404.jsp&lt;/result&gt;&lt;/action&gt; 2、在配置文件中设置default-action-ref指向这个action12&lt;!-- 默认action --&gt;&lt;default-action-ref name=&quot;notFound&quot;/&gt; 3、如此，当用户输入不存在的地址时，通过Struts2的判断，也就是没有找到对应的action，它会直接以默认的action作为跳转地址]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[为项目整合webService框架CXF]]></title>
+      <url>%2F2015%2F03%2F26%2Fjava-cxf-configuration%2F</url>
+      <content type="text"><![CDATA[说明为项目整合webservice框架CXF，用于实现跨项目的数据调用。项目是一个Maven项目。 整合步骤1、引入cxf的项目依赖2、在web.xml文件中添加webservice的监听3、在spring配置文件中，添加上cxf相关的xmls配置4、在sping配置文件中引入cxf的主要配置文件5、创建一个webservice的接口，创建一个接口方法sayHello6、实现创建的webservice接口,并实现接口方法sayHello7、在spring配置文件中发布该webservice接口8、对webservice接口进行测试，调用。输出了正确的调用结果]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[利用Spring来管理Struts2的控制层Action对象]]></title>
+      <url>%2F2015%2F03%2F25%2Fstruts2-spring-combine%2F</url>
+      <content type="text"><![CDATA[说明在考虑项目的详细设计时，整合进了了Spring和Struts2框架。其中Struts2框架作为控制层，Spring管理项目的对象，通过它的控制反转功能来进行对象的自动注入工作。在Struts2中如果要使用Spring来管理控制层Action对象，步骤如下所示。 配置步骤1、在项目中添加上上述插件jar包的maven依赖2、在Spring中配置文件applicationContext.xml中配置采用注解的方式，对控制层的bean进行自动注入3、在Action类中添加上注解@Controller，Spring就会根据这个注解，对Action对象进行自动注入的管理工作4、在struts.xml配置文件中配置Action时，配置对应的class名称。当Action被请求时，就会去Spring的IOC容器中找id与class名称相同的Bean来调用。5、因为Spring的bean在IOC容器中默认是单例singlen的，因此为防止出现线程安全的问题，在Action类中添加上@scope(“prototype”)，这样action对象被请求时就会创建一个新的action对象]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Maven如何手动添加依赖的jar文件到本地Maven仓库]]></title>
+      <url>%2F2015%2F03%2F23%2Fmaven-import-jar%2F</url>
+      <content type="text"><![CDATA[问题项目采用Maven进行搭建，其中的jar包主要是从远程仓库中下载下来的。远程仓库中包含着大部分我们会使用到的jar包。但如果在远程仓库中不存在我们使用的jar包时，要怎么处理？如在远程仓库中就没有IK分词器的jar包依赖 解决方法通过手动把jar包添加到自己的本地仓库1、手动下载IK分词器的jar包，存放到一个文件夹中。如我存放在F盘根目录下。2、打开控制台，输入如下的命令。这里主要填写了jar包的路径，对应的坐标1mvn install:install-file -Dfile=F:\IKAnalyzer2012FF_u1.jar -DgroupId=david.lucene.analyzer -DartifactId=IKAnalyzer -Dversion=2012FF_u1 -Dpackaging=jar]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[修改tomcat的启动控制台标题]]></title>
+      <url>%2F2015%2F03%2F21%2Ftomcat-title-change%2F</url>
+      <content type="text"><![CDATA[问题在进行Solr的主从配置的尝试过程中。需要配置两台tomcat服务器，作为主服务器master用于写索引和作为从服务器slave用于读索引。两台tomcat要同时启动。启动后发现两台tomcat的命令行窗口标题都是显示着tomcat，这就不好区分。网上查找了下修改tomcat的命令行标题，改成自己命名的名字。 解决方法1、%tomcat_home%\bin\catalina.bat中搜索“noTitle”或者“_EXECJAVA”2、然后在如下的代码中将TITLE=Tomcat修改为Title=你想命名的名字1if &quot;%TITLE%&quot; == &quot;&quot; set TITLE=Tomcat]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Solr的dataImport从数据库导入索引的多数据源配置]]></title>
+      <url>%2F2015%2F03%2F18%2Fsolr-multi-datasource%2F</url>
+      <content type="text"><![CDATA[问题Solr通过dataImport从多个项目的数据库中导入索引，需要解决配置多数据源的问题 解决方法Solr的dataImport是支持一个配置文件配置多数据源的，增加一个dataSource元素就可以增加一个数据源，使用name属性来区分不同的数据源。如果配置了多于一个的数据库，name不能重复。在Solr的一个core中配置多数据源，在数据库导入索引的配置文件配置如下：123456789101112131415&lt;dataSource name=&quot;A&quot; type=&quot;JdbcDataSource&quot; driver=&quot;com.mysql.jdbc.Driver&quot; url=&quot;jdbc:mysql://127.0.0.1/A&quot; user=&quot;root&quot; password=&quot;root&quot;/&gt;&lt;dataSource name =&quot;B&quot; type=&quot;JdbcDataSource&quot; driver=&quot;com.mysql.jdbc.Driver&quot; url=&quot;jdbc:mysql://127.0.0.1/B&quot; user=&quot;root&quot; password=&quot;root&quot;/&gt;&lt;document&gt; &lt;entity dataSource=&quot;A&quot;&gt; .... &lt;/entity&gt; &lt;entity dataSource=&quot;B&quot;&gt; .... &lt;/entity&gt;&lt;/document&gt;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解Solr关于打分规则的修改]]></title>
+      <url>%2F2015%2F03%2F18%2Fsolr-boost-learn%2F</url>
+      <content type="text"><![CDATA[说明查阅了Solr关于打分规则的相关资料，提到的修改打分规则（boost）的方法主要是三种：1、使用Solr的edismax实现的方法，通过bf查询配置来影响boost打分规则2、在创建索引的schema时设置一个字段用做排序字段，通过它来影响文档的总体boost打分3、自己写打分规则方法 第一种方法在Solr的solrConfig.xml配置文件中采用edismax提供的方法进行配置1234567&lt;requestHandler name=&quot;/browse&quot; class=&quot;solr.SearchHandler&quot;&gt; &lt;lst name=&quot;defaults&quot;&gt; &lt;str name=&quot;defType&quot;&gt;edismax&lt;/str&gt; &lt;str name=&quot;pf&quot;&gt;name info title&lt;/str&gt; &lt;str name=&quot;qf&quot;&gt;name^1 info^0.8 title^0.6&lt;/str&gt; &lt;/lst&gt;&lt;/requestHandler&gt; 上述表示了查询name，info，title这三个字段，三个字段的文本相关度打分分别为1,0.8,0.6，这个打分值越大权重就越大。 第二种方法在Solr的schema.xml配置文件中添加上一个排序字段field。比如添加上一个时间字段，然后在查询的时候增加sort=time desc 第三种方法需要去了解下lucene的打分机制，然后根据自己的业务规则来进行定制了。属于代码层面的，难度比较大。 参考链接http://wiki.apache.org/solr/ExtendedDisMax]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[禁止Hibernate映射Bean实体中在数据表不存在的属性]]></title>
+      <url>%2F2015%2F03%2F14%2Fhibernate-not-exist-bean%2F</url>
+      <content type="text"><![CDATA[问题在Hibernate的Bean实体中，当因为业务逻辑的需要新增了一个属性，但这个属性在实体映射的数据表中是不存在的字段，只是为了方便程序的计算取值。在Bean中直接用Getter和Setter方法的话，访问时就会报错，错误的异常是说在数据库表中没有这个标识字段，也就是说这个字段被Hibernate映射，验证不存在。 解决方法可以通过在Getter方法上标识注解@Transient来处理这个问题。@Transient表示该属性并非一个到数据库表的字段的映射,ORM框架将忽略该属性。如果一个属性并非数据库表的字段映射,就务必将其标示为@Transient,否则ORM框架默认其注解为@Basic 如下的使用：123456789101112public class User&#123; private Boolean isDoctor; @Transient public Boolean getIsDoctor()&#123; return isDoctor; &#125; public void setIsDoctor()&#123; this.isDoctor = isDoctor; &#125;&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Java中为Timestamp时间进行时间（天数）的相加，并返回Timestamp类型的新时间]]></title>
+      <url>%2F2015%2F03%2F13%2Fjava-add-day%2F</url>
+      <content type="text"><![CDATA[问题在开发某模块功能中，要在表中添加上一条记录，需要为记录的结束时间进行设值，结束时间是开始时间加上48小时，也就是两天。开始时间是已知，timestamp类型，那如何进行天数的相加？进行了相关的了解。 解决方法1、可以通过如下的方法来进行天数的相加，通过将Timestamp类型的时间转换成Calendar类型的时间，通过Calendar对象提供的添加方法add进行时间的相加1234567//获取当前时间Timestamp tt = new Timestamp(System.currentTimeMillis());//转换成Calendar对象Calendar cc = Calendar.getInstance();cc.setTime(tt);//时间的添加，以天的形式，这里的参数1表示1天cc.add(Calendar.DAY_OF_MONTH, 1); 2、如何将Calendar类型的时间转换成Timestamp类型的时间返回？可以通过Timestamp提供的构造方法new java.sql.Timestamp(long time)，参数time表示毫秒数。 3、根据上述，创建了一个为时间添加上几天的方法123456789101112/** * 为某一个时间添加上几天，返回添加后的时间 * @param time 时间 * @param days 天数 * @return 返回添加后的时间 */public static Timestamp getAddingTime(Timestamp time,int days)&#123; Calendar calendar = Calendar.getInstance(); calendar.setTime(time); calendar.add(Calendar.DAY_OF_MONTH, days); return new java.sql.Timestamp(calendar.getTime().getTime());&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[solr的field字段的配置的理解]]></title>
+      <url>%2F2015%2F03%2F10%2Fsolr-field%2F</url>
+      <content type="text"><![CDATA[属性说明Solr的配置索引字段field中有两个属性：indexed和stored。 indexed 值为true或者false，表示是否被用来创建索引（关系到了搜索和排序） stored 值为true或者false，表示是否存储 配置说明 如果字段需要被索引，将indexed设置为true 如果字段内容需要被返回到搜索结果中，那stored就要设置为true。 当设置indexed为true，Solr就会对该字段进行分词、作索引标识的处理，会消耗一定的性能。 当设置stored为true，Solr就会把该字段的值存储在磁盘空间中，会占用一定的空间大小。 因此应该根据实际情况来设置这两个属性，以提高性能、减少索引库的大小。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[理解禅道中的用户故事]]></title>
+      <url>%2F2015%2F03%2F09%2Fproject-user-story%2F</url>
+      <content type="text"><![CDATA[介绍在禅道中提供了一个需求的模板：作为一名&lt;某种类型的用户&gt;，我希望&lt;达成某些目的&gt;，这样可以&lt;开发的价值&gt;禅道帮助手册中对此进行解释如下：在这个模板中，总共有三个元素：角色、要做的事情、价值或者原因。我们平时在写需求的时候，往往会忽略角色和价值原因这两个元素，只关注了要做的事情。其实这有很多的问题：1、不进行用户角色的划分，会影响对产品功能的设计和定位，从而导致产品往往是给一个用户角色开发的，就是产品经理自己。2、忽略开发的原因或者价值，会让开发人员感到困惑。他们可能并不理解你这样做的原因或者目的，不理解的需求实现起来自然会有问题 在以前的实践中有时会听到开发者或者测试者在质疑为什么要有这样的需求。这里强调了角色和原因两个因素，角色的功能描述不清晰，那么在开发和设计上就无法正确的把握，比如某模块只供部门主管用户访问，如果在需求中没有描述清晰，那么开发者就不知道要加上个角色的判断。对于原因的描述，也就能增进测试和开发对于需求的理解，理解需求的起始点。 撰写步骤1、Idependent(独立的):一个用户故事对于另一个用户故事应该是独立的（尽可能的）。故事之间的依赖性使得增加了计划编制，确立有限级，故事估计这些工作非常困难。通常，可以通过组合用户故事或者分割用户故事来减少依赖性。2、Negotiable(便于沟通的):一个用户故事是便于沟通的。一个故事的卡片是包含故事详情的简短描述。这些详情是通过讨论阶段来完成的。一张还有很多详情的卡片实际上减少了和客户的会谈。3、Valuable(有价值的):每个故事必须对客户具有价值（无论是用户还是购买方）。一个让用户故事有价值的好方法是让客户来写下它们。一旦一个客户意识到一个用户故事并不是一个契约而且可以进行协商的时候，他们将非常乐意写下故事。4、Estimable(可估计的):开发者需要去估计一个用户故事以便确定有限级并对故事进行规划。但是让开发者难以估计故事的问题来自：对于领域知识的缺乏（这种情况下需要更多的沟通），或者故事太大了（这时需要把故事切分成小些的）。5、Small(短小):一个好的故事应该在工作量上短小，描述具有代表性，而且不超过2-3人周的工作量。超过这个范围的用户故事，将会在划分范围和估计时出现很多错误。6、Testable(可测试的) :一个用户故事是可测试的来用于确认完成，记住，我们不开发不能测试的故事。如果你不能测试那么你永远不知道你什么时候是完成了。一个不可测试的用户故事例子：软件应该是易于使用的。 这也就是说编写的用户故事应该简炼清晰、可被测试的、与其他用户故事依赖程度小。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[SQL语句去除缓存查询]]></title>
+      <url>%2F2015%2F03%2F08%2Fsql-no-cache%2F</url>
+      <content type="text"><![CDATA[MySql数据库中，在调试SQL语句时，为了保证SQL语句中的查询没有从缓存中获取，以此来判断真实的查询速度，可以在SQL语句中添加上关键字SQL_NO_CACHE如下代码：1SELECT SQL_NO_CACHE * FROM User WHERE role=&apos;老师&apos;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript中删除数组中指定的元素]]></title>
+      <url>%2F2015%2F03%2F06%2Fjs-array-item-remove%2F</url>
+      <content type="text"><![CDATA[在js的array数组中并不存在remove方法，为Array数组扩展了一个remove方法 通过indexOf方法去获取到指定元素在在数组中的索引位置 通过splice方法来去删除指定索引位置的元素。123456Array.prototype.remove = function(val) &#123; var index = this.indexOf(val); if (index &gt; -1) &#123; this.splice(index, 1); &#125; &#125;;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决不能转化'0000-00-00 00:00:00'为timestamp类型的问题]]></title>
+      <url>%2F2015%2F03%2F04%2Fsql-zero-datetime%2F</url>
+      <content type="text"><![CDATA[问题项目中访问某一功能时，抛出发如下的异常：1java.sql.SQLException: Cannot convert value &apos;0000-00-00 00:00:00&apos; from column 7 to TIMESTAMP. 问题分析通过查看数据库相关表，其中的创建时间字段（datetime类型）是新加的。以前存在的记录的创建时间字段默认值为0000-00-00 00:00:00。 通过查阅资料，在Mysql数据库中使用DATETIME类型来存储时间，使用JDBC中读取这个字段的时候，是使用 ResultSet.getTimestamp()，这样会得到一个java.sql.Timestamp类型的数据。但使用ResultSet.getTimestamp()时并不是完全安全的。当数据库中的TIMESTAMP类型的字段值为 0000-00-00 00:00:00时，使用此方法进行读取，会抛出异常：1Cannot convert value &apos;0000-00-00 00:00:00&apos; from column 1 to TIMESTAMP 这是因为JDBC不能将’0000-00-00 00:00:00’转化为java.sql.Timestamp 解决办法修改以前存在的记录的创建时间，让其值不为0000-00-00 00:00:00，就不会抛出该异常 更彻底的解决办法 在JDBC连接串中有一项属性：zeroDateTimeBehavior,可以用来配置出现这种情况时的处理策略。可以通过使用数据库连接语句来解决，如下： 1jdbc:mysql://localhost:3306/mydbname?zeroDateTimeBehavior=convertToNull 在设计数据库时，做好逻辑判断，避免写入’0000-00-00 00:00:00’这类值]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Jquery的$.extend方法]]></title>
+      <url>%2F2015%2F02%2F13%2Fjs-jquery-extend%2F</url>
+      <content type="text"><![CDATA[说明$.extend方法在Jquery中的定义是用于一个或者多个其他对象来扩展一个对象，返回被扩展的对象。签名如下：jQuery.extend([deep], target, object1, [objectN])参数的解释：如果不指定target，则给jQuery命名空间本身进行扩展，可为jQuery增加新方法。如果第一个参数[deep]设置为true，则Jquery返回一个深层次的副本，递归地复制找到的任何对象。object1与[objectN]表示待合并到第一个对象的对象 举例 有两个对象： 12var personInfo1 = &#123;&quot;name&quot;:&quot;zhangsan&quot;,&quot;sex&quot;:&quot;man&quot;,&quot;age&quot;:17&#125;;var personInfo2 = &#123;&quot;job&quot;:&quot;it coder&quot;,&quot;hobby&quot;:&quot;tennis&quot;&#125;; 要求：将上述两个对象进行合并，将personInfo2扩展到personInfo1中 实现代码如下： 1$.extend(personInfo1,personInfo2); 输出的结果是： 1personInfo1:&#123;name: &quot;zhangsan&quot;, sex: &quot;man&quot;, age: 17, job: &quot;it coder&quot;, hobby: &quot;tennis&quot;&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript中对字符串进行定位插入元素]]></title>
+      <url>%2F2015%2F02%2F12%2Fjs-string-insert%2F</url>
+      <content type="text"><![CDATA[问题有一个字符串，需要在这个字符串中，每三个字符加入一个换行符 问题思路1、指定一个需要进行换行的字符长度2、迭代字符串的元素，当迭代值为需要进行换行的长度时，即对字符串进行截取，存储在一个临时的数组变量中3、当迭代完成后，就使用数组的join方法，使用换行符进行连接，进而拼接成新的字符串 解决代码1234567891011121314151617//要进行插入元素的字符串var str = &quot;你我他他你我我他你&quot;;//获取字符串的字符长度var len = str.length;//声明需要进行换行的字符长度var flag = 3;//临时数组var temp = [];//对字符串进行迭代，步长为需要进行换行的字符长度for(var i = 0; i &lt; len; i+=flag)&#123; //进行字符串的截取，存储在临时数组中 temp.push(str.substring(i,i+flag));&#125;//对数组进行定位的插入元素，并拼接成字符串console.log(temp.join(&quot;\n&quot;)); 执行后，输出如下：你我他\n他你我\n我他你]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hibernate的实体继承的方法]]></title>
+      <url>%2F2015%2F02%2F11%2Fhibernate-base-entity%2F</url>
+      <content type="text"><![CDATA[问题项目中的Bean实体都有ID、标题、简介、发表时间三个共同的属性。那么考虑将这些公用的属性抽取为一个基类，在这个基类中存储公共的属性，具体的模块Bean再继承这个基类，从而精简代码。基类如下：1234567public abstract class BaseEntity&#123; protected Integer id; protected String title; protected String introduction; ...//省略getter and setter&#125; 但是具体的模块实体继承这个基类后，在进行Hibernate映射时，却无法映射到基类中的属性。 解决方法在Hibernate实体中需要在继承的基类中添加上@MappedSuperclass注释，基类中的属性才能映射成功修改后的基类如下：12345678@MappedSuperclasspublic abstract class BaseEntity&#123; protected Integer id; protected String title; protected String introduction; ...//省略getter and setter&#125;]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决myeclipse一直处于加载的状态，无法启动]]></title>
+      <url>%2F2015%2F02%2F06%2Feclipse-loading-fail%2F</url>
+      <content type="text"><![CDATA[问题协助新成员在myeclipse中部署项目到tomcat中，因为对myeclipse中的项目进行了去除程序自动校验的操作（自动校验会导致程序编译很慢，因此将其修改为手动校验）。结果再次启动myeclipse时，就会一直停留在正在加载的加载页面，启动不了。 问题分析通过查阅资料，原因可能是项目比较大，编译的时间也就会比较的长，占用比较多的内存。如果此时将项目已经启动的进程强制关闭掉，myeclipse就会认为项目进行了错误的编译信息，内存得不到释放，下次就启动不起来。 解决方法重新选择下myeclipse的工作空间WorkSpace。在myeclipse的安装目录中找到如下文件：1\eclipse\configuration\.settings\org.eclipse.ui.ide.prefs 将里面的HOW_WORKSPACE_SELECTION_DIALOG修改为true，这样在下次启动myeclipse时就可以重新选择工作空间了。 根据上述的方法，在新成员的机子上进行设置，然后重新创建一个工作空间，从svn中签出项目，myeclipse可以正常的工作。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Apache的StringUtils使用]]></title>
+      <url>%2F2015%2F02%2F05%2Fjava-string-util-compare%2F</url>
+      <content type="text"><![CDATA[问题项目中使用到了apache提供的一个字符串工具类StringUtils。在添加标签的业务中，需要判断前台传递过来的标签是否为空，如果为空，则直接返回，不再进行标签关系的添加。使用了如下的方法来判断：123if(StringUtils.isEmpty(tagName))&#123; return true;&#125; 但是发现，该方法在判断标签为空格字符串（也就是标签内容为一个或者多个空格），是判断不成功的。 问题解决查阅资料，StringUtils.isEmpty方法是对空格作非空处理的，如果要将空格作空处理的话应该使用另一个StringUtils提供的方法isBlank。如下所示:123if(StringUtils.isBlank(tagName))&#123; return true;&#125; 进一步了解下面作一个实验：创建一个测试类，对这两个方法进行判断空的测试（1）变量设置为null，使用这两个方法进行判空从上述结果：可以看出来这两个方法都能判断出对象是否为空 （2）变量的值设置为空格，使用这两个方法进行判空从上述结果，可以看出isBlank方法比isEmpty方法多了一步处理，先将要判断的字符串进行首尾的空格清除。因此，在使用这两个方法的时候，要注意要判断的字符串是否需要进行首尾空格的处理。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解java拼接字符串的可变类]]></title>
+      <url>%2F2015%2F02%2F02%2Fjava-string-class-compare%2F</url>
+      <content type="text"><![CDATA[说明在项目中如果遇到要拼接比较多次的字符串时，就不能使用String类，因为String类是不可变的，每次拼接都会重新去创建一个String实例，比较占资源。这时候就有一个选择使用可变类StringBuilder或者StringBuffer。StringBuilder和StringBuffer类最大的区别在于StringBuilder类不是线程安全的，而StringBuffer是线程安全的。因为为了保证线程安全，就会消耗一些性能，因此在单线程的情况下StringBuilder就比StringBuffer性能来得高。 实验下面做个试验，在单线程，相同的条件下，进行StringBuilder和StringBuffer的性能测试，计算他们拼接所消耗的时间来比较。通过多次测试中发现，在数量级比较的拼接次数下，StringBuilder消耗的时间会比StringBuffer来得少。 因此，当程序在单线程运行下，如果没必要考虑线程同步的话，优先采用StringBuilder类来作字符串的拼接。 项目中的应用目前开发的项目采用的是Struts2框架，Struts2在处理每一个用户请求的时候，都会建立一个单独的线程进行处理，其Action对象会为每一个请求产生一个实例，因此虽然在Action中定义了很多全局变量，也不会存在线程安全问题。所以在拼接多次字符串时，采用StringBuilder会比StrinbBuffer性能来得好]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[对表创建的主键方案进行了解]]></title>
+      <url>%2F2015%2F01%2F21%2Fsql-primaryKey-method%2F</url>
+      <content type="text"><![CDATA[问题在项目中，表的主键都是采用MySQL的自增，从1开始递增。今天在看到用户表User，其中主键是id，这是采用数据库的自增字段，另外还有一个uuid字段，字段存储的是36位的uuid字符串，这个字符串由程序生成。id和uuid都是不可重复的，都可做为用户的标识，没有特定的逻辑意思。问题：1、表中为何以id作为主键，而不以uuid作为主键？2、为什么存在着id，又需要一个uuid？3、为什么id倾向于不向用户暴露，而uuid却是可以向用户暴露的？ 经项目负责人的说明：id向用户暴露，因为id是有规则的简单数字，也比较好记。所以添加上了uuid。因为uuid有36个字符，而且无规则，所以比较的难记住。那么如果是这样的话，为什么不直接让id字段存储着uuid编码的字符串呢,而要再额外添加上一个uuid字段？从这，引申出了表设计的主键方案。 主键方案一般主键方案包括两种：应用层主键方案和数据库层主键方案 数据库层主键方案主键的分配由数据库负责，也就是在表结构定义的时候将主键列设置为auto incrrement或者通过表的触发器来分配主键这种方案有如下的两点缺点：1、新增一条数据，并不会返回这条数据的主键值是多少，我们还需要通过一条语句去获取到这条数据的主键值。目前项目采用的是Hibernate做为持久层技术，插入数据是可以直接获取到新增的主键值的，因为Hibernate已经封装好了。从这点来看，对主键的管理控制稍有不便，如果没有使用到Hibernate这种技术，那新增一条数据后还得再写一条数据去获取主键值。2、对于分表可能会存在问题。以用户表为例，将来数据量多了，作了分表，分为了A表和B表，那A表和B表的自增方式导致了两个表可能存在重复的id主键，那对于整合就不便了。在保证分布式后主键还是唯一性，这种方式的灵活性不强。 应用层主键方案主键的分配由程序负责，由程序自动生成一个不重复的值，存储到主键列中。如采用UUID就是其中的一种方案。如按照用户所处的国家+地区+邮箱三者来组成一个主键 总结综上，个人觉得如果对于数据量比较大的表，将来可能会进行分表的，可以采用应用层主键方案。如果表数据比较小，如字典表，可以采用数据库主键方案。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解为什么在内部类中引用的局部变量要用final修饰符修饰]]></title>
+      <url>%2F2015%2F01%2F18%2Fjava-thread-final%2F</url>
+      <content type="text"><![CDATA[问题在项目模块开发中，在生成操作的方法中创建了一个线程内部类，然后启动这个线程去执行统计的操作。在这个内部类中需要引用到外部类的局部变量，以传参调用相应的业务方法。如果这些局部变量没有以final修饰，则会报出语法错误 final变量用final修饰了的变量，值一旦给定了那就无法改变，也就是一个常量 原因了解下为什么Java要这么设计，内部类只能访问final修饰的局部变量。根本原因在于局部变量的生命周期与局部内部类对象的生命周期不一致。在Java中，方法的局部变量存储在栈内存中，对象存储在堆内存中。当方法运行结束后，垃圾回收器就会对这个方法进行回收，从而也将局部变量对应的栈内存回收，清除掉该局部变量。但是内部类对象可能还一直存在，因为它可能还存在着引用（如上述线程内部类，它是一个用于计算分析数据的后台线程，耗时比较长，所以可能在生成的方法结束后这个内部类对象还在运行当中）。那么此时局部变量已经死亡，但是引用局部变量的这个内部类对象还在运行当中，这就变成了一个不合理的结果，对象引用着一个不存在的变量。那么怎么来解决这个问题？Java设计者在内部类中设定了这么一个机制，当内部类引用了外部类的局部变量时，那就将这个局部变量“复制”一份，复制出来的变量直接作为内部类中的数据成员。当局部变量死亡后，这个复制品还存在。因此从代码上看，我们看到内部类访问的局部变量，其实是这个局部变量的一个复制品。那还有可能出现一种情况，如果局部变量不用final修饰的话，就代表这个局部变量是可变的，可能被其他调用者所改变，那就会导致复制品的值与变量的值不一致。那么为了解决这个问题，设计者就定规了内部类引用的局部变量要用final修饰，也就是要保持复制器与原始变量的值保持一致。（比如上述的线程内部类，如果不将文章ID用final修饰，那么其值就是可变的，本来是要统计文章A的数据，值被修改后，就变成统计文章B的数据了）这种规定是一种不得已的无奈之举，虽然显得不便捷灵活，却是最有效的方法。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[xml配置文件中特殊字符的处理]]></title>
+      <url>%2F2015%2F01%2F14%2Fxml-special-char%2F</url>
+      <content type="text"><![CDATA[问题 在项目开发中，使用到了ibatis作为项目的数据库访问持久层。在sqlmap的XML配置文件中编写一条SQL语句时，遇到这样的问题：where条件中包括了判断出生日期在某一段时间内。 刚开始我是这么写的：123456&lt;isNotEmpty property=&quot;ageBeginTime&quot; prepend=&quot; and &quot;&gt; A.CSRQ&gt;=#ageBeginTime#&lt;/isNotEmpty&gt;&lt;isNotEmpty property=&quot;ageEndTime&quot; prepend=&quot; and &quot;&gt; A.CSRQ&lt;=#ageEndTime# &lt;/isNotEmpty&gt; 此时IDE就报出了配置出错的信息 通过查阅资料，明白是判断条件中的大于&gt;和小于&lt;出错，它会使XML解析器产生混淆。也就像JSON格式中出现双引号会使得格式出错的场景。那么解决办法，也就是对大于和小于进行转义，将大于号&gt;改为&gt;、小于号&lt;改为&lt; 另外在查阅资料中，在看别人写的SQL中，使用到的是下面这种方法来防止特殊字符的。123456&lt;isNotEmpty property=&quot;ageBeginTime&quot; prepend=&quot; and &quot;&gt; &lt;![CDATA[ A.CSRQ&gt;=#ageBeginTime# ]]&gt;&lt;/isNotEmpty&gt;&lt;isNotEmpty property=&quot;ageEndTime&quot; prepend=&quot; and &quot;&gt; &lt;![CDATA[ A.CSRQ&lt;=#ageEndTime# ]]&gt;&lt;/isNotEmpty&gt; 通过&lt;![CDATA[条件值]]&gt;来解决此问题。当时没有深究，也就这么用了。后来今天在一本书看到了关于此问题更详细的描述。 处理方式在XML中有5个特殊的字段，分别是: &amp; &lt; &gt; “ ‘。如果XML配置文件中的注入值包括这一些特殊字符的话，就需要特别的处理。处理方式有两种：1、使用&lt;![CDATA[]]&gt;这个标签将包括特殊字符的注入值封装起来2、使用XML转义序列表示这些特殊字符 五个符号的转义序列如下： 小于号&lt;对应的是&lt; 大于号&gt;对应的是&gt; 联结符&amp;对应的是&amp; 双引号”对应的是&quot; 单引号’对应的是&#39; 备注在MarkDown中为防止&gt;被直接解析成了;，可以采用`符号将其包裹起来。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[正确认识SVN提交代码的注释]]></title>
+      <url>%2F2015%2F01%2F14%2Fsvn-comment%2F</url>
+      <content type="text"><![CDATA[问题一般在往SVN版本库中提交代码的时候，都会出现一个弹出框，让你选择要上传的文件，以及关于此次提交的注释说明。其中如果没有在SVN中配置强制填写注释的话，那注释说明是可填可不填的。那么：1、要不要写注释？2、注释有什么好处？ 问题举例1、查看项目的某文件的历史版本记录 2、其中可以看到记录中展示了版本号、提交动作、提交日期、作者、注释。其中谁在什么时候对什么文件做了什么操作都清晰可见，但是这个版本的代码变更是变更什么内容，因为注释没有写清楚，如果想了解那就需要去进行要查看的版本与其上一个版本的内容进行比较，看两个版本发生变化的代码的具体意思，这就费解了。 问题总结因此注释对于代码的回溯、团队协作是有用处的。如果没有填写注释，那就无法了解代码文件的成长历史，时间一长、版本一多可能连开发者都不知道做了哪些修改，出问题进行代码回滚时也不知道回滚到哪个版本。在提交代码时必须填写注释的工作，这应是开发过程中应该养成的一个习惯，团队协作开发的一点要求。 建议方法1、提交代码时，注释必须填写2、注释说明内容简炼，为了防止每个人有每个人的风格，可以约定下格式。比如可以在注释的前头加上相关的前缀，注释语句为动宾短语。（1）提交添加用户的功能代码，注释内容为Add:添加用户（2）提交修改用户不能正确登录的编号为123的bug的功能代码，注释内容为Fix NO123：解决用户不能正确登录（3）提交删除冗余的用户模块的代码，注释内容为Del:删除用户模块冗余代码（4）提交修改了添加用户的功能代码，注释内容为Update:修改添加用户的代码3、提交代码时，以较小的粒度提交，而不是一天开始工作，修改了三四个模块的代码，然后下班前将这三四个模块一次性的提交。应该在修改完了一个小功能后，即提交一次代码，这样注释就会比较的清晰。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[SQL语句中的AND和OR执行顺序问题]]></title>
+      <url>%2F2015%2F01%2F11%2Fibatis-sql-sort%2F</url>
+      <content type="text"><![CDATA[问题昨天在写数据库SQL的时候遇到一个问题。问题的根结在SQL语句的AND和OR关键字的执行优先级问题。下面就针对这个问题进行一下测试。 场景1、有一张学生表Student,表字段包括Id（用户主键）、Name（用户名）、Grade（年级）、Class（班级）、Sex（性别）。如下：2、在表中导入十条测试数据，如下：3、现需要查询出性别为女的1年级女学生，或者性别为女的2班级女学生。SQL语句如下：1select * from student where sex=&apos;女&apos; and grade=1 or class=2 但是该sql查询出来的结果并不符合要求，执行结果如下： 执行的结果中还查询出了班级为2的男学生，显然结果是不正确的。 4、修改下SQL语句，添加上括号。如下：1select * from student where sex=&apos;女&apos; and (grade=1 or class=2) 该sql查询出来的结果符合要求，执行结果如下： 分析从上面的场景中，问题的关键就在于AND和OR的执行顺序问题。查阅资料，关系型运算符优先级高到低为：NOT &gt;AND &gt;OR如果where 后面有OR条件的话，则OR自动会把左右的查询条件分开。就如上面场景中的第一条语句，他的查询条件分为两部分（或）：121、sex=&apos;女&apos; and grade=12、 class=2 这也就是查询出1年级的女学生，2班级的学生。不符合最初查询的要求。那么解决办法就是使用括号区分执行的顺序就如上面场景的第二条语句，查询条件分为两部分（并）：121、 sex=&apos;女&apos; 2、 (grade=1 or class=2)]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java学习笔记-Thread]]></title>
+      <url>%2F2015%2F01%2F09%2Fjava-thread%2F</url>
+      <content type="text"><![CDATA[线程说明Java中提供了线程类Thread来创建多线程，有两种方法：1、从java.lang.Thread类派生一个新的线程类，重载它的run()方法2、实现Runnalbe接口，重载Runnalbe接口中的run()方法 Java提供这两种方法来创建线程，是因为在java中类只能进行单一的继承。如果创建自定义线程类的时候是通过扩展 Thread类的方法来实现的，那么这个自定义类就不能再去扩展其他的类，也就无法实现更加复杂的功能。因此Java又提供了一个使用实现Runnable接口的方法来定义线程类，以避免单一继承带来的局限性。 继承Thread类创建线程类说明在Thread类中有两个最主要的方法：1、run()：包含线程运行时所执行的代码，即线程需要完成的任务，是线程执行体。2、start()：用于启动线程。 使用步骤1、定义一个类继承Thread类。2、覆盖Thread类中的run方法。3、直接创建Thread的子类对象创建线程。4、调用start方法开启线程并调用线程的任务run方法执行。 示例代码12345678910111213public class demoThread extends Thread&#123; public void run()&#123; System.out.println(this.getName()); &#125; public static void main(String[] args)&#123; System.out.println(Thread.currentThread().getName()); DemoThread thread1 = new DemoThread(); DemoThread thread2 = new DemoThread(); thread1.start(); thread2.start(); &#125;&#125; 代码说明1、任何一个JAVA程序都有一个主线程。Main方法代表了的主线程的线程执行体。2、Thread.currentThread是Thread类的静态方法，用于返回当前正在执行的线程对象的引用。这里是打印出正在运行的线程实例的名称。3、一个线程只能被启动一次，如thread1.start()。如果启动两次，那就会抛出异常。 实现Runnable接口创建线程类使用步骤1、定义Runnable接口的实现类，并实现该接口的run()方法。2、创建Runnable实现类的实例，然后将该实例作为参数传入Thread类的构造方法来创建Thread对象。3、用线程对象的start()方法来启动该线程。 示例代码123456789101112131415161718public class DemoRunnable implements Runnable&#123; public void run()&#123; System.out.println(Thread.currentThread().getName()); &#125; public static void main(String[] args)&#123; DemoRunnable r1 = new DemoRunnable(); DemoRunnable r2 = new DemoRunnable(); DemoRunnable r3 = new DemoRunnable(); Thread thread1 = new Thread(r1,&quot;Thread1&quot;); Thread thread2 = new Thread(r2); thread2.setName(&quot;Thread2&quot;); Thread thread3 = new Thread(r3); thread1.start(); thread2.start(); thread3.start(); &#125;&#125; 两种方式比较1、采用继承Thread类创建线程，优点是编写简单，如果需要访问当前线程，无需使用Thread.currentThread()方法，直接使用this，即可获得当前线程。缺点是线程类已经继承了Thread类，所以不能再继承其他的父类2、采用实现接口Runnable创建线程，优点是线程类只是实现了Runable接口，还可以继承其他的类。另外使用实现Runnable接口的方式创建的线程可以处理同一资源，从而实现资源的共享。缺点是编程稍微复杂，如果需要访问当前线程，必须使用Thread.currentThread()方法]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[javascript的删除Object对象属性的方法]]></title>
+      <url>%2F2015%2F01%2F07%2Fjs-delete%2F</url>
+      <content type="text"><![CDATA[说明在Javascript中，delete是用于从对象中删除一个属性,或从数组中删除一个元素 删除对象属性的方法 删除数组的元素的方法 总结从上述例子可以看到使用delete删除属性或者元素时，当删除成功会有返回值，返回了true。但是：1、delete仅在删除一个不能删除的成员时，才会返回false，其他情况都会返回true，所以true并不标示删除成功，还需要再检查一下是否删除成功。2、delete不能删除含有DontDelete属性的变量或者函数。也就是说delete是否起作用，与delete的对象是变量还是对象的属性没有关系，与DontDelete属性有关。如变量声明和函数声明，或者全局对象的属性，其就不能删除。 删除全局对象的属性 删除变量声明 删除函数声明]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[学习svn的分支branch功能]]></title>
+      <url>%2F2015%2F01%2F06%2Fsvn-branch-intro%2F</url>
+      <content type="text"><![CDATA[问题在某个项目中，因为变更一个模块的功能。但该模块因为一些原因还没有做完，该模块的代码也提交到了svn上的主干。那么测试人员在测试的时候，更新svn，就会把不完整的模块代码给更新下来。测试人员在不知情的情况下，以为该模块做好了，就对这个模块进行测试。但该模块还未完成，所以bug就多了起来。等我告知其还未完成时，其又要将这些bug删除掉。这就导致了开发上的不便。后来看了svn的分支的相关知识，觉得可以采用分支的技术来解决该问题。 分支说明svn的分支，也就是说在主干trunk外再创建一个branch的文件夹，进行模块的功能变动时可将代码提交到这个branch的文件夹中，待模块完成后，通过merge解决冲突的方法，将trunk对应版本和branch对应版本的代码进行合并，提交到主干trunk中，此时就是相当于发布了这个模块。 什么时候需要创建分支在项目中有所改动时，一时无法上线，但是正在运行的主干的代码还需要做临时维护的时候，就可以创建分支。 举例说明就像上述提到的项目，迄今大部分的功能已经完成了，而且已在线上跑着运行。后来要对旧的模块功能进行改动，这些改动又不是一时就能完成的，无法马上上线。但是在项目的运行过程中，开发组其他成员可能需要改样式或者改细节的代码，这改动比较小也比较快，需要及时的提交到svn的主干trunk中，供项目的发布。如果我把变更模块的改动内容也提交到svn的trunk中，那就会导致开发成员修改完毕后要重新发布时，也把我没完成的改动内容也同时发布上去，这样就会导致线上项目存在问题。 参考链接http://www.cnblogs.com/wenlong/archive/2012/05/07/2586853.html]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Jquery的事件绑定方式：bind、live、delegate]]></title>
+      <url>%2F2014%2F12%2F29%2Fjs-event-bind%2F</url>
+      <content type="text"><![CDATA[说明在Jquery的语法中有三种方式用来绑定一个动态元素的事件：bind、live、delegate。当在Javascript中动态拼接HTML代码到页面中，而这个HTML代码中有一个元素需要绑定事件，就可以使用以上的方式。 使用方法bind绑定eg：为一个a链接绑定点击事件1234$(&quot;a&quot;).bind(&quot;click&quot;,function()&#123; alert(&quot;click me&quot;); return false;&#125;); Jquery会扫描文档找出所有的$(“a”)元素，并把函数绑定到每个元素的click事件上 live绑定eg:为一个a链接绑定点击事件1234$(&quot;a&quot;).live(&quot;click&quot;,function()&#123; alert(&quot;click me&quot;); return false;&#125;); Jquery把函数绑定到$(document)元素(整个Dom文档的document节点)上，并使用’click’和’a’作为参数。任何时候只要有事件冒泡到document节点上，它就查看该事件是否是一个click事件，以及该事件的目标元素与’a’这一CSS选择器是否匹配，如果都是的话，则执行函数 delegate绑定eg:为一个a链接绑定点击事件1234$(&quot;#container&quot;).delegate(&quot;a&quot;,&quot;click&quot;,function()&#123; alert(&quot;click me&quot;); return false;&#125;); Jquery扫描文档查找$(‘#main’)对象，并使用click事件和’a’作为参数把alert函数绑定到$(‘#container’)上。任何时候只要有事件冒泡到$(‘#container’)上，它就查看该事件是否是click事件，以及该事件的目标元素是否与CSS选择器相匹配。如果两种检查的结果都为真的话，它就执行函数。这一过程是与live绑定类似，但是其把处理程序绑定到具体的元素而非document这一根上 三者比较如果使用bind绑定的话，如果后续有新的a标签链接加入到页面中，那么bind就不会对这些新加入的链接进行处理。而如果使用live和delegate绑定，因为事件是被绑定到另一个祖先节点上，因此如果这新加的链接是加入到到绑定的祖先节点下，那事件还是有效的。 使用delegate绑定会比live绑定来得快，因为live绑定首先就要扫描整个的文档来查找所有的a标签元素，把它们存为Jquery对象。而使用delegate绑定，就仅需要查找并存储document元素。从效率上来看，delegate的动态绑定更快。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[List在循环中删除元素]]></title>
+      <url>%2F2014%2F12%2F12%2Fjava-list-remove%2F</url>
+      <content type="text"><![CDATA[问题在项目中，我们可能有这样的需求：对一个列表集合List进行遍历，对其中的元素进行判断，如果不符合条件的，就要把他从List中删除掉。遍历完成后的List就是我们想要的结果。 举例说明初始化的列表元素1234List&lt;String&gt; list = new ArrayList&lt;String&gt;();list.add(&quot;doctor&quot;);list.add(&quot;nurse&quot;);list.add(&quot;patient&quot;); 要求如果list中包含nurse这个元素，则将其过滤掉 错误方法 代码如下 12345for(String name : list)&#123; if(&quot;doctor&quot;.equals(name))&#123; list.remove(name); &#125;&#125; 执行结果此方法执行后，会抛出java.util.ConcurrentModificationException的异常 错误原因在ArrayList的父类AbstractList中有一个modCount的字段记录着List的总数。在循环中如果增加或者删除元素，此字段会发生变化。那么在下次for循环的时候检查到就跟之前计算好的长度不一样，就会报ConcurrentModificationException异常 正确方法一 改进上述的遍历代码，如下 1234567for(int i = 0, len = list.size(); i &lt; len; i########)&#123; if(&quot;doctor&quot;.equals(list.get(i)))&#123; list.remove(i); len = len - 1; i = i - 1; &#125;&#125; 执行结果正确的输出结果 正确原因删除元素时，同时修改下遍历的计数器。 正确方法二 代码如下 1234567Iterator&lt;String&gt; iterator = list.iterator();while(iterator.hasNext())&#123; String name = iterator.next(); if(&quot;doctor&quot;.equals(name))&#123; iterator.remove(); &#125;&#125; 执行结果正确的输出结果 正确原因因为List接口内部实现了Iterator接口，给开发者提供了一个iterator()方法用于得到当前list对象的一个迭代器 两种方法比较第二种解决办法是比较常用的。我们查看ArrayList源码中的很多方法，内部都是基于Iterator接口实现的，所以也推荐使用第二种解决办法]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Javascript禁止浏览器的复制、右键、粘贴的方法]]></title>
+      <url>%2F2014%2F12%2F10%2Fjs-forbidden-copy%2F</url>
+      <content type="text"><![CDATA[问题在浏览器中打开网站，为了使得用户不能随意的在浏览器中选择一段网站的文章数据、右键拷贝走 解决方法使用如下的Javascript方法，就能禁止用户复制文本： 禁止全选1document.onselectstart=new Function(&quot;event.returnValue=false&quot;); 这是通过设置document文档的选择开始事件，如果用户移动鼠标，对文本开始选择时，就会触发该事件。那这里我们将这个事件指向了一个新创建的构造函数。在这个构造函数中将事件句柄的返回值returnValue设置为false，那就能使用户的选择无效。用户不能选择，当然也就不能复制和粘贴数据了。 取消禁止：document.onselectstart=null 禁止右键禁止右键就要是为了防止用户将信息网页另存为本地文件来盗取。1document.oncontextmenu=new Function(&quot;event.returnValue=false&quot;); 这是通过设置document文档的快捷菜单触发事件，也是将其指向一个新创建的构造函数，设置事件句柄的返回值returnValue为false。但是禁止右键这种方法应该会大大的影响到用户体验。因为右键菜单中还有一些其他的选项，如刷新、返回等与文本盗取无关的操作。如果禁止掉，那就影响了用户的这些功能，可能引起其反感。 取消禁止：document.oncontextmenu=null]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[爬虫与抓取站点间的联系]]></title>
+      <url>%2F2014%2F12%2F03%2Fsearch-crawler%2F</url>
+      <content type="text"><![CDATA[说明爬虫的抓取网页不同于一般的访问，如果控制不好，抓取的性能太差，可能会引起抓取网站服务器的负担，最终导致抓取站点将该爬虫加入黑名单中。就像淘宝曾因为雅虎搜索的爬虫抓取其数据时引起了淘宝服务器的不稳定。在爬取某一行业的站点时，要让该站点的管理员了解爬虫的来源、要做些什么，爬虫向站点标明自己的身份，通过在抓取时爬虫会发送一个请求，这个请求中会有一个User-agent字段，用于标识身份，如Google的爬虫名称为GoogleBot，百度的爬虫名称为BaiDuSpider，这样站点管理员就能通过访问日志中知道哪些爬虫来访问过，什么时候来访问的，抓取了哪些数据等信息，这样的话当站点管理员发现爬虫有问题的话，就可以通过标识来与爬虫所有者进行联系协商。 robots.txt爬虫进入一个网站，一般会访问一个特殊的文件robots.txt，这个文件一般放在网站服务器的根目录下，如:http://www.baidu.com/robots.txt。站点管理员就可以通过这个文件来定义哪些目录爬虫不能访问，或者哪些目录对于某些特定的爬虫不能访问。robots.txt的语法很简单，例如如果对目录没有任何限制的话，就可以用下面的两行来表示：12User-agent:* Disallow: robots.txt只是一个协议，防君子防不了小人。如果爬虫设计者不遵循这个协议，管理员也无法阻止其对于某些页面的访问。 META标识站点设计者还可通过在网页的HTML代码中设置META标识，来告诉爬虫这个网页是否需要被抓取。 SiteMap一般的网站都希望搜索引擎能更全面的抓取自己网站的网页，因为这样可以让更多的访问者通过搜索引擎找到此网站。那么就可以建立一个网站地图，即Site Map，将网站内部所有网页的链接放在这个文件中，许多的爬虫都会把sitemap.html文件作为一个网站网页抓取的入口，也就可以很方便的把整个网站抓取下来。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java学习笔记-String]]></title>
+      <url>%2F2014%2F12%2F01%2Fjava-string-question%2F</url>
+      <content type="text"><![CDATA[说明Java中经常使用到的一个类是String，字符串类。这个类比较的特殊，看java的源码，我们就可以看出它是一个final类，意思就是说String类不可以被继承，而且String类实例的值是不可改变的。123public final class String implements java.io.Serializable,Comparable&lt;String&gt;,CharSequence&#123; private final char value[];&#125; 问题一代码如下12345public static void main(String[] args)&#123; String language = &quot;java&quot;; language += &quot;,c#&quot;; System.out.println(language);&#125; 问题我定义了一个字符串变量language，初始化的值为java，然后我再对这个变量进行追加的操作，追加上”,c#”。那么这时候创建了几个String实例？ 解析有两个，一个是值为java的实例，一个是作了追加操作的值为”java,c#”的实例。这都是因为字符串是一个不可变的类。 问题二代码如下12345public static void main(String[] args)&#123; String name = &quot;java&quot;; String copyName = &quot;java&quot;; System.out.println(name == copyName);&#125; 问题这两个变量name和copyName的比较是true还是false? 解析结果是true。在Java虚拟机中有一个字符串池，是用来专门存储字符串的。如果创建一个String实例的方式是【String name=”java”】的话，系统首先会去字符串池中寻找是否有值为”java”，如果没有那么系统将该字符串存储到字符串池中，然后将”java”在字符串池中对应的地址返回给name变量。如果有那系统就可以直接将字符串池中的”java”对应的地址返回给name变量。因为此时name和copyName都是指向同一个地址的字符串，因此在进行地址比较时，它们是相等的，也就是说结果为True]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java学习笔记-泛型]]></title>
+      <url>%2F2014%2F11%2F28%2Fjava-generic-type%2F</url>
+      <content type="text"><![CDATA[java中泛型的关键点： 泛型是指参数化类型的能力。使用泛型能定义带泛型类型的类或方法，之后编译器会用具体类型来替换泛型类型 泛型的主要优势是能够在编译时而不是运行时发现错误 泛型类或方法允许指定对象允许的类型，以和这个类或方法一起工作。如果试图使用带有不兼容对象的类或方法，编译器会检测出这个错误 定义在类、接口或者静态方法中的泛型称为形式泛型类型，随后可以用一个实际具体类型来替换它。替换泛型类型的过程称为泛型实例化 不使用类型参数的泛型类称为原始类型，如ArrayList，使用原始类型是为了向后兼容JDK较早的版本 通配泛型类型有三种形式：?、？ extends T、？ super T，这里的T代表泛型类型。第一种形式？称为非受限通配，它和？ extends Object是一样的。第二种形式？ extends T称为受限通配，代表T或者T的一个未知子类型。第三种类型？ super T称为下限通配，表示T或者T的一个未知父类型 使用称为类型消除的方法来实现泛型。编译器使用泛型类型信息来编译代码，但是随后消除它。因此，泛型信息在运行时是不可用的。这个方法能够使泛型代码向后兼容使用原始类型的遗留代码 不能使用泛型类型参数来创建实例 不能使用泛型类型参数来创建数组 不能在静态环境中使用类的泛型类型参数 在异常类中不能使用泛型类型参数]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[学习字符编码]]></title>
+      <url>%2F2014%2F11%2F25%2Flearn-character%2F</url>
+      <content type="text"><![CDATA[在开发项目中，我们经常遇到编码的选择：GBK2312、UTF-8、Unicode等。如果选择不当，那就会导致项目文件出现中文乱码。为防止出现这种情况，项目的文件都统一为一个编码，一般是UTF-8。 下面对字符编码进行了相关的了解： 因为计算机能处理的只是二进制的数字，任何文本到最后都是要转化成为二进制交给计算机处理的。 最早的计算机在设计时采用了8个bit作为一个byte，因此一个byte能表示的最大整数为255，如果要表示更大的整数，就要使用更多的字节。 最早只有127个字母（包括大小写的英文字母、数字和一些符号）被编码到了计算机中，这个编码即ASCII编码。如A的编码是65。 但是要处理中文显然一个字节是不够的，至少需要两个字节，而且还不能和ASCII编码冲突，所以，中国制定了GB2312编码，用来把中文编进去。 如果每个国家都制定一套适合自己国家语言的编码，那世界上就会存在几十种的编码，那就不利于统一和管理。针对这个情况，Unicode应运而生，其将所有语言统一都一套编码中。 Unicode编码和ASCII编码的区别是ASCII编码是1个字节，而Unicode编码通常是2个字节。 如果采用Unicode编码，就能很少的防止乱码问题的出现。但是就有一个问题：如果你写的文本基本上全部是英文的话，用Unicode编码比ASCII编码需要多一倍的存储空间，在存储和传输上就十分不划算。 针对这个情况，又出现了可变长编码UTF-8编码。UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，常用的英文字母被编码成1个字节，汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。如果你要传输的文本包含大量英文字符，用UTF-8编码就能节省空间。 在现在的计算机系统通用的字符编码工作方式是：在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。如用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Java学习笔记-annotation标记]]></title>
+      <url>%2F2014%2F11%2F24%2Fjava-annotation%2F</url>
+      <content type="text"><![CDATA[Annotation示例在项目中比较常见的Annotation有@Override（验证所标记的方法是否是父类的需要重写的方法，主要防止低级错误）、@Deprecated（标记某个方法已经过时，但是这个方法还是可以被使用的）。以及Spring、Hibernate、Struts2框架提供的标记方式，如控制层Action类的@Controller，业务层Service类的@Service，持久层的Dao类的@Repository等等。 Annotation作用 注释:存在与否都不会影响程序的运行 标记:可以标记类、方法、成员变量 补充信息:可以具体描述被标记内容的相关信息，提供验证、部署、额外的功能 Annotation的优缺点 好处是简单，降低了配置的难度，提高了开发的效率。像我们使用hibernate的xml配置和使用hibernate的标记配置，那当然就是后者比较简单。 缺点是标记其实是隐藏了配置的细节，在没有相关源码的情况下维护会比较麻烦。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java学习笔记-final修饰符]]></title>
+      <url>%2F2014%2F11%2F24%2Fjava-final%2F</url>
+      <content type="text"><![CDATA[在java的实际项目中，如果我们定义一个常量时，通常会采用final来对这个常量进行修饰。如下定义一个PI常量：public static final float PI=3.1415final是什么呢？final是一个修饰符号，可以用来修饰类、变量、方法： 修饰类时，表示该类不可被继承。如使用final来修改A类，那就表示该类不可被继承，也就是说A类是没有子类的。这样就可以防止子类覆盖情况的发生。 修饰变量时，表示这个变量为常量，不可被修改。更确切的说，应该是常量的地址不可改变，但在地址中保存的值是可以改变的。在JAVA中是经常利用public static final的组合修饰符来对常量进行标识。 修饰方法时，表示这个方法是一个不可被覆盖的方法。如public final void print(){}。如果一个方法前有修饰词private或者static，那么系统在编译时会自动在这个方法前加上final的修饰。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[SQL的执行顺序之LIKE查询效率问题分析]]></title>
+      <url>%2F2014%2F11%2F22%2Fsql-like-speed%2F</url>
+      <content type="text"><![CDATA[问题今天和同事讨论一个问题：在查询表数据时使用LIKE是否会降低效率。个人认为能不使用like时尽量不使用LIKE。而同事认为如果在查询表时有限定数据的获取范围，即分页，那有like也是没关系的，换言之就是Mysql执行时，先进行范围的限定，再进行LIKE模糊匹配。 分析如下面的语句：12#从字典表中获取10条中文名匹配“部门”的数据SELECT * FROM Dictionary WHERE chineseName LIKE ‘%部门%’ LIMIT 0,10 但再仔细想想这个逻辑不对：如果先去进行范围的限定，获取到字典表的前10条数据。然后再进行like条件的筛选，如果这10条数据都没有一个的中文名称是包含“部门”的，那么岂不是只获取到0条数据。而在字典表中确实存在中文名称为“学术部门”、“研发部门”的数据。所以应该是先执行like筛选，再进行分页。 SQL的执行顺序查阅网络上的资料，在Mysql中SELECT语句的基本语句如下：1234567SELECT selection_list # What columns to select FROM table_list # Which tables to select rows from WHERE primary_constraint # What conditions rows must satisfy GROUP BY grouping_columns # How to group results HAVING secondary_constraint # Secondary conditions rows must satisfy ORDER BY sorting_columns # How to sort results LIMIT from, count; # Limiting row count on results SELECT的完整的执行顺序是：1、FROM子句组装来自不同数据源的数据；2、WHERE子句基于指定的条件对记录行进行筛选；3、GROUP BY子句将数据划分为多个分组；4、使用聚集函数进行计算；5、使用HAVING子句筛选分组；6、计算所有的表达式；7、使用ORDER BY对结果集进行排序8、使用Limit取出指定行的记录，将结果集返回 由上可见LIKE查询作为WHERE的条件，在第二步执行。而LIMIT是在最后一步才执行]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Log4j控制日志的输出]]></title>
+      <url>%2F2014%2F11%2F19%2Flog4j-off-something%2F</url>
+      <content type="text"><![CDATA[问题在进行Java Web项目开发调试的过程中，查看控制台的错误信息时，经常看到一堆的框架（如Struts2）的日志信息。需要花费一番工夫才能查看到正确的错误信息，进行问题的诊断。如何指定项目不输出某些框架的日志信息? 解决方法在log4j.properties文件中，添加上如下的配置项：12log4j.logger.org.apache.struts2=OFF log4j.logger.com.opensymphony.xwork2=OFF 这配置项是说明禁止输出Struts2的org.apache.struts2包和com.opensymphony.xwork2包的相关类的日志信息]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[分布式搜索算法]]></title>
+      <url>%2F2014%2F11%2F12%2Fsearch-multi-node%2F</url>
+      <content type="text"><![CDATA[对于搜索引擎来说，索引存放在成千上万台机器上，如何进行分布式搜索呢？假设搜索结果是以分页的方式显示，以PageNumber代表当前页，从1开始，以PageSize代表页面大小，默认为10，以N代表搜索服务器数量。最简单的分布式搜索算法为：有一台合并服务器负责接受用户的搜索请求，然后分别向N台机器获取前PageNumberPageSize条结果，得到的结果数为NPageNumberPageSize，然后把这些数据重新进行排序，根据所要显示的页面PageNumber，获取从(PageNumber - 1) PageSize + 1开始的PageSize条结果返回给用户。但这样有问题：1、每次翻页都要向每台搜索服务器搜索一遍通常情况下，用户在搜索内容时都是顺序翻页的，即从第一页往下顺序翻，这个算法没有设计缓存来减轻搜索服务器的压力。 2、越往后翻页，搜索服务器的搜索压力越大如果我们是查第100页，即第991-1000 条记录，那么这个算法需要从N台搜索服务器分别获取1000条记录才能完成，对于每台搜索服务器的搜索压力很大。 3、越往后翻页，合并服务器的排序压力越大 大型搜索引擎往往是由成千上万台机器组成的分布式搜索集群，如果按这个算法来进行翻页，假设N为1000，查询第100页时，合并服务器得到的结果数为NPageNumberPageSize = 1000 100 10 = 1000000，要对这100万条结果进行排序，对合并服务器来说压力很大。对系统的可伸缩性是一种极大的破坏。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[java编程中的注意点]]></title>
+      <url>%2F2014%2F11%2F10%2Fjava-best-practice%2F</url>
+      <content type="text"><![CDATA[尽量在合适的场合使用单例使用单例可以减轻加载的负担，缩短加载的时间，提高加载的效率，但并不是所有地方都适用于单例，简单来说，单例主要适用于以下三个方面： 控制资源的使用，通过线程同步来控制资源的并发访问； 控制实例的产生，以达到节约资源的目的； 控制数据共享，在不建立直接关联的条件下，让多个不相关的进程或线程之间实现通信。 尽量避免随意使用静态变量要知道，当某个对象被定义为stataic变量所引用，那么gc通常是不会回收这个对象所占有的内存123public class A&#123; static B b = new B();&#125; 此时静态变量b的生命周期与A类同步，如果A类不会卸载，那么b对象会常驻内存，直到程序终止。 尽量避免过多过常的创建Java对象尽量避免在经常调用的方法，循环中new对象，由于系统不仅要花费时间来创建对象，而且还要花时间对这些对象进行垃圾回收和处理，在我们可以控制的范围内，最大限度的重用对象，最好能用基本的数据类型或数组来替代对象。 尽量使用final修饰符带有final修饰符的类是不可派生的。在Java核心API中，有许多应用final的例子，例如java.lang.String。为String类指定final防止了使用者覆盖length()方法。另外，如果一个类是final的，则该类所有方法都是final的。Java编译器会寻找机会内联（inline）所有的final方法（这和具体的编译器实现有关）。此举能够使性能平均提高50%。 尽量使用局部变量调用方法时传递的参数以及在调用中创建的临时变量都保存在栈（Stack）中，速度较快。其他变量，如静态变量、实例变量等，都在堆（Heap）中创建，速度较慢。 尽量处理好包装类型和基本类型两者的使用场所虽然包装类型和基本类型在使用过程中是可以相互转换，但它们两者所产生的内存区域是完全不同的，基本类型数据产生和处理都在栈中处理，包装类型是对象，是在堆中产生实例。在集合类对象，有对象方面需要的处理适用包装类型，其他的处理提倡使用基本类型。 慎用synchronized，尽量减小synchronize的方法都知道，实现同步是要很大的系统开销作为代价的，甚至可能造成死锁，所以尽量避免无谓的同步控制。synchronize方法被调用时，直接会把当前对象锁 了，在方法执行完之前其他线程无法调用当前对象的其他方法。所以synchronize的方法尽量小，并且应尽量使用方法同步代替代码块同步。 尽量使用StringBuilder和StringBuffer进行字符串连接尽量不要使用finalize方法实际上，将资源清理放在finalize方法中完成是非常不好的选择，由于GC的工作量很大，尤其是回收Young代内存时，大都会引起应用程序暂停，所以再选择使用finalize方法进行资源清理，会导致GC负担更大，程序运行效率更差。 尽量使用基本数据类型代替对象String str = “hello”;上面这种方式会创建一个“hello”字符串，而且JVM的字符缓存池还会缓存这个字符串；String str = new String(“hello”);此时程序除创建字符串外，str所引用的String对象底层还包含一个char(http://7te80x.com1.z0.glb.clouddn.com/)数组，这个char(http://7te80x.com1.z0.glb.clouddn.com/)数组依次存放了h,e,l,l,o 单线程应尽量使用HashMap、ArrayListHashTable、Vector等使用了同步机制，降低了性能。 尽量合理的创建HashMap当你要创建一个比较大的hashMap时，充分利用另一个构造函数public HashMap(int initialCapacity, float loadFactor)避免HashMap多次进行了hash重构,扩容是一件很耗费性能的事，在默认中initialCapacity只有16，而loadFactor是 0.75，需要多大的容量，你最好能准确的估计你所需要的最佳大小，同样的Hashtable，Vectors也是一样的道理。 尽量减少对变量的重复计算如1for(int i=0;i&lt;list.size();i++) 应该改为1for(int i=0,len=list.size();i&lt;len;i++) 并且在循环中应该避免使用复杂的表达式，在循环中，循环条件会被反复计算，如果不使用复杂表达式，而使循环条件值不变的话，程序将会运行的更快。 尽量避免不必要的创建如1234A a = new A();if(i==1)&#123; list.add(a);&#125; 应该改为1234if(i==1)&#123; A a = new A(); list.add(a);&#125; 尽量在finally块中释放资源程序中使用到的资源应当被释放，以避免资源泄漏。这最好在finally块中去做。不管程序执行的结果如何，finally块总是会执行的，以确保资源的正确关闭。 尽量使用移位来代替’a/b’的操作“/“是一个代价很高的操作，使用移位的操作将会更快和更有效如12int num = a / 4;int num = a / 8; 应该改为12int num = a &gt;&gt; 2;int num = a &gt;&gt; 3; 但注意的是使用移位应添加注释，因为移位操作不直观，比较难理解 尽量使用移位来代替’a*b’的操作同样的，对于’*’操作，使用移位的操作将会更快和更有效如12int num = a * 4;int num = a * 8; 应该改为12int num = a &lt;&lt; 2;int num = a &lt;&lt; 3; 尽量确定StringBuffer的容量StringBuffer 的构造器会创建一个默认大小（通常是16）的字符数组。在使用中，如果超出这个大小，就会重新分配内存，创建一个更大的数组，并将原先的数组复制过来，再 丢弃旧的数组。在大多数情况下，你可以在创建 StringBuffer的时候指定大小，这样就避免了在容量不够的时候自动增长，以提高性能。1StringBuffer buffer = new StringBuffer(1000); 尽量早释放无用对象的引用大部分时，方法局部引用变量所引用的对象，会随着方法结束而变成垃圾，因此大部分时候程序无需将局部，引用变量显式设为null。 尽量避免使用二维数组二维数据占用的内存空间比一维数组多得多，大概10倍以上。 尽量避免使用split除非是必须的，否则应该避免使用split，split由于支持正则表达式，所以效率比较低，如果是频繁的几十，几百万的调用将会耗费大量资源，如果确实需 要频繁的调用split，可以考虑使用apache的StringUtils.split(string,char)，频繁split的可以缓存结果。 ArrayList &amp; LinkedList一个是线性表，一个是链表，一句话，随机查询尽量使用ArrayList，ArrayList优于LinkedList，LinkedList还要移动指 针，添加删除的操作LinkedList优于ArrayList，ArrayList还要移动数据，不过这是理论性分析，事实未必如此，重要的是理解好2 者得数据结构，对症下药。 尽量使用System.arraycopy ()代替通过来循环复制数组System.arraycopy() 要比通过循环来复制数组快的多 尽量缓存经常使用的对象尽可能将经常使用的对象进行缓存，可以使用数组，或HashMap的容器来进行缓存，但这种方式可能导致系统占用过多的缓存，性能下降，推荐可以使用一些第三方的开源工具，如EhCache，Oscache进行缓存，他们基本都实现了FIFO/FLU等缓存算法。 尽量避免非常大的内存分配有时候问题不是由当时的堆状态造成的，而是因为分配失败造成的。分配的内存块都必须是连续的，而随着堆越来越满，找到较大的连续块越来越困难。 慎用异常当创建一个异常时，需要收集一个栈跟踪(stack track)，这个栈跟踪用于描述异常是在何处创建的。构建这些栈跟踪时需要为运行时栈做一份快照，正是这一部分开销很大。当需要创建一个Exception时，JVM不得不说：先别动，我想就您现在的样子存一份快照，所以暂时停止入栈和出栈操作。栈跟踪不只包含运行时栈中的一两个元素，而是包含这个栈中的每一个元素。如果创建一个Exception ，就得付出代价。好在捕获异常开销不大，因此可以使用 try-catch 将核心内容包起来。从技术上讲，您甚至可以随意地抛出异常，而不用花费很大的代价。招致性能损失的并不是 throw 操作——尽管在没有预先创建异常的情况下就抛出异常是有点不寻常。真正要花代价的是创建异常。幸运的是，好的编程习惯已教会我们，不应该不管三七二十一就 抛出异常。异常是为异常的情况而设计的，使用时也应该牢记这一原则。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[关于Unsouppoerted major.minor version 51.0错误]]></title>
+      <url>%2F2014%2F10%2F29%2Feclipse-jdk-version-problem%2F</url>
+      <content type="text"><![CDATA[问题将Solr4.0的例子部署到Tomcat中，启动Tomcat，却报出Unsouppoerted major.minor version 51.0的错误，不能部署成功。 解决方法通过查阅资料，大概知道了是JDK的版本问题，我的电脑JDK版本是1.6，而Solr4.0是使用JDK1.7编译的，编译所用的jdk(1.7)比运行所用的jdk(1.6)高，才会报出这样的错误。 再补充一点：在eclipse中开发的项目有个java build path中可以配置jdk，还有个java compiler中可以配置compiler level。这两个是有区别的，build path的JDK版本是开发的时候编译器需要使用到的，就是在eclipse中开发代码，提示报错的。java compiler compliance level中配置的编译版本号的作用是项目将来开发完毕之后，要放到服务器上运行，那个服务器上JDK的运行版本。如果build path中配置1.7的JDK，java compiler compliance level中配置的1.7，但是服务器上是1.6的JDK，就会报错。最最安全的做法，是build path 和 java complier compliance level和服务器配置的JDK都保持一致，就不会出现任何问题的。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[搜索引擎的缓存]]></title>
+      <url>%2F2014%2F10%2F23%2Fsearch-cache%2F</url>
+      <content type="text"><![CDATA[缓存是目前所有搜索引擎都会采用的技术。缓存就是在高速内存硬件设备内开开辟一块数据存储区，用来容纳常见的用户查询及搜索结果，同时采取一定的管理策略来维护存储区内的数据。当搜索引擎接收到用户查询请求时，首先在缓存系统里查找，如果能够找到则直接返回搜索结果，否则采取正常的搜索流程来返回搜索结果。使用缓存，一则可以加快用户查询响应的速度，另外还能有效的减少搜索引擎后台计算量，节省计算资源。比如用户查询“搜索引擎 技术”，搜索引擎需要分别将存储在磁盘上的两个单词的倒排 索引读入内存，之后解压缩，然后再求得两个单词对应的倒排列表的交集，找到所有包含两个单词的文档集合，根据排序算法来对每个文档的相关性进行打分，按照相关度输出相关度最高的搜索结果。上述这么一个正常的搜索流程，就涉及到了磁盘读写、内存运算等一系列操作，相对比较耗费时间和计算资源。如果将本次搜索结果存储在缓存中，下次遇到相同的查询请求，就可以直接从缓存中将搜索结果返回，不需要再重复一次的计算了。当然，使用缓存返回搜索结果就涉及到一个前提，相同的用户查询会反复出现。这也就要从用户查询分布的特点来看。 很多对用户搜索行为分析的研究表明，有如下的特点：（1）至少63.5%的用户只看搜索结果第一页的内容，默认是排名头10位的搜索结果。大约11.7%的用户只看搜索结果第二页的内容。至少79%的用户只查看搜索结果前三页的内容。（2）用户发出的查询请求分布符合逆Power-Law规则，即少数查询占了查询总数的相当比例，而大多数查询出现次数非常少。在十亿规模的搜索日志记录中，63.7%的用户查询只出现过一次，而热闹查询占搜索请求总数的比例非常高，最热闹的25个用户搜索请求占了用户查询请求总数的1.2%-1.5%。同时，用户查询有很大比例的重复性，大约有30%-40%的用户查询是重复查询。（3）用户查询请求具备时间局部性，即大多数重复的用户查询会在较短的间隔时间被再次重复访问。由此，可看出使用缓存机制还是必要的，将其运用到搜索引擎中，可以加快系统的响应速度。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Intellij IDEA使用笔记]]></title>
+      <url>%2F2014%2F09%2F21%2Flearn-IDEA%2F</url>
+      <content type="text"><![CDATA[因为项目IDE的统一，转到了IDEA这个编辑器上来。开始一直是用Eclipse进行开发。换个编辑器，就有些拳脚展不开的感觉。已经熟悉的快捷键，都不再适用。不过，后来也渐渐习惯上了这个编辑器，感觉还是挺Fashion的，比Eclipse那个界面风格看起来更清爽、更有coding的感觉。 下面就一些常用的快捷键、配置进行记录，后续就不怕遗忘了，还要去度娘&amp;谷哥。 快捷键 快捷键—查找1.查找项目中的类：CTRL+N2.查找项目中的文件：CTRL+SHIFT+N3.查找文件中的方法或者变量：CTRL+SHIFT+ALT+N4.查找类中变量的声明：CTRL+B或者F45.查找类的所有子类：CTRL+ALT+B6.定位到文件的某一行：CTRL+G7.在当前文件查找文本：CTRL+F8.在指定的文件中查找文本：CTRL+SHIFT+F9.在当前文件替换文本：CTRL+R10.在指定的文件中替换文本：CTRL+SHIFT+R11.查找最近修改过的文件：ALT+SHIFT+C12.查找最近打开过的文件：CTRL+E13.向下查找关键字：F314.向上查找关键字：SHIFT+F315.查找选中的关键字在项目中出现的地方：CTRL+ALT+F716.打开当前项目的资源文件夹：CTRL+ALT+F1217.查找当前文件所在的文件位置：ALT+F118.在方法间快速定位：ALT+上下方向键19.代码向上或向下移动：CTRL+SHIFT+上下方向键20.快速打开光标处的类或方法：CTRL+B 快捷键—复制1.复制文件的内容，创建新文件：F52.复制行到下一行：CTRL+D3.剪切、删除行：CTRL+X 快捷键—代码优化1.在类中导入包：ALT+ENTER2.格式化代码：ALT+CTRL+L3.自动缩进：ALT+CTRL+I4.优化导入的包：ALT+CTRL+O5.生成代码(如GET,SET方法,构造函数等)：ALT+INSERT6.方法参数的提示：CTRL+P7.自动化代码：CTRL+J8.把选中的代码放在 TRY{} IF{} ELSE{} 里：CTRL+ALT+T9.自动补全代码：CTRL+SHIFT+SPACE10.代码提示：CTRL+SPACE11.类名或接口名提示：CTRL+ALT+SPACE12.重构-重命名：SHIFT+F6 快捷键—其它1.撤消编辑：CTRL+Z2.恢复编辑：SHIFT+CTRL+Z3.选中某段代码：CTRL+W4.切换代码视图：ALT+左右方向键5.返回上次编辑的位置：ALT+CTRL+左右方向键6.创建新的文件：CTRL+ALT+INSERT7.竖编辑模式：ALT+SHIFT+INSERT8.显示类结构图：CTRL+H9.快速打开或隐藏工程面板：ALT+110.光标返回编辑处：ESC11.光标返回编辑处，关闭之前光标所在的面板：SHIFT+ESC 参考资料 IntelliJ IDEA使用总结]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[解决Android的没有输出日志的问题]]></title>
+      <url>%2F2014%2F08%2F01%2Fandroid-log-problem%2F</url>
+      <content type="text"><![CDATA[问题在进行Android项目的注册界面逻辑的修改时，在每个表单元素的键盘触发事件中添加上了Log的日志打印，来查看是否触发了对应的事件。即添加上如下的代码：1Log.i(&quot;RegisterActivity&quot;,&quot;password:&quot; + password); 但是启动运行，发现在LogCat控制台并没有输出日志信息。 分析原因输不出来日志信息，那是因为引用的包错误。不是引用com.activeandroid.util.Log，而是需要引用android.util.Log包]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[在Android项目中添加上单元测试的配置]]></title>
+      <url>%2F2014%2F07%2F29%2Fandroid-unit-test%2F</url>
+      <content type="text"><![CDATA[配置步骤1、在AndroidManifest.xml文件的manifest节点下配置instrumentation，以及在application节点下配置uses-library 2、编写单元测试类，继承AndroiTestCase类 3、编写单元测试方法 4、运行单元测试方法 问题说明运行过程中，出现如下异常：1Test run failed:Unable to find instrumentation target package 是因为在AndroidManifest.xml文件中的以下两处的包名称要一样（1）android:targetPackage=”包名称”（2） 参考链接：http://blog.csdn.net/hjd_love_zzt/article/details/18373411]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[为什么string.xml文件存储文字信息]]></title>
+      <url>%2F2014%2F07%2F20%2Fandroid-string%2F</url>
+      <content type="text"><![CDATA[一是为了国际化Android建议将在屏幕上显示的文字定义在strings.xml中，如果今后需要进行国际化，比如我们开发的应用本来是面向国内用户的，当然在屏幕上使用中文，而如今我们要让应用走向世界，打入日本市场，当然需要在手机屏幕上显示日语，如果没有把文字信息定义在string.xml中，就需要修改程序的内容。 二是为了减少应用的体积，降低数据的冗余假设在应用中要使用”我们一直在努力”这段文字1000次，如果我们不将”我们一直在努力”定义在string.xml文件中，而是在每次使用时直接写上这几个字，这样下来程序中将有70000个字，这70000个字占136KB的空间。而由于手机的资源有限，其CPU的处理能力及内存是非常有限的，136KB对手机内存来说是个不小的空间，在做手机应用是一定要记住“能省内存就省内存”。而如果将这几个字定义在string.xml中，在每次使用到的地方通过Resources类来引用该文字,只占用到了14B，因此对降低应用体积效果是非常有效。 参考链接：http://mobile.51cto.com/aprogram-380358.htm]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解SharedPreferences]]></title>
+      <url>%2F2014%2F07%2F09%2Fandroid-sharedPreferences%2F</url>
+      <content type="text"><![CDATA[简单介绍SharedPreferences是一种轻型的数据存储方式。它的本质是基于XML文件存储Key-Value键值对数据, 通常用来存储一些简单的配置信息，其存储位置在/data/data/&lt;包名&gt;/shared_prefs目录下。存储支持的数据类型有boolean、int、float、long、String。 使用SharedPreferences保存数据 使用Activity类的getSharedPreferences方法获得SharedPreferences对象。 使用SharedPreferences接口的edit获得SharedPreferences.Editor对象。 通过SharedPreferences.Editor接口的putXxx方法保存key-value对。其中Xxx表示不同的数据类型。例如：字符串类型的value需要用putString方法。 通过SharedPreferences.Editor接口的commit方法保存key-value对。commit方法相当于数据库事务中的提交（commit）操作。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解Activity的生命周期]]></title>
+      <url>%2F2014%2F07%2F03%2Fandroid-activity%2F</url>
+      <content type="text"><![CDATA[生命周期包括onCreate、onStart、onRestart、onResume、onPause、onStop、onDestroy。 onCreate：在这里创建界面，做一些数据的初始化工作； onStart： 到这一步变成“用户可见不可交互”的状态； onReStart： 与onStart类似，重新激活Activity onResume：变成和用户可交互的 onPause：到这一步是可见但不可交互的，系统会停止动画等消耗CPU的事情 onStop：变得不可见 ，被下一个activity覆盖了 onDestroy：这是Activity被kill前最后一个被调用方法了，可能是其他类调用finish方法或者是系统为了节省空间将它暂时性的释放掉。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[了解Android内建数据库SQLite]]></title>
+      <url>%2F2014%2F06%2F19%2Fandroid-sqlite%2F</url>
+      <content type="text"><![CDATA[简单介绍Android的内建数据库采用的是SQLite。SQLite是一款轻型的数据库，是遵守ACID的关联式数据库管理系统，它的设计目标是嵌入式，它占用资源非常的低，目前已经在很多嵌入式产品中使用了它。 常用的操作方法 插入数据方法 1insert(String table,String nullColumnHack,ContentValues values) 删除数据方法 1delete(String table,String whereClause,String[] whereArgs) 查询数据方法 1query(String table,String[] columns,String selection,String[] selectionArgs,String groupBy,String having,String orderBy) 更新数据方法 1update(String table,ContentValues values,String whereClause,String[] whereArgs) 参考链接：http://blog.csdn.net/codeeer/article/details/30237597]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Sublime Text 快捷键]]></title>
+      <url>%2F2014%2F03%2F23%2Fsublime-keyword%2F</url>
+      <content type="text"><![CDATA[鼠标选中多行，按下 Ctrl+Shift+L：同时编辑这些行鼠标选中文本，反复按 Ctrl+D: 继续向下同时选中下一个相同的文本进行同时编辑鼠标选中文本，按下 Alt+F3: 一次性选择全部的相同文本进行同时编辑Shift+鼠标右键/按住鼠标中键：进行竖向多行选择Ctrl+鼠标左键：选择同时要编辑的多处文本Ctrl + L：选择整行Ctrl + KK：从光标处删除至行尾Ctrl + J：合并行Ctrl + /：注释整行Shift + Ctrl + 上下键:光标与上/下行对调 Shift + Ctrl + Enter：向光标前插入一行Ctrl + Enter：向光标后插入一行Ctrl + M：括号前后移动光标Ctrl + G：行号定位Ctrl + Shift + D：复制当前行Ctrl + p：文件定位Ctrl + R：函数定位Ctrl + G：行号定位 :Ctrl+W：关闭当前文件Ctrl+Shift+W：关闭所有文件Ctrl+Shift+/：注释当前位置Alt+Shift+数字：分屏Alt+数字：切换分屏]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[EL表达式的保留两位小数百分比]]></title>
+      <url>%2F2014%2F03%2F05%2Fel-format-number%2F</url>
+      <content type="text"><![CDATA[在工作中，需要在JSP页面中计算出某个百分比：得分/总分，且保留两位小数。采用EL表达式的fmt库中的formatNumber表达式来进行格式化输出： 1&lt;fmt:formatNumber value=&quot;$&#123;100 * (score / total)&#125;&quot; pattern=&quot;0.00&quot; maxFractionDigits=&quot;2&quot;/&gt; 其中：pattern：表达式的模板maxFractionDigits：结果的精度，设置为2则表示只保留两位小数]]></content>
+    </entry>
+
+    
+  
+  
+</search>

@@ -1,0 +1,3465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/10/25/python-flask-start/</loc>
+    <lastmod>2017-10-25T15:59:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Flask入门Demo</title>
+        <pubTime>2017-10-25T15:50:50.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>flask</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/02/12/js-string-insert/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript中对字符串进行定位插入元素</title>
+        <pubTime>2015-02-12T03:43:21.000Z</pubTime>
+        
+        <tag>string</tag>
+         
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/07/03/android-activity/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解Activity的生命周期</title>
+        <pubTime>2014-07-03T08:15:46.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/08/01/android-log-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决Android的没有输出日志的问题</title>
+        <pubTime>2014-08-01T08:18:09.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/22/android-session/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android项目与服务端项目关联，实现session保持</title>
+        <pubTime>2016-07-22T08:34:41.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+        <tag>session</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/07/09/android-sharedPreferences/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解SharedPreferences</title>
+        <pubTime>2014-07-09T08:17:00.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+        <tag>SharedPreferences</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/06/19/android-sqlite/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解Android内建数据库SQLite</title>
+        <pubTime>2014-06-19T08:13:29.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/25/android-start-fail/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决Android项目无法启动的问题</title>
+        <pubTime>2016-07-25T07:53:05.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/07/20/android-string/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>为什么string.xml文件存储文字信息</title>
+        <pubTime>2014-07-20T08:14:38.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+        <tag>string</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/07/29/android-unit-test/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Android项目中添加上单元测试的配置</title>
+        <pubTime>2014-07-29T08:38:53.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/27/android-webview-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决webView加载HTML内容出现中文乱码的问题</title>
+        <pubTime>2016-07-27T07:53:28.000Z</pubTime>
+        
+        <tag>android</tag>
+         
+        <tag>webView</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="http://yoursite.com/categories/android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/08/17/apache-static-files/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>在apache中设置静态资源文件的缓存</title>
+        <pubTime>2015-08-17T13:29:10.000Z</pubTime>
+        
+        <tag>apache</tag>
+         
+        <tag>static</tag>
+         
+         
+           
+             
+              <breadCrumb title="apache" url="http://yoursite.com/categories/apache/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/04/27/cas-filter-fail/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决CAS的过滤器在项目中不起作用的问题</title>
+        <pubTime>2015-04-27T09:37:42.000Z</pubTime>
+        
+        <tag>cas</tag>
+         
+        <tag>filter</tag>
+         
+        <tag>struts2</tag>
+         
+         
+           
+             
+              <breadCrumb title="cas" url="http://yoursite.com/categories/cas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/10/16/cas-unknown-ticket/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决CAS报出的无法识别票据的异常</title>
+        <pubTime>2015-10-16T13:26:34.000Z</pubTime>
+        
+        <tag>cas</tag>
+         
+        <tag>ticket</tag>
+         
+         
+           
+             
+              <breadCrumb title="cas" url="http://yoursite.com/categories/cas/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/05/27/cxf-spring-error/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决CXF客户端在Spring配置下启动出错的问题</title>
+        <pubTime>2015-05-27T15:24:29.000Z</pubTime>
+        
+        <tag>spring</tag>
+         
+        <tag>cxf</tag>
+         
+         
+           
+             
+              <breadCrumb title="spring" url="http://yoursite.com/categories/spring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/10/29/dns-cache-refresh/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>DNS缓存的查看以及刷新</title>
+        <pubTime>2015-10-29T13:18:21.000Z</pubTime>
+        
+        <tag>dns cache</tag>
+         
+         
+           
+             
+              <breadCrumb title="other" url="http://yoursite.com/categories/other/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/01/22/eclipse-auto-build-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决MyEclipse不能自动编译项目的问题</title>
+        <pubTime>2016-01-22T08:49:50.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>myeclipse</tag>
+         
+        <tag>auto build</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/10/15/eclipse-builder-tool/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决在MyEclipse中编译项目时出现的错误</title>
+        <pubTime>2015-10-15T13:22:56.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>myeclipse</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/01/29/eclipse-deploy-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决MyEclipse部署项目失败的问题</title>
+        <pubTime>2016-01-29T08:51:57.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>myeclipse</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/04/24/eclipse-export-jar/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>通过Myeclipse将项目导出为jar包</title>
+        <pubTime>2015-04-24T09:32:55.000Z</pubTime>
+        
+        <tag>myeclipse</tag>
+         
+        <tag>export jar</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/10/29/eclipse-jdk-version-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于Unsouppoerted major.minor version 51.0错误</title>
+        <pubTime>2014-10-29T15:18:00.000Z</pubTime>
+        
+        <tag>eclipse</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/02/06/eclipse-loading-fail/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决myeclipse一直处于加载的状态，无法启动</title>
+        <pubTime>2015-02-06T15:53:14.000Z</pubTime>
+        
+        <tag>myeclipse</tag>
+         
+        <tag>loading</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/07/24/eclipse-memory-out/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决启动myeclipse失败的内存问题</title>
+        <pubTime>2015-07-24T08:07:45.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>myeclipse</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/09/07/eclipse-svn-fle-confict/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解MyEclipse解决SVN的文件版本冲突的方法</title>
+        <pubTime>2015-09-07T13:24:02.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>myeclipse</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/05/08/eclipse-svn-share-project/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何将MyEclipse上的项目上传到SVN上</title>
+        <pubTime>2015-05-08T08:11:38.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>myeclipse</tag>
+         
+        <tag>svn</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/24/eclipse-validator-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决Eclipse的javascript validator的build问题</title>
+        <pubTime>2016-06-24T07:15:44.000Z</pubTime>
+        
+        <tag>myeclipse</tag>
+         
+        <tag>javascript validator</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/07/31/el-concat/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>EL表达式中的连接字符串的方法concat</title>
+        <pubTime>2015-07-31T08:08:24.000Z</pubTime>
+        
+        <tag>el</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/07/25/el-contain/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>EL表达式中判断字符串中是否包含关键词的方法</title>
+        <pubTime>2015-07-25T08:07:58.000Z</pubTime>
+        
+        <tag>el</tag>
+         
+        <tag>contain</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/03/05/el-format-number/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>EL表达式的保留两位小数百分比</title>
+        <pubTime>2014-03-05T09:24:31.000Z</pubTime>
+        
+        <tag>formatNumber</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/05/12/el-get-url-param/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>EL表达式获取url参数</title>
+        <pubTime>2015-05-12T08:11:52.000Z</pubTime>
+        
+        <tag>el</tag>
+         
+        <tag>jsp</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/23/emmet-grammar/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Emmet语法笔记</title>
+        <pubTime>2016-07-23T15:22:03.000Z</pubTime>
+        
+        <tag>emmet</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/17/fastjson-ref/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决FastJSON的重复引用的问题</title>
+        <pubTime>2016-06-17T04:39:37.000Z</pubTime>
+        
+        <tag>FastJSON</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/19/fastjson-time-format/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>FastJSON的时间格式化</title>
+        <pubTime>2017-02-19T04:21:32.000Z</pubTime>
+        
+        <tag>FastJSON</tag>
+         
+        <tag>JSONField</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/10/14/form-auto-compelete/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>注册表单的账号和密码禁止自动填充的问题解决</title>
+        <pubTime>2015-10-14T13:21:26.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>autoComplete</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/08/09/gson-field/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>指定Bean对象中转化为JSON数据的属性的方法</title>
+        <pubTime>2016-08-09T09:54:51.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>gson</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/12/21/gulp-js-min/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决使用gulp进行js压缩出现的问题</title>
+        <pubTime>2015-12-21T13:16:41.000Z</pubTime>
+        
+        <tag>gulp</tag>
+         
+        <tag>js min</tag>
+         
+         
+           
+             
+              <breadCrumb title="gulp" url="http://yoursite.com/categories/gulp/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/12/19/gulp-rev-collector/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决使用gulp进行页面引用路径替换时出现的问题</title>
+        <pubTime>2015-12-19T13:11:56.000Z</pubTime>
+        
+        <tag>gulp</tag>
+         
+        <tag>rev-collector</tag>
+         
+         
+           
+             
+              <breadCrumb title="gulp" url="http://yoursite.com/categories/gulp/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/12/hello-world/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hello hexo</title>
+        <pubTime>2017-02-12T03:27:07.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/12/hexo-note/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo博客搭建笔记</title>
+        <pubTime>2017-02-12T12:15:52.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/02/11/hibernate-base-entity/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hibernate的实体继承的方法</title>
+        <pubTime>2015-02-11T04:06:33.000Z</pubTime>
+        
+        <tag>hibernate</tag>
+         
+        <tag>MappedSuperclass</tag>
+         
+         
+           
+             
+              <breadCrumb title="hibernate" url="http://yoursite.com/categories/hibernate/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/07/hibernate-multi-key/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hibernate对于复合主键的映射的注解方式</title>
+        <pubTime>2016-09-07T09:54:17.000Z</pubTime>
+        
+        <tag>hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="hibernate" url="http://yoursite.com/categories/hibernate/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/14/hibernate-not-exist-bean/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>禁止Hibernate映射Bean实体中在数据表不存在的属性</title>
+        <pubTime>2015-03-14T14:43:48.000Z</pubTime>
+        
+        <tag>hibernate</tag>
+         
+        <tag>transient</tag>
+         
+         
+           
+             
+              <breadCrumb title="hibernate" url="http://yoursite.com/categories/hibernate/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/11/16/hibernate-second-cache/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Hibernate的二级缓存</title>
+        <pubTime>2015-11-16T08:55:23.000Z</pubTime>
+        
+        <tag>hibernate</tag>
+         
+        <tag>cache</tag>
+         
+         
+           
+             
+              <breadCrumb title="hibernate" url="http://yoursite.com/categories/hibernate/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/01/11/ibatis-sql-sort/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>SQL语句中的AND和OR执行顺序问题</title>
+        <pubTime>2015-01-11T15:23:14.000Z</pubTime>
+        
+        <tag>ibatis</tag>
+         
+        <tag>sql</tag>
+         
+         
+           
+             
+              <breadCrumb title="ibatis" url="http://yoursite.com/categories/ibatis/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/02/iphone-safari-secret/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解IPhone手机的Safari的隐私设置</title>
+        <pubTime>2015-06-02T08:08:54.000Z</pubTime>
+        
+        <tag>iphone</tag>
+         
+        <tag>safari</tag>
+         
+         
+           
+             
+              <breadCrumb title="other" url="http://yoursite.com/categories/other/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/13/java-add-day/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java中为Timestamp时间进行时间（天数）的相加，并返回Timestamp类型的新时间</title>
+        <pubTime>2015-03-12T16:08:23.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>timestamp</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/11/24/java-annotation/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java学习笔记-annotation标记</title>
+        <pubTime>2014-11-24T14:20:49.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>annotation</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/11/10/java-best-practice/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java编程中的注意点</title>
+        <pubTime>2014-11-10T09:34:24.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/10/java-code-analysis/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解静态代码分析</title>
+        <pubTime>2015-06-10T08:10:04.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/26/java-cxf-configuration/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>为项目整合webService框架CXF</title>
+        <pubTime>2015-03-26T14:18:46.000Z</pubTime>
+        
+        <tag>cxf</tag>
+         
+        <tag>java</tag>
+         
+        <tag>webservice</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/04/java-decimal-format/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java学习笔记-DecimalFormat</title>
+        <pubTime>2016-03-04T04:47:06.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>DecimalFormat</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/09/25/java-dom4j-xml/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用dom4j进行xml文件的解析</title>
+        <pubTime>2015-09-25T13:28:09.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>dom4j</tag>
+         
+        <tag>xml</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/15/java-enum/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java学习笔记-enum</title>
+        <pubTime>2017-02-15T15:17:32.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>enum</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/11/24/java-final/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java学习笔记-final修饰符</title>
+        <pubTime>2014-11-24T13:29:20.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>final</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/05/10/java-function-arg/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java中的方法形参的引用问题</title>
+        <pubTime>2016-05-10T09:55:12.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/11/28/java-generic-type/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java学习笔记-泛型</title>
+        <pubTime>2014-11-28T14:59:11.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>泛型</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/20/java-integer-long-compare/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Integer类型变量与Long类型变量的比较</title>
+        <pubTime>2016-09-20T09:54:01.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>Integer</tag>
+         
+        <tag>Long</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/25/java-is-mobile/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java判断用户访问的设备是手机还是PC</title>
+        <pubTime>2015-06-25T08:11:12.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>mobile</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/12/12/java-list-remove/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>List在循环中删除元素</title>
+        <pubTime>2014-12-12T09:11:58.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>list</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/01/14/java-long-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>定义一个静态Long类型变量遇到的问题</title>
+        <pubTime>2016-01-14T08:46:56.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>long</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/01/java-mail-exception/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决发送邮件出现的smtp异常</title>
+        <pubTime>2015-06-01T08:08:37.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>mail</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/08/03/java-mail-reconized/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java Mail设置邮件发件人标识</title>
+        <pubTime>2015-08-03T13:28:41.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>mail</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/12/02/java-stopwatch/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用stopWatch进行请求消耗时间的监控</title>
+        <pubTime>2015-12-02T09:01:12.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>stopWatch</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/02/02/java-string-class-compare/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解java拼接字符串的可变类</title>
+        <pubTime>2015-02-02T14:02:28.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>StringBuilder</tag>
+         
+        <tag>StringBuffer</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/12/01/java-string-question/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java学习笔记-String</title>
+        <pubTime>2014-12-01T02:44:37.000Z</pubTime>
+        
+        <tag>string</tag>
+         
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/04/java-string-unique/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java中关于反斜杠的处理</title>
+        <pubTime>2015-06-04T08:09:07.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/02/05/java-string-util-compare/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Apache的StringUtils使用</title>
+        <pubTime>2015-02-05T13:53:43.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>StringUtils</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/01/18/java-thread-final/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解为什么在内部类中引用的局部变量要用final修饰符修饰</title>
+        <pubTime>2015-01-18T09:12:32.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>final</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/01/09/java-thread/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java学习笔记-Thread</title>
+        <pubTime>2015-01-09T03:24:36.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>thread</tag>
+         
+        <tag>runnable</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/10/08/java-uuid/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解UUID</title>
+        <pubTime>2015-10-08T13:19:27.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>uuid</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/11/05/java-year-month/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>java学习笔记-获取年和月的方法</title>
+        <pubTime>2016-11-05T09:23:47.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>calendar</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/04/03/jdbc-utf8/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>JDBC的配置解决中文乱码</title>
+        <pubTime>2015-04-03T09:51:42.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>jdbc</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/01/26/jquery-index/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Jquery的返回元素的索引值方法</title>
+        <pubTime>2016-01-26T08:50:57.000Z</pubTime>
+        
+        <tag>jquery</tag>
+         
+        <tag>javascript</tag>
+         
+        <tag>index</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/06/js-array-item-remove/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript中删除数组中指定的元素</title>
+        <pubTime>2015-03-06T09:52:44.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>array</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/12/04/js-check-device/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript判断网站是手机访问，还是电脑访问</title>
+        <pubTime>2015-12-04T09:02:14.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/11/02/js-check-number/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript判断一个数是整数的方法</title>
+        <pubTime>2015-11-02T08:52:14.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>isNaN</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/01/07/js-delete/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript的删除Object对象属性的方法</title>
+        <pubTime>2015-01-07T03:36:59.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>delete</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/12/29/js-event-bind/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Jquery的事件绑定方式：bind、live、delegate</title>
+        <pubTime>2014-12-29T09:12:16.000Z</pubTime>
+        
+        <tag>jquery</tag>
+         
+        <tag>javascript</tag>
+         
+        <tag>event bind</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/04/27/js-is-array/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript中如何判断某一个变量是否数组类型</title>
+        <pubTime>2015-04-27T09:32:15.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>array</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/12/10/js-forbidden-copy/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Javascript禁止浏览器的复制、右键、粘贴的方法</title>
+        <pubTime>2014-12-10T09:11:08.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>forbidden copy</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/02/13/js-jquery-extend/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Jquery的$.extend方法</title>
+        <pubTime>2015-02-13T15:49:40.000Z</pubTime>
+        
+        <tag>jquery</tag>
+         
+        <tag>javascript</tag>
+         
+        <tag>extend</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/07/01/js-redirect-ie/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决window.location.href在IE浏览器下跳转出错的问题</title>
+        <pubTime>2015-07-01T08:05:01.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>ie</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/29/js-replace-all/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript的正则全局替换</title>
+        <pubTime>2015-06-29T08:11:25.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>replace</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/12/01/ajax-request-repeat/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>前端限制可以采用jquery的ajaxPrefilter这个函数来进行阻止数据的重复请求</title>
+        <pubTime>2016-12-01T15:15:40.000Z</pubTime>
+        
+        <tag>jquery</tag>
+         
+        <tag>ajax</tag>
+         
+         
+           
+             
+              <breadCrumb title="jquery" url="http://yoursite.com/categories/jquery/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/09/17/js-time-function/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript的setTimeout和setInterval方法</title>
+        <pubTime>2015-09-17T13:27:57.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>setTimeout</tag>
+         
+        <tag>setInterval</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/19/js-trace/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript的console.trace()</title>
+        <pubTime>2015-06-19T08:11:01.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>trace</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/11/29/js-umeditor-emoji/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>禁止UE编辑器输入emoji表情图片</title>
+        <pubTime>2015-11-29T09:04:45.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>umeditor</tag>
+         
+        <tag>emoji</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/12/24/js-umeditor/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>为富文本编辑器UMEditor添加上提示语的功能</title>
+        <pubTime>2015-12-24T09:03:33.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>umeditor</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/10/20/js-upper-lower/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>javascript的字母大小写的转换方法</title>
+        <pubTime>2015-10-20T13:26:50.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>toUpperCase</tag>
+         
+        <tag>toLowerCase</tag>
+         
+         
+           
+             
+              <breadCrumb title="javascript" url="http://yoursite.com/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/11/11/jsp-pre-build/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解JSP的编译流程，考虑是否可对其进行预编译来提高页面的性能</title>
+        <pubTime>2015-11-11T08:54:33.000Z</pubTime>
+        
+        <tag>jsp</tag>
+         
+        <tag>web</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/08/05/jstl-map-out/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>EL表达式获取Map的值</title>
+        <pubTime>2015-08-05T13:28:21.000Z</pubTime>
+        
+        <tag>el</tag>
+         
+        <tag>web</tag>
+         
+        <tag>map</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/10/23/jstl-out-index/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>JSTL表达式如何输出序号</title>
+        <pubTime>2015-10-23T13:27:05.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>jstl</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/22/jstl-split-string/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>JSTL表达式把一个拼接的字符串进行分隔输出</title>
+        <pubTime>2017-03-22T13:28:56.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>jstl</tag>
+         
+        <tag>forTokens</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/09/21/learn-IDEA/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Intellij IDEA使用笔记</title>
+        <pubTime>2014-09-21T15:20:21.000Z</pubTime>
+        
+        <tag>Intellij IDEA</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/11/25/learn-character/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>学习字符编码</title>
+        <pubTime>2014-11-25T14:00:21.000Z</pubTime>
+        
+        <tag>utf-8</tag>
+         
+        <tag>unicode</tag>
+         
+        <tag>ASCII</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/12/learn-markdown/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>MarkDown语法入门</title>
+        <pubTime>2017-02-12T03:27:07.000Z</pubTime>
+        
+        <tag>markdown</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/23/learn-regex/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>常用的正则表达式</title>
+        <pubTime>2017-03-23T03:16:26.000Z</pubTime>
+        
+        <tag>regex</tag>
+         
+         
+           
+             
+              <breadCrumb title="other" url="http://yoursite.com/categories/other/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/03/05/linux-ifconfig/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>linux环境执行ifconfig命令提示未找到</title>
+        <pubTime>2016-03-05T09:24:02.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>ifconfig</tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/08/27/log4j-class-out/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>log4j指定包或者指定类的日志输出</title>
+        <pubTime>2015-08-27T13:30:24.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>log4j</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/05/27/log4j-log-directory/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>输出日志信息到指定的位置</title>
+        <pubTime>2015-05-27T09:51:27.000Z</pubTime>
+        
+        <tag>log4j</tag>
+         
+         
+           
+             
+              <breadCrumb title="log4j" url="http://yoursite.com/categories/log4j/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/11/19/log4j-off-something/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Log4j控制日志的输出</title>
+        <pubTime>2014-11-19T08:37:42.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>log4j</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/23/maven-import-jar/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Maven如何手动添加依赖的jar文件到本地Maven仓库</title>
+        <pubTime>2015-03-23T09:53:44.000Z</pubTime>
+        
+        <tag>maven</tag>
+         
+         
+           
+             
+              <breadCrumb title="maven" url="http://yoursite.com/categories/maven/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/19/maven-nexus-index-update/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>手动更新maven私服nexus的中央仓库的索引</title>
+        <pubTime>2016-07-19T03:32:12.000Z</pubTime>
+        
+        <tag>maven</tag>
+         
+        <tag>nexus</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/08/20/phone-msg-get-often/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>防止短信轰炸的措施</title>
+        <pubTime>2015-08-20T13:29:39.000Z</pubTime>
+        
+        <tag>other</tag>
+         
+         
+           
+             
+              <breadCrumb title="other" url="http://yoursite.com/categories/other/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/08/10/project-db-read-write/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解数据库的读写分离</title>
+        <pubTime>2016-08-10T09:54:35.000Z</pubTime>
+        
+        <tag>datasource</tag>
+         
+         
+           
+             
+              <breadCrumb title="project" url="http://yoursite.com/categories/project/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/09/11/project-phone-six/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>为什么手机验证码通常为6位数字</title>
+        <pubTime>2015-09-11T13:25:08.000Z</pubTime>
+        
+        <tag>project</tag>
+         
+        <tag>phone</tag>
+         
+         
+           
+             
+              <breadCrumb title="project" url="http://yoursite.com/categories/project/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/08/21/project-secret-data/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于项目中敏感信息数据的安全性</title>
+        <pubTime>2015-08-21T13:29:54.000Z</pubTime>
+        
+        <tag>project</tag>
+         
+        <tag>secret</tag>
+         
+         
+           
+             
+              <breadCrumb title="project" url="http://yoursite.com/categories/project/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/09/project-user-story/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>理解禅道中的用户故事</title>
+        <pubTime>2015-03-08T16:13:41.000Z</pubTime>
+        
+        <tag>project</tag>
+         
+        <tag>user story</tag>
+         
+         
+           
+             
+              <breadCrumb title="project" url="http://yoursite.com/categories/project/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/05/project-version/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>学习对软件版本号的规范与命名原则</title>
+        <pubTime>2015-06-05T08:09:17.000Z</pubTime>
+        
+        <tag>project version</tag>
+         
+         
+           
+             
+              <breadCrumb title="project" url="http://yoursite.com/categories/project/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/02/15/Intellij-IDEA15-install/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Intellij IDEA15安装记录</title>
+        <pubTime>2016-02-15T15:19:39.000Z</pubTime>
+        
+        <tag>Intellij IDEA15</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/24/python-re/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python语言之Re库学习</title>
+        <pubTime>2017-03-24T04:12:03.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>re</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/02/python-requests-learn/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python语言之request库学习</title>
+        <pubTime>2017-03-02T10:20:43.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>requests</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/03/05/python-sort-algorithm/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>基础排序的Python语言代码实现</title>
+        <pubTime>2017-03-05T05:29:27.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://yoursite.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/10/23/search-cache/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>搜索引擎的缓存</title>
+        <pubTime>2014-10-23T15:19:18.000Z</pubTime>
+        
+        <tag>cache</tag>
+         
+        <tag>search</tag>
+         
+         
+           
+             
+              <breadCrumb title="search" url="http://yoursite.com/categories/search/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/12/03/search-crawler/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>爬虫与抓取站点间的联系</title>
+        <pubTime>2014-12-03T09:19:31.000Z</pubTime>
+        
+        <tag>crawler</tag>
+         
+        <tag>robots</tag>
+         
+        <tag>sitemap</tag>
+         
+         
+           
+             
+              <breadCrumb title="search" url="http://yoursite.com/categories/search/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/11/12/search-multi-node/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>分布式搜索算法</title>
+        <pubTime>2014-11-12T15:21:05.000Z</pubTime>
+        
+        <tag>search</tag>
+         
+         
+           
+             
+              <breadCrumb title="search" url="http://yoursite.com/categories/search/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/07/30/session-time-method/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解session的时长的设置</title>
+        <pubTime>2015-07-30T08:08:13.000Z</pubTime>
+        
+        <tag>session</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/18/solr-boost-learn/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解Solr关于打分规则的修改</title>
+        <pubTime>2015-03-17T16:04:02.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>boost</tag>
+         
+         
+           
+             
+              <breadCrumb title="solr" url="http://yoursite.com/categories/solr/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/04/16/solr-delete-document/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>solr的dataimport技术中的删除索引文档方法</title>
+        <pubTime>2015-04-16T09:52:12.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+         
+           
+             
+              <breadCrumb title="solr" url="http://yoursite.com/categories/solr/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/10/solr-field/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>solr的field字段的配置的理解</title>
+        <pubTime>2015-03-10T09:52:54.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/04/10/solr-filter-html/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Solr建立索引时过滤HTML标签</title>
+        <pubTime>2015-04-10T09:51:56.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>html</tag>
+         
+         
+           
+             
+              <breadCrumb title="solr" url="http://yoursite.com/categories/solr/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/05/17/solr-rebuild-index-no-data/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决Solr重建索引时没有索引部分表的数据问题</title>
+        <pubTime>2015-05-17T15:16:52.000Z</pubTime>
+        
+        <tag>index</tag>
+         
+        <tag>solr</tag>
+         
+         
+           
+             
+              <breadCrumb title="solr" url="http://yoursite.com/categories/solr/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/04/20/solr-tomcat-priviledge/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>设置solr索引服务器tomcat的访问权限</title>
+        <pubTime>2015-04-20T09:52:25.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>tomcat</tag>
+         
+         
+           
+             
+              <breadCrumb title="solr" url="http://yoursite.com/categories/solr/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/07/13/spring-jdbc-get-id/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Spring JDBC插入数据后获得该记录的ID的方法</title>
+        <pubTime>2015-07-13T08:06:37.000Z</pubTime>
+        
+        <tag>spring</tag>
+         
+        <tag>keyHolder</tag>
+         
+         
+           
+             
+              <breadCrumb title="spring" url="http://yoursite.com/categories/spring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/15/solr-index-403/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决Solr的定时索引出现的403问题</title>
+        <pubTime>2015-06-15T08:10:24.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>403</tag>
+         
+         
+           
+             
+              <breadCrumb title="solr" url="http://yoursite.com/categories/solr/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/03/seckill-project/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>JAVA高并发秒杀API项目的学习笔记</title>
+        <pubTime>2016-07-03T15:18:46.000Z</pubTime>
+        
+        <tag>spring mvc</tag>
+         
+        <tag>mybatis</tag>
+         
+        <tag>web project</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/18/solr-multi-datasource/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Solr的dataImport从数据库导入索引的多数据源配置</title>
+        <pubTime>2015-03-18T09:53:09.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+         
+           
+             
+              <breadCrumb title="solr" url="http://yoursite.com/categories/solr/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/05/19/spring-version-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Spring配置文件的版本与jar包不一致，导致项目启动失败</title>
+        <pubTime>2016-05-19T08:36:13.000Z</pubTime>
+        
+        <tag>spring</tag>
+         
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="spring" url="http://yoursite.com/categories/spring/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/01/08/sql-all-columns-query/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>SQL查询全部列的缺点</title>
+        <pubTime>2016-01-08T13:20:39.000Z</pubTime>
+        
+        <tag>sql</tag>
+         
+        <tag>all columns</tag>
+         
+         
+           
+             
+              <breadCrumb title="sql" url="http://yoursite.com/categories/sql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/02/23/sql-chinese-sort/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>SQL语句中的中文排序实现</title>
+        <pubTime>2016-02-23T15:13:50.000Z</pubTime>
+        
+        <tag>sql</tag>
+         
+        <tag>sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="sql" url="http://yoursite.com/categories/sql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/05/14/sql-learn-union/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>SQL的UNION与UNION ALL的差别</title>
+        <pubTime>2016-05-14T03:59:30.000Z</pubTime>
+        
+        <tag>sql</tag>
+         
+        <tag>union</tag>
+         
+         
+           
+             
+              <breadCrumb title="sql" url="http://yoursite.com/categories/sql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/19/sql-like-create/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>编写模糊查询的SQL语句</title>
+        <pubTime>2017-02-19T03:35:04.000Z</pubTime>
+        
+        <tag>sql</tag>
+         
+        <tag>like</tag>
+         
+         
+           
+             
+              <breadCrumb title="sql" url="http://yoursite.com/categories/sql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/11/22/sql-like-speed/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>SQL的执行顺序之LIKE查询效率问题分析</title>
+        <pubTime>2014-11-22T14:58:00.000Z</pubTime>
+        
+        <tag>sql</tag>
+         
+         
+           
+             
+              <breadCrumb title="sql" url="http://yoursite.com/categories/sql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/08/sql-no-cache/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>SQL语句去除缓存查询</title>
+        <pubTime>2015-03-08T04:15:14.000Z</pubTime>
+        
+        <tag>SQL_NO_CACHE</tag>
+         
+         
+           
+             
+              <breadCrumb title="sql" url="http://yoursite.com/categories/sql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/01/21/sql-primaryKey-method/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>对表创建的主键方案进行了解</title>
+        <pubTime>2015-01-21T09:11:40.000Z</pubTime>
+        
+        <tag>sql</tag>
+         
+        <tag>primary key</tag>
+         
+         
+           
+             
+              <breadCrumb title="sql" url="http://yoursite.com/categories/sql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/04/sql-zero-datetime/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决不能转化'0000-00-00 00:00:00'为timestamp类型的问题</title>
+        <pubTime>2015-03-03T16:19:46.000Z</pubTime>
+        
+        <tag>sql</tag>
+         
+        <tag>timestamp</tag>
+         
+        <tag>zeroDateTimeBehavior</tag>
+         
+         
+           
+             
+              <breadCrumb title="sql" url="http://yoursite.com/categories/sql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/28/struts2-default-action/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Struts2中设置默认的action为404页面</title>
+        <pubTime>2015-03-28T15:56:23.000Z</pubTime>
+        
+        <tag>struts2</tag>
+         
+        <tag>default action</tag>
+         
+         
+           
+             
+              <breadCrumb title="struts2" url="http://yoursite.com/categories/struts2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/25/struts2-spring-combine/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>利用Spring来管理Struts2的控制层Action对象</title>
+        <pubTime>2015-03-25T14:30:14.000Z</pubTime>
+        
+        <tag>struts2</tag>
+         
+        <tag>spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="struts2" url="http://yoursite.com/categories/struts2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/03/sublime-install/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Sublime安装记录</title>
+        <pubTime>2016-07-03T15:21:21.000Z</pubTime>
+        
+        <tag>sublime</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2014/03/23/sublime-keyword/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Sublime Text 快捷键</title>
+        <pubTime>2014-03-23T09:55:27.000Z</pubTime>
+        
+        <tag>sublime</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/01/06/svn-branch-intro/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>学习svn的分支branch功能</title>
+        <pubTime>2015-01-06T09:45:31.000Z</pubTime>
+        
+        <tag>svn</tag>
+         
+        <tag>branch</tag>
+         
+         
+           
+             
+              <breadCrumb title="svn" url="http://yoursite.com/categories/svn/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/01/14/svn-comment/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>正确认识SVN提交代码的注释</title>
+        <pubTime>2015-01-14T03:08:19.000Z</pubTime>
+        
+        <tag>tool</tag>
+         
+        <tag>svn comment</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/15/svn-install/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>SVN安装记录</title>
+        <pubTime>2017-02-15T15:20:52.000Z</pubTime>
+        
+        <tag>svn</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/08/svn-file-structure/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解SVN的文件结构</title>
+        <pubTime>2015-06-08T08:09:29.000Z</pubTime>
+        
+        <tag>svn</tag>
+         
+         
+           
+             
+              <breadCrumb title="svn" url="http://yoursite.com/categories/svn/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/01/svn-relocate-ip/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>修改迁出的SVN项目的IP地址</title>
+        <pubTime>2016-06-01T05:10:53.000Z</pubTime>
+        
+        <tag>svn</tag>
+         
+        <tag>relocate</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/16/test-90-line/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解JMeter聚合报告中的90%Line参数</title>
+        <pubTime>2015-06-16T08:10:48.000Z</pubTime>
+        
+        <tag>jemeter</tag>
+         
+        <tag>90% Line</tag>
+         
+         
+           
+             
+              <breadCrumb title="test" url="http://yoursite.com/categories/test/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/27/tomcat-eof-exception/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Tomcat启动报java.io.EOFException错误</title>
+        <pubTime>2016-06-27T07:14:55.000Z</pubTime>
+        
+        <tag>tomcat</tag>
+         
+        <tag>EOFException</tag>
+         
+         
+           
+             
+              <breadCrumb title="tomcat" url="http://yoursite.com/categories/tomcat/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/09/15/tomcat-jsessionid/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解jsessionid</title>
+        <pubTime>2015-09-15T13:27:32.000Z</pubTime>
+        
+        <tag>tomcat</tag>
+         
+        <tag>jsessionid</tag>
+         
+         
+           
+             
+              <breadCrumb title="tomcat" url="http://yoursite.com/categories/tomcat/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/16/tomcat-session-expired/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>Tomcat如何判断session过期</title>
+        <pubTime>2016-09-16T13:27:44.000Z</pubTime>
+        
+        <tag>tomcat</tag>
+         
+        <tag>session expired</tag>
+         
+         
+           
+             
+              <breadCrumb title="tomcat" url="http://yoursite.com/categories/tomcat/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/04/29/tomcat-session-persistence/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何将Tomcat的Session做持久化配置</title>
+        <pubTime>2015-04-28T16:23:08.000Z</pubTime>
+        
+        <tag>tomcat</tag>
+         
+        <tag>session persistence</tag>
+         
+         
+           
+             
+              <breadCrumb title="tomcat" url="http://yoursite.com/categories/tomcat/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/03/21/tomcat-title-change/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>修改tomcat的启动控制台标题</title>
+        <pubTime>2015-03-21T15:59:19.000Z</pubTime>
+        
+        <tag>tomcat</tag>
+         
+         
+           
+             
+              <breadCrumb title="tomcat" url="http://yoursite.com/categories/tomcat/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/06/09/unit-test-code/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解单元测试与代码覆盖率的关系</title>
+        <pubTime>2015-06-09T08:09:44.000Z</pubTime>
+        
+        <tag>test</tag>
+         
+         
+           
+             
+              <breadCrumb title="test" url="http://yoursite.com/categories/test/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/09/06/urlrewrite-auto-load/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解URL伪静态urlRewrite的热部署</title>
+        <pubTime>2015-09-06T13:27:19.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>urlrewrite</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/11/27/web-form-problem/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>解决表单输入框中点击键盘回车键后提交的问题</title>
+        <pubTime>2015-11-27T08:59:55.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>form</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/08/24/web-gzip/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>了解GZIP压缩</title>
+        <pubTime>2015-08-24T13:30:07.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>gzip</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/11/19/web-js-cache/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用localStorage实现前端缓存方案</title>
+        <pubTime>2015-11-19T08:56:47.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>cache</tag>
+         
+        <tag>localStorage</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/07/21/web-xml-param/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>web.xml文件可以进行的参数定义</title>
+        <pubTime>2015-07-21T08:07:22.000Z</pubTime>
+        
+        <tag>session</tag>
+         
+        <tag>tomcat</tag>
+         
+         
+           
+             
+              <breadCrumb title="web" url="http://yoursite.com/categories/web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/05/23/winscp-install/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用winscp实现Window系统和Linux系统的文件目录操作</title>
+        <pubTime>2016-05-23T07:15:27.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>winscp</tag>
+         
+         
+           
+             
+              <breadCrumb title="tool" url="http://yoursite.com/categories/tool/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2015/01/14/xml-special-char/</loc>
+    <lastmod>2017-04-12T14:56:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>xml配置文件中特殊字符的处理</title>
+        <pubTime>2015-01-14T15:23:51.000Z</pubTime>
+        
+        <tag>ibatis</tag>
+         
+        <tag>xml</tag>
+         
+         
+           
+             
+              <breadCrumb title="ibatis" url="http://yoursite.com/categories/ibatis/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+    
+    
+    
+    
+</urlset>
